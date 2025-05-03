@@ -1,0 +1,37 @@
+.mui-button {
+  @apply inline-flex items-center justify-center
+    rounded-md font-medium transition-colors
+    text-white cursor-pointer mx-4;
+}
+
+.mui-button[disabled] {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.mui-button.mui-button--primary {
+  @apply bg-primary-500 hover:bg-primary-600;
+}
+
+.mui-button.mui-button--secondary {
+  @apply bg-secondary-500 hover:bg-secondary-600;
+}
+
+.mui-button.mui-button--danger {
+  @apply bg-danger-500 hover:bg-danger-600;
+}
+
+.mui-button.mui-button--success {
+  @apply bg-success-500 hover:bg-success-600;
+}
+
+.mui-button.mui-button--sm {
+  @apply px-2 py-1 text-sm;
+}
+
+.mui-button.mui-button--md {
+  @apply px-4 py-2 text-base;
+}
+
+.mui-button.mui-button--lg {
+  @apply px-6 py-3 text-lg;
+}
