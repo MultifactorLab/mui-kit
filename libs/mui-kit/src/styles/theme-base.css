@@ -27,6 +27,7 @@
   --mui-spacing-lg: 1.5rem;
 
   /* Borders */
+  --mui-border-radius-xs: 0.06rem;
   --mui-border-radius-sm: 0.125rem;
   --mui-border-radius-md: 0.25rem;
   --mui-border-radius-lg: 0.5rem;

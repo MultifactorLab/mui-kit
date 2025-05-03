@@ -1,4 +1,6 @@
 import { argsToTemplate, Meta, StoryObj } from '@storybook/angular';
+import { THEME_COLORS_ARRAY, THEME_COLORS_STRING } from '../../types/theme-colors.type';
+import { THEME_SIZES_ARRAY, THEME_SIZES_STRING } from '../../types/theme-sizes.type';
 import { MuiButtonComponent } from './mui-button.component';
 
 const meta: Meta<MuiButtonComponent> = {
@@ -14,12 +16,24 @@ const meta: Meta<MuiButtonComponent> = {
     `,
   }),
   args: {
-    color: 'primary',
+    backgroundColor: 'primary',
     disabled: false,
+    size: 'md',
   },
   argTypes: {
+    backgroundColor: {
+      options: THEME_COLORS_ARRAY,
+      table: {
+        defaultValue: {
+          summary: 'primary',
+        },
+        type: {
+          summary: THEME_COLORS_STRING,
+        }
+      },
+      control: { type: 'select' },
+    },
     disabled: {
-      description: 'Disable the button',
       table: {
         type: {
           summary: 'boolean',
@@ -30,74 +44,77 @@ const meta: Meta<MuiButtonComponent> = {
       },
       control: { type: 'boolean' },
     },
-    color: {
-      description: 'Button variant',
-      options: ['primary', 'secondary', 'success', 'danger'],
+    size: {
+      options: THEME_SIZES_ARRAY,
       table: {
         defaultValue: {
-          summary: 'primary',
+          summary: 'md',
+        },
+        type: {
+          summary: THEME_SIZES_STRING,
         }
       },
-      control: { type: 'inline-radio' },
+      control: { type: 'select' },
     },
   }
 };
 
 export default meta;
+
 type Story = StoryObj<MuiButtonComponent>;
 
 export const Primary: Story = {
   args: {
-    color: 'primary',
+    backgroundColor: 'primary',
     disabled: false,
+  },
+};
+
+export const PrimaryDisabled: Story = {
+  args: {
+    backgroundColor: 'primary',
+    disabled: true,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    color: 'secondary',
+    backgroundColor: 'secondary',
     disabled: false,
+  },
+};
+
+export const SecondaryDisabled: Story = {
+  args: {
+    backgroundColor: 'secondary',
+    disabled: true,
   },
 };
 
 export const Success: Story = {
   args: {
-    color: 'success',
+    backgroundColor: 'success',
     disabled: false,
+  },
+};
+
+export const SuccessDisabled: Story = {
+  args: {
+    backgroundColor: 'success',
+    disabled: true,
   },
 };
 
 export const Danger: Story = {
   args: {
-    color: "danger",
+    backgroundColor: "danger",
     disabled: false
   }
 };
 
-export const DisabledPrimary: Story = {
+export const DangerDisabled: Story = {
   args: {
-    color: 'primary',
-    disabled: true,
-  },
-};
-
-export const DisabledSecondary: Story = {
-  args: {
-    color: 'secondary',
-    disabled: true,
-  },
-};
-
-export const DisabledSuccess: Story = {
-  args: {
-    color: 'success',
-    disabled: true,
-  },
-};
-
-export const DisabledDanger: Story = {
-  args: {
-    color: "danger",
+    backgroundColor: "danger",
     disabled: true,
   }
 };
