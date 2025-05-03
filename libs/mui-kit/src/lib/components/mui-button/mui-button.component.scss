@@ -4,19 +4,19 @@
     cursor-pointer border-0 border-none;
 
   &--color-primary {
-    @apply bg-mui-primary-500 hover:bg-mui-primary-600;
+    @apply bg-mui-primary-500 hover:bg-mui-primary-600 text-mui-black;
   }
 
   &--color-secondary {
-    @apply bg-mui-secondary-500 hover:bg-mui-secondary-600;
+    @apply bg-mui-secondary-500 hover:bg-mui-secondary-600 text-mui-white;
   }
 
   &--color-success {
-    @apply bg-mui-success-500 hover:bg-mui-success-600;
+    @apply bg-mui-success-500 hover:bg-mui-success-600 text-mui-white;
   }
 
   &--color-danger {
-    @apply bg-mui-danger-500 hover:bg-mui-danger-600;
+    @apply bg-mui-danger-500 hover:bg-mui-danger-600 text-mui-white;
   }
 
   &--size-sm {

@@ -555,8 +555,8 @@ video {
 }
 
 .size {
-  width: var(--spacing);
-  height: var(--spacing);
+  width: var(--mui-spacing);
+  height: var(--mui-spacing);
 }
 
 .transform {

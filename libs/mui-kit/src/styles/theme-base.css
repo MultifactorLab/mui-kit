@@ -1,14 +1,20 @@
 :root {
   /* Colors */
+  --mui-color-white: #ffffff;
+  --mui-color-black: #000000;
+
   --mui-color-primary-400: #38bdf8;
   --mui-color-primary-500: #0ea5e9;
   --mui-color-primary-600: #0284c7;
+
   --mui-color-secondary-400: #a78bfa;
   --mui-color-secondary-500: #8b5cf6;
   --mui-color-secondary-600: #7c3aed;
+
   --mui-color-success-400: #4ade80;
   --mui-color-success-500: #22c55e;
   --mui-color-success-600: #16a34a;
+
   --mui-color-danger-400: #fb923c;
   --mui-color-danger-500: #f97316;
   --mui-color-danger-600: #ea580c;

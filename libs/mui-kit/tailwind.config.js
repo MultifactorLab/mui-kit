@@ -10,6 +10,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'mui-white': {
+          DEFAULT: 'var(--mui-color-white)',
+        },
+        'mui-black': {
+          DEFAULT: 'var(--mui-color-black)',
+        },
         'mui-primary': {
           400: 'var(--mui-color-primary-400)',
           500: 'var(--mui-color-primary-500)',
