@@ -28,3 +28,7 @@
     @apply !bg-gray-700 text-gray-300;
   }
 }
+
+.sb-row {
+  @apply flex flex-row gap-x-4;
+}

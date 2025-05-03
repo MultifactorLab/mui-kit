@@ -6,7 +6,7 @@
   (click)="onClick($event)"
 >
   @if (loading()) {
-    <span>Loading...</span>
+    <mui-loading [size]="size()" />
   } @else {
     <ng-content />
   }

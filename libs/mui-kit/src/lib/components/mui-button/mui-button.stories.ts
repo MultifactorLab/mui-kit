@@ -10,15 +10,16 @@ const meta: Meta<MuiButtonComponent> = {
   render: (args) => ({
     props: args,
     template: `
-      <mui-button ${argsToTemplate(args)}>
-        Button
-      </mui-button>
+      <div class="sb-row">
+        <mui-button ${argsToTemplate(args)}>Button</mui-button>
+      </div>
     `,
   }),
   args: {
     backgroundColor: 'primary',
-    disabled: false,
     size: 'md',
+    disabled: false,
+    loading: false,
   },
   argTypes: {
     backgroundColor: {
@@ -29,6 +30,18 @@ const meta: Meta<MuiButtonComponent> = {
         },
         type: {
           summary: THEME_COLORS_STRING,
+        }
+      },
+      control: { type: 'select' },
+    },
+    size: {
+      options: THEME_SIZES_ARRAY,
+      table: {
+        defaultValue: {
+          summary: 'md',
+        },
+        type: {
+          summary: THEME_SIZES_STRING,
         }
       },
       control: { type: 'select' },
@@ -44,18 +57,17 @@ const meta: Meta<MuiButtonComponent> = {
       },
       control: { type: 'boolean' },
     },
-    size: {
-      options: THEME_SIZES_ARRAY,
+    loading: {
       table: {
-        defaultValue: {
-          summary: 'md',
-        },
         type: {
-          summary: THEME_SIZES_STRING,
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: 'false',
         }
       },
-      control: { type: 'select' },
-    },
+      control: { type: 'boolean' },
+    }
   }
 };
 
@@ -70,24 +82,10 @@ export const Primary: Story = {
   },
 };
 
-export const PrimaryDisabled: Story = {
-  args: {
-    backgroundColor: 'primary',
-    disabled: true,
-  },
-};
-
 export const Secondary: Story = {
   args: {
     backgroundColor: 'secondary',
     disabled: false,
-  },
-};
-
-export const SecondaryDisabled: Story = {
-  args: {
-    backgroundColor: 'secondary',
-    disabled: true,
   },
 };
 
@@ -98,23 +96,9 @@ export const Success: Story = {
   },
 };
 
-export const SuccessDisabled: Story = {
-  args: {
-    backgroundColor: 'success',
-    disabled: true,
-  },
-};
-
 export const Danger: Story = {
   args: {
     backgroundColor: "danger",
     disabled: false
-  }
-};
-
-export const DangerDisabled: Story = {
-  args: {
-    backgroundColor: "danger",
-    disabled: true,
   }
 };

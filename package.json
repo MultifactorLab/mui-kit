@@ -51,6 +51,7 @@
     "prettier": "^2.6.2",
     "storybook": "8.6.12",
     "tailwindcss": "^3.4.17",
+    "tailwindcss-animation-delay": "^2.0.2",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.7.2",

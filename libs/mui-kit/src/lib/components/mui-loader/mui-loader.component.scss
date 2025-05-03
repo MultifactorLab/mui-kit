@@ -1,0 +1,35 @@
+.mui-loader {
+  @apply flex items-center gap-x-2 w-full;
+
+  &__item {
+    @apply relative block rounded-full size-full aspect-square bg-mui-bg-primary-50 animate-none;
+
+    @apply before:absolute before:block before:rounded-full before:size-full
+    before:bg-mui-bg-primary-50 before:content-[''] before:inset-0 before:animate-ping
+    first:before:animation-delay-none before:animation-delay-150 last:before:animation-delay-300;
+  }
+
+  &--size-xs {
+    .mui-loader__item {
+      @apply min-h-1.5;
+    }
+  }
+
+  &--size-sm {
+    .mui-loader__item {
+      @apply min-h-2.5;
+    }
+  }
+
+  &--size-md {
+    .mui-loader__item {
+      @apply min-h-4;
+    }
+  }
+
+  &--size-lg {
+    .mui-loader__item {
+      @apply min-h-5;
+    }
+  }
+}

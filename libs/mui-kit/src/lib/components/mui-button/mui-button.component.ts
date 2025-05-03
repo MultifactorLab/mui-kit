@@ -9,12 +9,13 @@ import {
 } from '@angular/core';
 import { ThemeColors } from '../../types/theme-colors.type';
 import { ThemeSizes } from '../../types/theme-sizes.type';
+import { MuiLoaderComponent } from '../mui-loader/mui-loader.component';
 
 @Component({
   selector: 'mui-button',
   templateUrl: './mui-button.component.html',
   styleUrls: ['./mui-button.component.scss'],
-  imports: [ NgClass ],
+  imports: [ NgClass, MuiLoaderComponent ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MuiButtonComponent {
@@ -29,6 +30,7 @@ export class MuiButtonComponent {
   readonly classNames = computed<string[]>(() => ([
     `mui-button--bg-${this.backgroundColor()}`,
     `mui-button--size-${this.size()}`,
+    (this.loading() ? 'mui-button--loading' : ''),
   ]));
 
   onClick(event: MouseEvent): void {
