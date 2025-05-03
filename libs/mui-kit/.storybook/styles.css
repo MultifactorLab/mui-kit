@@ -1,2 +1,30 @@
 @import './tailwind.css';
 @import '../src/styles/theme-base.css';
+
+.dark {
+  @apply bg-gray-800;
+
+  h1, h2, h3, th > span {
+    @apply text-white;
+  }
+
+  .sbdocs-wrapper, .docs-story {
+    @apply bg-gray-800;
+  }
+
+  .sb-bar {
+    @apply shadow-white;
+  }
+
+  th, .sb-bar {
+    @apply bg-gray-900;
+  }
+
+  .docblock-code-toggle {
+    @apply bg-gray-600 text-gray-300;
+  }
+
+  table > tbody > tr > * {
+    @apply !bg-gray-700 text-gray-300;
+  }
+}
