@@ -4,6 +4,7 @@
 dist
 tmp
 out-tsc
+libs/mui-kit/src/styles/styles.css
 
 # dependencies
 node_modules

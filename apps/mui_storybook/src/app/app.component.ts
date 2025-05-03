@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { MuiButtonComponent } from '@diz1/mui-kit';
 
 @Component({
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [ RouterModule, MuiButtonComponent ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

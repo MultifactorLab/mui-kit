@@ -1,11 +1,13 @@
 <button
   class="mui-button"
-  [ngClass]="classes()"
+  [ngClass]="classNames()"
   [disabled]="disabled()"
+  [attr.type]="type()"
   (click)="onClick($event)"
 >
   @if (loading()) {
     <span>Loading...</span>
+  } @else {
+    <ng-content />
   }
-  <ng-content /> {{classes()}}
 </button>

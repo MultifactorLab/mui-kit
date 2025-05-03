@@ -1,9 +1,14 @@
 {
   "name": "@diz1/mui-kit",
   "version": "0.0.1",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "peerDependencies": {
     "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0"
+    "@angular/core": "^19.2.0",
+    "@nx/angular": "20.8.1",
+    "tailwindcss": "^3.4.17"
   },
   "sideEffects": false
 }

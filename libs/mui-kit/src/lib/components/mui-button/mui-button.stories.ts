@@ -14,7 +14,7 @@ const meta: Meta<MuiButtonComponent> = {
     `,
   }),
   args: {
-    variant: 'primary',
+    color: 'primary',
     disabled: false,
   },
   argTypes: {
@@ -30,9 +30,9 @@ const meta: Meta<MuiButtonComponent> = {
       },
       control: { type: 'boolean' },
     },
-    variant: {
+    color: {
       description: 'Button variant',
-      options: ['primary', 'secondary', 'danger'],
+      options: ['primary', 'secondary', 'success', 'danger'],
       table: {
         defaultValue: {
           summary: 'primary',
@@ -48,56 +48,56 @@ type Story = StoryObj<MuiButtonComponent>;
 
 export const Primary: Story = {
   args: {
-    variant: 'primary',
+    color: 'primary',
     disabled: false,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    variant: 'secondary',
+    color: 'secondary',
     disabled: false,
   },
 };
 
 export const Success: Story = {
   args: {
-    variant: 'success',
+    color: 'success',
     disabled: false,
   },
 };
 
 export const Danger: Story = {
   args: {
-    variant: "danger",
+    color: "danger",
     disabled: false
   }
 };
 
 export const DisabledPrimary: Story = {
   args: {
-    variant: 'primary',
+    color: 'primary',
     disabled: true,
   },
 };
 
 export const DisabledSecondary: Story = {
   args: {
-    variant: 'secondary',
+    color: 'secondary',
     disabled: true,
   },
 };
 
 export const DisabledSuccess: Story = {
   args: {
-    variant: 'success',
+    color: 'success',
     disabled: true,
   },
 };
 
 export const DisabledDanger: Story = {
   args: {
-    variant: "danger",
+    color: "danger",
     disabled: true,
   }
 };

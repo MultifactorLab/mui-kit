@@ -38,6 +38,62 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "build-w-tailwind": {
+      "command": "nx run mui-kit:tailwind-build && nx run mui-kit:build"
+    },
+    "tailwind-build": {
+      "command": "npx tailwindcss -c libs/mui-kit/tailwind.config.js -i libs/mui-kit/src/styles/tailwind.css -o libs/mui-kit/src/styles/styles.css --minify"
+    },
+    "tailwind": {
+      "command": "npx tailwindcss -c libs/mui-kit/tailwind.config.js -i libs/mui-kit/src/styles/tailwind.css -o libs/mui-kit/.storybook/tailwind.css --watch"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/mui-kit/.storybook",
+        "browserTarget": "mui-kit:build-storybook",
+        "compodoc": false,
+        "styles": [ "libs/mui-kit/.storybook/styles.css" ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "watch-storybook": {
+      "command": "nx run-many -t tailwind storybook -p mui-kit"
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/mui-kit",
+        "configDir": "libs/mui-kit/.storybook",
+        "browserTarget": "mui-kit:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "mui-kit:build-storybook",
+        "staticFilePath": "dist/storybook/mui-kit",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "mui-kit:build-storybook:ci"
+        }
+      }
     }
   }
 }

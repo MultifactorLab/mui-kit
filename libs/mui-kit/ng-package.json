@@ -3,5 +3,17 @@
   "dest": "../../dist/libs/mui-kit",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "assets": [
+    {
+      "glob": "styles.css",
+      "input": "src/styles",
+      "output": "styles"
+    },
+    {
+      "glob": "theme-base.css",
+      "input": "src/styles",
+      "output": "styles"
+    }
+  ]
 }
