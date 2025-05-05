@@ -1,0 +1,13 @@
+<label [ngClass]="classNames()">
+  <input
+    type="checkbox"
+    class="sr-only peer"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    (change)="onChange($event)"
+  >
+  <div [ngClass]="sliderClassNames()"></div>
+  <div class="ml-3 space-x-2 text-black dark:text-white">
+    <ng-content />
+  </div>
+</label>
