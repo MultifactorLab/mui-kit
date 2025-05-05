@@ -1,13 +1,13 @@
 :root {
-  --mui-color-primary-50: #f3f7fc;
-  --mui-color-primary-100: #e6eef8;
-  --mui-color-primary-200: #c8dcef;
-  --mui-color-primary-300: #97bee2;
-  --mui-color-primary-400: #5f9bd1;
-  --mui-color-primary-500: #3879b4;
-  --mui-color-primary-600: #2a649f;
-  --mui-color-primary-700: #235081;
-  --mui-color-primary-800: #21456b;
-  --mui-color-primary-900: #203b5a;
-  --mui-color-primary-950: #15263c;
+  --mui-color-primary-50: oklch(97.25% 0.01 23.70);
+  --mui-color-primary-100: oklch(94.00% 0.03 25.28);
+  --mui-color-primary-200: oklch(89.23% 0.06 26.37);
+  --mui-color-primary-300: oklch(82.40% 0.10 27.81);
+  --mui-color-primary-400: oklch(73.24% 0.16 28.84);
+  --mui-color-primary-500: oklch(67.13% 0.19 30.24);
+  --mui-color-primary-600: oklch(59.87% 0.21 30.92);
+  --mui-color-primary-700: oklch(52.41% 0.19 30.94);
+  --mui-color-primary-800: oklch(46.01% 0.16 30.80);
+  --mui-color-primary-900: oklch(41.08% 0.13 30.64);
+  --mui-color-primary-950: oklch(26.71% 0.09 30.66);
 }

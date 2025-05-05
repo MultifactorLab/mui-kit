@@ -1,3 +1,288 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin 'tailwindcss-animation-delay';
+@custom-variant dark (&:is([data-mode="dark"] *));
+
+@theme {
+  --color-mui-primary-50: var(--mui-color-primary-50);
+  --color-mui-primary-100: var(--mui-color-primary-100);
+  --color-mui-primary-200: var(--mui-color-primary-200);
+  --color-mui-primary-300: var(--mui-color-primary-300);
+  --color-mui-primary-400: var(--mui-color-primary-400);
+  --color-mui-primary-500: var(--mui-color-primary-500);
+  --color-mui-primary-600: var(--mui-color-primary-600);
+  --color-mui-primary-700: var(--mui-color-primary-700);
+  --color-mui-primary-800: var(--mui-color-primary-800);
+  --color-mui-primary-900: var(--mui-color-primary-900);
+  --color-mui-primary-950: var(--mui-color-primary-950);
+
+  --color-mui-secondary-50: var(--mui-color-secondary-50);
+  --color-mui-secondary-100: var(--mui-color-secondary-100);
+  --color-mui-secondary-200: var(--mui-color-secondary-200);
+  --color-mui-secondary-300: var(--mui-color-secondary-300);
+  --color-mui-secondary-400: var(--mui-color-secondary-400);
+  --color-mui-secondary-500: var(--mui-color-secondary-500);
+  --color-mui-secondary-600: var(--mui-color-secondary-600);
+  --color-mui-secondary-700: var(--mui-color-secondary-700);
+  --color-mui-secondary-800: var(--mui-color-secondary-800);
+  --color-mui-secondary-900: var(--mui-color-secondary-900);
+  --color-mui-secondary-950: var(--mui-color-secondary-950);
+
+  --color-mui-success-50: var(--mui-color-success-50);
+  --color-mui-success-100: var(--mui-color-success-100);
+  --color-mui-success-200: var(--mui-color-success-200);
+  --color-mui-success-300: var(--mui-color-success-300);
+  --color-mui-success-400: var(--mui-color-success-400);
+  --color-mui-success-500: var(--mui-color-success-500);
+  --color-mui-success-600: var(--mui-color-success-600);
+  --color-mui-success-700: var(--mui-color-success-700);
+  --color-mui-success-800: var(--mui-color-success-800);
+  --color-mui-success-900: var(--mui-color-success-900);
+  --color-mui-success-950: var(--mui-color-success-950);
+
+  --color-mui-danger-50: var(--mui-color-danger-50);
+  --color-mui-danger-100: var(--mui-color-danger-100);
+  --color-mui-danger-200: var(--mui-color-danger-200);
+  --color-mui-danger-300: var(--mui-color-danger-300);
+  --color-mui-danger-400: var(--mui-color-danger-400);
+  --color-mui-danger-500: var(--mui-color-danger-500);
+  --color-mui-danger-600: var(--mui-color-danger-600);
+  --color-mui-danger-700: var(--mui-color-danger-700);
+  --color-mui-danger-800: var(--mui-color-danger-800);
+  --color-mui-danger-900: var(--mui-color-danger-900);
+  --color-mui-danger-950: var(--mui-color-danger-950);
+
+  --color-mui-warning-50: var(--mui-color-warning-50);
+  --color-mui-warning-100: var(--mui-color-warning-100);
+  --color-mui-warning-200: var(--mui-color-warning-200);
+  --color-mui-warning-300: var(--mui-color-warning-300);
+  --color-mui-warning-400: var(--mui-color-warning-400);
+  --color-mui-warning-500: var(--mui-color-warning-500);
+  --color-mui-warning-600: var(--mui-color-warning-600);
+  --color-mui-warning-700: var(--mui-color-warning-700);
+  --color-mui-warning-800: var(--mui-color-warning-800);
+  --color-mui-warning-900: var(--mui-color-warning-900);
+  --color-mui-warning-950: var(--mui-color-warning-950);
+
+  --color-mui-info-50: var(--mui-color-info-50);
+  --color-mui-info-100: var(--mui-color-info-100);
+  --color-mui-info-200: var(--mui-color-info-200);
+  --color-mui-info-300: var(--mui-color-info-300);
+  --color-mui-info-400: var(--mui-color-info-400);
+  --color-mui-info-500: var(--mui-color-info-500);
+  --color-mui-info-600: var(--mui-color-info-600);
+  --color-mui-info-700: var(--mui-color-info-700);
+  --color-mui-info-800: var(--mui-color-info-800);
+  --color-mui-info-900: var(--mui-color-info-900);
+  --color-mui-info-950: var(--mui-color-info-950);
+
+  --background-color-mui-primary-50: var(--mui-bg-color-primary-50);
+  --background-color-mui-primary-100: var(--mui-bg-color-primary-100);
+  --background-color-mui-primary-200: var(--mui-bg-color-primary-200);
+  --background-color-mui-primary-300: var(--mui-bg-color-primary-300);
+  --background-color-mui-primary-400: var(--mui-bg-color-primary-400);
+  --background-color-mui-primary-500: var(--mui-bg-color-primary-500);
+  --background-color-mui-primary-600: var(--mui-bg-color-primary-600);
+  --background-color-mui-primary-700: var(--mui-bg-color-primary-700);
+  --background-color-mui-primary-800: var(--mui-bg-color-primary-800);
+  --background-color-mui-primary-900: var(--mui-bg-color-primary-900);
+  --background-color-mui-primary-950: var(--mui-bg-color-primary-950);
+
+  --background-color-mui-secondary-50: var(--mui-bg-color-secondary-50);
+  --background-color-mui-secondary-100: var(--mui-bg-color-secondary-100);
+  --background-color-mui-secondary-200: var(--mui-bg-color-secondary-200);
+  --background-color-mui-secondary-300: var(--mui-bg-color-secondary-300);
+  --background-color-mui-secondary-400: var(--mui-bg-color-secondary-400);
+  --background-color-mui-secondary-500: var(--mui-bg-color-secondary-500);
+  --background-color-mui-secondary-600: var(--mui-bg-color-secondary-600);
+  --background-color-mui-secondary-700: var(--mui-bg-color-secondary-700);
+  --background-color-mui-secondary-800: var(--mui-bg-color-secondary-800);
+  --background-color-mui-secondary-900: var(--mui-bg-color-secondary-900);
+  --background-color-mui-secondary-950: var(--mui-bg-color-secondary-950);
+
+  --background-color-mui-success-50: var(--mui-bg-color-success-50);
+  --background-color-mui-success-100: var(--mui-bg-color-success-100);
+  --background-color-mui-success-200: var(--mui-bg-color-success-200);
+  --background-color-mui-success-300: var(--mui-bg-color-success-300);
+  --background-color-mui-success-400: var(--mui-bg-color-success-400);
+  --background-color-mui-success-500: var(--mui-bg-color-success-500);
+  --background-color-mui-success-600: var(--mui-bg-color-success-600);
+  --background-color-mui-success-700: var(--mui-bg-color-success-700);
+  --background-color-mui-success-800: var(--mui-bg-color-success-800);
+  --background-color-mui-success-900: var(--mui-bg-color-success-900);
+  --background-color-mui-success-950: var(--mui-bg-color-success-950);
+
+  --background-color-mui-danger-50: var(--mui-bg-color-danger-50);
+  --background-color-mui-danger-100: var(--mui-bg-color-danger-100);
+  --background-color-mui-danger-200: var(--mui-bg-color-danger-200);
+  --background-color-mui-danger-300: var(--mui-bg-color-danger-300);
+  --background-color-mui-danger-400: var(--mui-bg-color-danger-400);
+  --background-color-mui-danger-500: var(--mui-bg-color-danger-500);
+  --background-color-mui-danger-600: var(--mui-bg-color-danger-600);
+  --background-color-mui-danger-700: var(--mui-bg-color-danger-700);
+  --background-color-mui-danger-800: var(--mui-bg-color-danger-800);
+  --background-color-mui-danger-900: var(--mui-bg-color-danger-900);
+  --background-color-mui-danger-950: var(--mui-bg-color-danger-950);
+
+  --background-color-mui-warning-50: var(--mui-bg-color-warning-50);
+  --background-color-mui-warning-100: var(--mui-bg-color-warning-100);
+  --background-color-mui-warning-200: var(--mui-bg-color-warning-200);
+  --background-color-mui-warning-300: var(--mui-bg-color-warning-300);
+  --background-color-mui-warning-400: var(--mui-bg-color-warning-400);
+  --background-color-mui-warning-500: var(--mui-bg-color-warning-500);
+  --background-color-mui-warning-600: var(--mui-bg-color-warning-600);
+  --background-color-mui-warning-700: var(--mui-bg-color-warning-700);
+  --background-color-mui-warning-800: var(--mui-bg-color-warning-800);
+  --background-color-mui-warning-900: var(--mui-bg-color-warning-900);
+  --background-color-mui-warning-950: var(--mui-bg-color-warning-950);
+
+  --background-color-mui-info-50: var(--mui-bg-color-info-50);
+  --background-color-mui-info-100: var(--mui-bg-color-info-100);
+  --background-color-mui-info-200: var(--mui-bg-color-info-200);
+  --background-color-mui-info-300: var(--mui-bg-color-info-300);
+  --background-color-mui-info-400: var(--mui-bg-color-info-400);
+  --background-color-mui-info-500: var(--mui-bg-color-info-500);
+  --background-color-mui-info-600: var(--mui-bg-color-info-600);
+  --background-color-mui-info-700: var(--mui-bg-color-info-700);
+  --background-color-mui-info-800: var(--mui-bg-color-info-800);
+  --background-color-mui-info-900: var(--mui-bg-color-info-900);
+  --background-color-mui-info-950: var(--mui-bg-color-info-950);
+
+  --spacing-1: var(--mui-spacing-1);
+  --spacing-2: var(--mui-spacing-2);
+  --spacing-3: var(--mui-spacing-3);
+  --spacing-4: var(--mui-spacing-4);
+  --spacing-5: var(--mui-spacing-5);
+  --spacing-6: var(--mui-spacing-6);
+  --spacing-7: var(--mui-spacing-7);
+  --spacing-8: var(--mui-spacing-8);
+  --spacing-9: var(--mui-spacing-9);
+  --spacing-10: var(--mui-spacing-10);
+  --spacing-11: var(--mui-spacing-11);
+  --spacing-12: var(--mui-spacing-12);
+  --spacing-14: var(--mui-spacing-14);
+  --spacing-16: var(--mui-spacing-16);
+  --spacing-20: var(--mui-spacing-20);
+  --spacing-24: var(--mui-spacing-24);
+  --spacing-28: var(--mui-spacing-28);
+  --spacing-32: var(--mui-spacing-32);
+  --spacing-36: var(--mui-spacing-36);
+  --spacing-40: var(--mui-spacing-40);
+  --spacing-44: var(--mui-spacing-44);
+  --spacing-48: var(--mui-spacing-48);
+  --spacing-52: var(--mui-spacing-52);
+  --spacing-56: var(--mui-spacing-56);
+  --spacing-60: var(--mui-spacing-60);
+  --spacing-64: var(--mui-spacing-64);
+  --spacing-72: var(--mui-spacing-72);
+  --spacing-80: var(--mui-spacing-80);
+  --spacing-96: var(--mui-spacing-96);
+  --spacing-0_5: var(--mui-spacing-0_5);
+  --spacing-1_5: var(--mui-spacing-1_5);
+  --spacing-2_5: var(--mui-spacing-2_5);
+  --spacing-3_5: var(--mui-spacing-3_5);
+
+  --radius: var(--mui-border-radius);
+  --radius-xs: var(--mui-border-radius-xs);
+  --radius-sm: var(--mui-border-radius-sm);
+  --radius-md: var(--mui-border-radius-md);
+  --radius-lg: var(--mui-border-radius-lg);
+  --radius-xl: var(--mui-border-radius-xl);
+  --radius-2xl: var(--mui-border-radius-2xl);
+  --radius-3xl: var(--mui-border-radius-3xl);
+
+  --border-width: var(--mui-border-width);
+  --border-width-0: var(--mui-border-width-0);
+  --border-width-2: var(--mui-border-width-2);
+  --border-width-4: var(--mui-border-width-4);
+  --border-width-8: var(--mui-border-width-8);
+
+  --border-color-mui-primary-50: var(--mui-border-color-primary-50);
+  --border-color-mui-primary-100: var(--mui-border-color-primary-100);
+  --border-color-mui-primary-200: var(--mui-border-color-primary-200);
+  --border-color-mui-primary-300: var(--mui-border-color-primary-300);
+  --border-color-mui-primary-400: var(--mui-border-color-primary-400);
+  --border-color-mui-primary-500: var(--mui-border-color-primary-500);
+  --border-color-mui-primary-600: var(--mui-border-color-primary-600);
+  --border-color-mui-primary-700: var(--mui-border-color-primary-700);
+  --border-color-mui-primary-800: var(--mui-border-color-primary-800);
+  --border-color-mui-primary-900: var(--mui-border-color-primary-900);
+  --border-color-mui-primary-950: var(--mui-border-color-primary-950);
+
+  --border-color-mui-secondary-50: var(--mui-border-color-secondary-50);
+  --border-color-mui-secondary-100: var(--mui-border-color-secondary-100);
+  --border-color-mui-secondary-200: var(--mui-border-color-secondary-200);
+  --border-color-mui-secondary-300: var(--mui-border-color-secondary-300);
+  --border-color-mui-secondary-400: var(--mui-border-color-secondary-400);
+  --border-color-mui-secondary-500: var(--mui-border-color-secondary-500);
+  --border-color-mui-secondary-600: var(--mui-border-color-secondary-600);
+  --border-color-mui-secondary-700: var(--mui-border-color-secondary-700);
+  --border-color-mui-secondary-800: var(--mui-border-color-secondary-800);
+  --border-color-mui-secondary-900: var(--mui-border-color-secondary-900);
+  --border-color-mui-secondary-950: var(--mui-border-color-secondary-950);
+
+  --border-color-mui-success-50: var(--mui-border-color-success-50);
+  --border-color-mui-success-100: var(--mui-border-color-success-100);
+  --border-color-mui-success-200: var(--mui-border-color-success-200);
+  --border-color-mui-success-300: var(--mui-border-color-success-300);
+  --border-color-mui-success-400: var(--mui-border-color-success-400);
+  --border-color-mui-success-500: var(--mui-border-color-success-500);
+  --border-color-mui-success-600: var(--mui-border-color-success-600);
+  --border-color-mui-success-700: var(--mui-border-color-success-700);
+  --border-color-mui-success-800: var(--mui-border-color-success-800);
+  --border-color-mui-success-900: var(--mui-border-color-success-900);
+  --border-color-mui-success-950: var(--mui-border-color-success-950);
+
+  --border-color-mui-danger-50: var(--mui-border-color-danger-50);
+  --border-color-mui-danger-100: var(--mui-border-color-danger-100);
+  --border-color-mui-danger-200: var(--mui-border-color-danger-200);
+  --border-color-mui-danger-300: var(--mui-border-color-danger-300);
+  --border-color-mui-danger-400: var(--mui-border-color-danger-400);
+  --border-color-mui-danger-500: var(--mui-border-color-danger-500);
+  --border-color-mui-danger-600: var(--mui-border-color-danger-600);
+  --border-color-mui-danger-700: var(--mui-border-color-danger-700);
+  --border-color-mui-danger-800: var(--mui-border-color-danger-800);
+  --border-color-mui-danger-900: var(--mui-border-color-danger-900);
+  --border-color-mui-danger-950: var(--mui-border-color-danger-950);
+
+  --border-color-mui-warning-50: var(--mui-border-color-warning-50);
+  --border-color-mui-warning-100: var(--mui-border-color-warning-100);
+  --border-color-mui-warning-200: var(--mui-border-color-warning-200);
+  --border-color-mui-warning-300: var(--mui-border-color-warning-300);
+  --border-color-mui-warning-400: var(--mui-border-color-warning-400);
+  --border-color-mui-warning-500: var(--mui-border-color-warning-500);
+  --border-color-mui-warning-600: var(--mui-border-color-warning-600);
+  --border-color-mui-warning-700: var(--mui-border-color-warning-700);
+  --border-color-mui-warning-800: var(--mui-border-color-warning-800);
+  --border-color-mui-warning-900: var(--mui-border-color-warning-900);
+  --border-color-mui-warning-950: var(--mui-border-color-warning-950);
+
+  --border-color-mui-info-50: var(--mui-border-color-info-50);
+  --border-color-mui-info-100: var(--mui-border-color-info-100);
+  --border-color-mui-info-200: var(--mui-border-color-info-200);
+  --border-color-mui-info-300: var(--mui-border-color-info-300);
+  --border-color-mui-info-400: var(--mui-border-color-info-400);
+  --border-color-mui-info-500: var(--mui-border-color-info-500);
+  --border-color-mui-info-600: var(--mui-border-color-info-600);
+  --border-color-mui-info-700: var(--mui-border-color-info-700);
+  --border-color-mui-info-800: var(--mui-border-color-info-800);
+  --border-color-mui-info-900: var(--mui-border-color-info-900);
+  --border-color-mui-info-950: var(--mui-border-color-info-950);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}

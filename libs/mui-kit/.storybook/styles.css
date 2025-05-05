@@ -1,35 +1,37 @@
 @import './tailwind.css';
 @import '../src/styles/variables.css';
-@import '../src/styles/theme-base.css';
+/*@import '../src/styles/theme-base.css';*/
 
 .dark {
-  @apply bg-gray-800;
-
   h1, h2, h3, th > span {
-    @apply text-white;
+    color: white;
   }
 
-  .sbdocs-wrapper, .docs-story {
-    @apply bg-gray-800;
+  .storybook-preview-wrapper, .sbdocs-wrapper, .docs-story {
+    background-color: #131313;
   }
 
   .sb-bar {
-    @apply shadow-white;
+    box-shadow: rgb(248 248 248 / 15%) 0px -1px 0px 0px inset;
   }
 
   th, .sb-bar {
-    @apply bg-gray-900;
+    background-color: #101010;
   }
 
   .docblock-code-toggle {
-    @apply bg-gray-600 text-gray-300;
+    background-color: #444444;
+    color: white;
   }
 
   table > tbody > tr > * {
-    @apply !bg-gray-700 text-gray-300;
+    background-color: #444444 !important;
+    color: white;
   }
 }
 
 .sb-row {
-  @apply flex flex-row gap-x-4;
+  display: flex;
+  flex-direction: row;
+  row-gap: 1rem;
 }

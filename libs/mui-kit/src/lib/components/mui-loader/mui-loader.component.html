@@ -1,36 +1,22 @@
-<div class="mui-loader" [ngClass]="`mui-loader--size-${size()}`">
-  <span class="mui-loader__item"></span>
-  <span class="mui-loader__item"></span>
-  <span class="mui-loader__item"></span>
+<div
+  class="flex items-center gap-x-2 w-full"
+>
+  <span class="relative block rounded-full size-full aspect-square bg-mui-primary-50 animate-none
+    before:absolute before:block before:rounded-full before:size-full
+    before:bg-mui-primary-50 before:content-[''] before:inset-0 before:animate-ping
+    first:before:animation-delay-none before:animation-delay-150 last:before:animation-delay-300"
+  [ngClass]="classNames()"
+  ></span>
+  <span class="relative block rounded-full size-full aspect-square bg-mui-primary-50 animate-none
+    before:absolute before:block before:rounded-full before:size-full
+    before:bg-mui-primary-50 before:content-[''] before:inset-0 before:animate-ping
+    first:before:animation-delay-none before:animation-delay-150 last:before:animation-delay-300"
+  [ngClass]="classNames()"
+  ></span>
+  <span class="relative block rounded-full size-full aspect-square bg-mui-primary-50 animate-none
+    before:absolute before:block before:rounded-full before:size-full
+    before:bg-mui-primary-50 before:content-[''] before:inset-0 before:animate-ping
+    first:before:animation-delay-none before:animation-delay-150 last:before:animation-delay-300"
+  [ngClass]="classNames()"
+  ></span>
 </div>
-<!--<div class="mui-loading" [ngClass]="`mui-loading&#45;&#45;size-${size()}`">-->
-<!--  <div class="mui-loading__wrapper">-->
-<!--    <span-->
-<!--      class="mui-loading__item"-->
-<!--      [ngClass]="`mui-loading__item&#45;&#45;size-${size()}`"-->
-<!--    ></span>-->
-<!--    <span-->
-<!--      class="mui-loading__item"-->
-<!--      [ngClass]="`mui-loading__item&#45;&#45;size-${size()}`"-->
-<!--    ></span>-->
-<!--    <span-->
-<!--      class="mui-loading__item"-->
-<!--      [ngClass]="`mui-loading__item&#45;&#45;size-${size()}`"-->
-<!--    ></span>-->
-<!--  </div>-->
-
-<!--  <div class="mui-loading__wrapper mui-loading__wrapper&#45;&#45;static">-->
-<!--        <span-->
-<!--          class="mui-loading__item"-->
-<!--          [ngClass]="`mui-loading__item&#45;&#45;size-${size()}`"-->
-<!--        ></span>-->
-<!--    <span-->
-<!--      class="mui-loading__item"-->
-<!--      [ngClass]="`mui-loading__item&#45;&#45;size-${size()}`"-->
-<!--    ></span>-->
-<!--    <span-->
-<!--      class="mui-loading__item"-->
-<!--      [ngClass]="`mui-loading__item&#45;&#45;size-${size()}`"-->
-<!--    ></span>-->
-<!--  </div>-->
-<!--</div>-->

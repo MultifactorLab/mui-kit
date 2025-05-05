@@ -2,6 +2,7 @@ import { argsToTemplate, Meta, StoryObj } from '@storybook/angular';
 import { THEME_COLORS_ARRAY, THEME_COLORS_STRING } from '../../constants/theme-colors.constants';
 import { THEME_SIZES_ARRAY, THEME_SIZES_STRING } from '../../constants/theme-sizes.constants';
 import { MuiButtonComponent } from './mui-button.component';
+import { BUTTON_VARIANTS_ARRAY, BUTTON_VARIANTS_STRINGS } from './mui-button.constants';
 
 const meta: Meta<MuiButtonComponent> = {
   title: 'Mui/Button',
@@ -16,12 +17,20 @@ const meta: Meta<MuiButtonComponent> = {
     `,
   }),
   args: {
+    variant: 'rounded',
     color: 'primary',
     size: 'md',
-    disabled: false,
-    variant: 'rounded',
+    disabled: false
   },
   argTypes: {
+    variant: {
+      options: BUTTON_VARIANTS_ARRAY,
+      table: {
+        defaultValue: { summary: 'rounded' },
+        type: { summary: BUTTON_VARIANTS_STRINGS },
+      },
+      control: { type: 'select' },
+    },
     color: {
       options: THEME_COLORS_ARRAY,
       table: {

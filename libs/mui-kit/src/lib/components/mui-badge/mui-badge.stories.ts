@@ -14,9 +14,9 @@ const meta: Meta<MuiBadgeComponent> = {
       </mui-badge>
     `,
   }),
-  args: { backgroundColor: 'primary' },
+  args: { color: 'primary' },
   argTypes: {
-    backgroundColor: {
+    color: {
       table: {
         defaultValue: { summary: 'primary' },
         type: { summary: THEME_COLORS_STRING }
@@ -32,17 +32,17 @@ export default meta;
 type Story = StoryObj<MuiBadgeComponent>;
 
 export const Primary: Story = {
-  args: { backgroundColor: 'primary' },
+  args: { color: 'primary' },
 };
 
 export const Secondary: Story = {
-  args: { backgroundColor: 'secondary' },
+  args: { color: 'secondary' },
 };
 
 export const Success: Story = {
-  args: { backgroundColor: 'success' },
+  args: { color: 'success' },
 };
 
 export const Danger: Story = {
-  args: { backgroundColor: "danger" }
+  args: { color: "danger" }
 };

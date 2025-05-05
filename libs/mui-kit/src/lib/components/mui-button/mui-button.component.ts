@@ -20,7 +20,7 @@ export class MuiButtonComponent {
 
   readonly color = input<ThemeColors>('primary');
   readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
-  readonly variant = input<'square' | 'rounded' | 'pill' | 'text'>('rounded');
+  readonly variant = input<'square' | 'rounded' | 'pill' | 'text'>('square');
   readonly type = input<'button' | 'submit' | 'reset'>('button');
   readonly disabled = input(false, { transform: booleanAttribute });
 
@@ -31,78 +31,56 @@ export class MuiButtonComponent {
   }
 
   private generateButtonClasses(): string[] {
-    const base = `inline-flex items-center justify-center transition-colors select-none w-full h-full`;
-
-    // TODO Доделать
-    const variants = {
-      square: {
-        white: 'text-black bg-white hover:bg-gray-200 active:bg-gray-300 border-gray-200',
-        black: '',
-        primary: 'text-white bg-mui-primary-500 hover:bg-mui-primary-600 active:bg-mui-primary-700 border-mui-primary-200',
-        secondary: 'text-white bg-mui-secondary-500 hover:bg-mui-secondary-600 active:bg-mui-secondary-700 border-mui-secondary-200',
-        success: 'text-white bg-mui-success-500 hover:bg-mui-success-600 active:bg-mui-success-700 border-mui-success-200',
-        danger: 'text-white bg-mui-danger-500 hover:bg-mui-danger-600 active:bg-mui-danger-700 border-mui-danger-200',
-        warning: 'text-white bg-mui-warning-500 hover:bg-mui-warning-600 active:bg-mui-warning-700 border-mui-warning-200',
-        info: 'text-white bg-mui-info-500 hover:bg-mui-info-600 active:bg-mui-info-700 border-mui-info-200',
-      },
-      rounded: {
-        white: 'text-black bg-white hover:bg-gray-300 active:bg-gray-400 border-gray-100',
-        black: 'text-white bg-black hover:bg-gray-900 active:bg-gray-700 border-gray-100',
-        primary: 'text-white bg-mui-primary-500 hover:bg-mui-primary-600 active:bg-mui-primary-700 border-mui-primary-200',
-        secondary: 'text-white bg-mui-secondary-500 hover:bg-mui-secondary-600 active:bg-mui-secondary-700 border-mui-secondary-200',
-        success: 'text-white bg-mui-success-500 hover:bg-mui-success-600 active:bg-mui-success-700 border-mui-success-200',
-        danger: 'text-white bg-mui-danger-500 hover:bg-mui-danger-600 active:bg-mui-danger-700 border-mui-danger-200',
-        warning: 'text-white bg-mui-warning-500 hover:bg-mui-warning-600 active:bg-mui-warning-700 border-mui-warning-200',
-        info: 'text-white bg-mui-info-500 hover:bg-mui-info-600 active:bg-mui-info-700 border-mui-info-200',
-      },
-      pill: {
-        white: '',
-        black: '',
-        primary: 'text-white bg-mui-primary-500 hover:bg-mui-primary-600 active:bg-mui-primary-700 border-mui-primary-200',
-        secondary: 'text-white bg-mui-secondary-500 hover:bg-mui-secondary-600 active:bg-mui-secondary-700 border-mui-secondary-200',
-        success: 'text-white bg-mui-success-500 hover:bg-mui-success-600 active:bg-mui-success-700 border-mui-success-200',
-        danger: 'text-white bg-mui-danger-500 hover:bg-mui-danger-600 active:bg-mui-danger-700 border-mui-danger-200',
-        warning: 'text-white bg-mui-warning-500 hover:bg-mui-warning-600 active:bg-mui-warning-700 border-mui-warning-200',
-        info: 'text-white bg-mui-info-500 hover:bg-mui-info-600 active:bg-mui-info-700 border-mui-info-200',
-      },
-      text: {
-        white: '',
-        black: '',
-        primary: 'text-white bg-mui-primary-500 hover:bg-mui-primary-600 active:bg-mui-primary-700 border-mui-primary-200',
-        secondary: 'text-white bg-mui-secondary-500 hover:bg-mui-secondary-600 active:bg-mui-secondary-700 border-mui-secondary-200',
-        success: 'text-white bg-mui-success-500 hover:bg-mui-success-600 active:bg-mui-success-700 border-mui-success-200',
-        danger: 'text-white bg-mui-danger-500 hover:bg-mui-danger-600 active:bg-mui-danger-700 border-mui-danger-200',
-        warning: 'text-white bg-mui-warning-500 hover:bg-mui-warning-600 active:bg-mui-warning-700 border-mui-warning-200',
-        info: 'text-white bg-mui-info-500 hover:bg-mui-info-600 active:bg-mui-info-700 border-mui-info-200',
-      },
-    }
+    const base = `inline-flex items-center justify-center gap-x-1 transition-colors select-none w-full h-full`;
 
     const rounded = {
       xs: 'rounded-xs',
       sm: 'rounded-sm',
       md: 'rounded-md',
       lg: 'rounded-lg',
-      none: 'rounded-none',
-      full: 'rounded-full',
     }
 
-    const bordered = {
-      xs: 'border',
-      sm: 'border-2',
-      md: 'border-4',
-      lg: 'border-8',
-      none: 'border-0 border-none',
-    }
-
-    const colors = {
-      white: '',
-      black: '',
-      primary: 'text-white bg-mui-primary-500 hover:bg-mui-primary-600 active:bg-mui-primary-700 border-mui-primary-200',
-      secondary: 'text-white bg-mui-secondary-500 hover:bg-mui-secondary-600 active:bg-mui-secondary-700 border-mui-secondary-200',
-      success: 'text-white bg-mui-success-500 hover:bg-mui-success-600 active:bg-mui-success-700 border-mui-success-200',
-      danger: 'text-white bg-mui-danger-500 hover:bg-mui-danger-600 active:bg-mui-danger-700 border-mui-danger-200',
-      warning: 'text-white bg-mui-warning-500 hover:bg-mui-warning-600 active:bg-mui-warning-700 border-mui-warning-200',
-      info: 'text-white bg-mui-info-500 hover:bg-mui-info-600 active:bg-mui-info-700 border-mui-info-200',
+    const variants = {
+      square: {
+        white: 'text-black bg-white hover:bg-white/80 active:bg-white/60',
+        black: 'text-white bg-black hover:bg-black/80 active:bg-black/60',
+        primary: 'text-white bg-mui-primary-500 hover:bg-mui-primary-500/80 active:bg-mui-primary-500/60',
+        secondary: 'text-white bg-mui-secondary-500 hover:bg-mui-secondary-500/80 active:bg-mui-secondary-700',
+        success: 'text-white bg-mui-success-500 hover:bg-mui-success-500/80 active:bg-mui-success-700',
+        danger: 'text-white bg-mui-danger-500 hover:bg-mui-danger-500/80 active:bg-mui-danger-700',
+        warning: 'text-black bg-mui-warning-500 hover:bg-mui-warning-500/80 active:bg-mui-warning-700',
+        info: 'text-white bg-mui-info-500 hover:bg-mui-info-500/80 active:bg-mui-info-700',
+      },
+      rounded: {
+        white: `text-black bg-white hover:bg-white/80 active:bg-white/60 ${rounded[this.size()]}`,
+        black: `text-white bg-black hover:bg-black/80 active:bg-black/60 ${rounded[this.size()]}`,
+        primary: `text-white bg-mui-primary-500 hover:bg-mui-primary-500/80 active:bg-mui-primary-500/60 ${rounded[this.size()]}`,
+        secondary: `text-white bg-mui-secondary-500 hover:bg-mui-secondary-500/80 active:bg-mui-secondary-500/60 ${rounded[this.size()]}`,
+        success: `text-white bg-mui-success-500 hover:bg-mui-success-500/80 active:bg-mui-success-500/60 ${rounded[this.size()]}`,
+        danger: `text-white bg-mui-danger-500 hover:bg-mui-danger-500/80 active:bg-mui-danger-500/60 ${rounded[this.size()]}`,
+        warning: `text-black bg-mui-warning-500 hover:bg-mui-warning-500/80 active:bg-mui-warning-500/60 ${rounded[this.size()]}`,
+        info: `text-white bg-mui-info-500 hover:bg-mui-info-500/80 active:bg-mui-info-500/60 ${rounded[this.size()]}`,
+      },
+      pill: {
+        white: 'font-semibold text-medium text-black bg-white hover:bg-white/80 active:bg-white/60 rounded-full',
+        black: 'font-semibold text-medium text-white bg-black hover:bg-black/80 active:bg-black/60 rounded-full',
+        primary: 'font-semibold text-medium text-mui-primary-500 bg-mui-primary-500/10 hover:bg-mui-primary-500/20 active:bg-mui-primary-500/25 rounded-full',
+        secondary: 'font-semibold text-medium text-mui-secondary-500 bg-mui-secondary-500/10 hover:bg-mui-secondary-500/20 active:bg-mui-secondary-500/25 rounded-full',
+        success: 'font-semibold text-medium text-mui-success-500 bg-mui-success-500/10 hover:bg-mui-success-500/20 active:bg-mui-success-500/25 rounded-full',
+        danger: 'font-semibold text-medium text-mui-danger-500 bg-mui-danger-500/10 hover:bg-mui-danger-500/20 active:bg-mui-danger-500/25 rounded-full',
+        warning: 'font-semibold text-medium text-mui-warning-500 bg-mui-warning-500/10 hover:bg-mui-warning-500/20 active:bg-mui-warning-500/25 rounded-full',
+        info: 'font-semibold text-medium text-mui-info-500 bg-mui-info-500/10 hover:bg-mui-info-500/20 active:bg-mui-info-500/25 rounded-full',
+      },
+      text: {
+        white: 'font-semibold text-medium text-black hover:bg-white/80 active:bg-white/60',
+        black: 'font-semibold text-medium text-white hover:bg-black/80 active:bg-black/60',
+        primary: 'font-semibold text-medium text-mui-primary-500 hover:bg-mui-primary-500/20 active:bg-mui-primary-500/25',
+        secondary: 'font-semibold text-medium text-mui-secondary-500 hover:bg-mui-secondary-500/20 active:bg-mui-secondary-500/25',
+        success: 'font-semibold text-medium text-mui-success-500 hover:bg-mui-success-500/20 active:bg-mui-success-500/25',
+        danger: 'font-semibold text-medium text-mui-danger-500 hover:bg-mui-danger-500/20 active:bg-mui-danger-500/25',
+        warning: 'font-semibold text-medium text-mui-warning-500 hover:bg-mui-warning-500/20 active:bg-mui-warning-500/25',
+        info: 'font-semibold text-medium text-mui-info-500 hover:bg-mui-info-500/20 active:bg-mui-info-500/25',
+      },
     }
 
     const sizes = {

@@ -43,10 +43,10 @@
       "command": "nx run mui-kit:tailwind-build && nx run mui-kit:build"
     },
     "tailwind-build": {
-      "command": "npx tailwindcss -c libs/mui-kit/tailwind.config.js -i libs/mui-kit/src/styles/tailwind.css -o libs/mui-kit/src/styles/styles.css --minify"
+      "command": "npx @tailwindcss/cli -c libs/mui-kit/tailwind.config.js -i libs/mui-kit/src/styles/tailwind.css -o libs/mui-kit/src/styles/styles.css --minify"
     },
     "tailwind": {
-      "command": "npx tailwindcss -c libs/mui-kit/tailwind.config.js -i libs/mui-kit/src/styles/tailwind.css -o libs/mui-kit/.storybook/tailwind.css --watch"
+      "command": "npx @tailwindcss/cli -c libs/mui-kit/tailwind.config.js -i libs/mui-kit/src/styles/tailwind.css -o libs/mui-kit/.storybook/tailwind.css --watch"
     },
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
