@@ -1,6 +1,6 @@
 import { argsToTemplate, Meta, StoryObj } from '@storybook/angular';
-import { THEME_COLORS_ARRAY, THEME_COLORS_STRING } from '../../types/theme-colors.type';
-import { THEME_SIZES_ARRAY, THEME_SIZES_STRING } from '../../types/theme-sizes.type';
+import { THEME_COLORS_ARRAY, THEME_COLORS_STRING } from '../../constants/theme-colors.constants';
+import { THEME_SIZES_ARRAY, THEME_SIZES_STRING } from '../../constants/theme-sizes.constants';
 import { MuiButtonComponent } from './mui-button.component';
 
 const meta: Meta<MuiButtonComponent> = {
@@ -16,58 +16,35 @@ const meta: Meta<MuiButtonComponent> = {
     `,
   }),
   args: {
-    backgroundColor: 'primary',
+    color: 'primary',
     size: 'md',
     disabled: false,
-    loading: false,
+    variant: 'rounded',
   },
   argTypes: {
-    backgroundColor: {
+    color: {
       options: THEME_COLORS_ARRAY,
       table: {
-        defaultValue: {
-          summary: 'primary',
-        },
-        type: {
-          summary: THEME_COLORS_STRING,
-        }
+        defaultValue: { summary: 'primary' },
+        type: { summary: THEME_COLORS_STRING }
       },
       control: { type: 'select' },
     },
     size: {
       options: THEME_SIZES_ARRAY,
       table: {
-        defaultValue: {
-          summary: 'md',
-        },
-        type: {
-          summary: THEME_SIZES_STRING,
-        }
+        defaultValue: { summary: 'md' },
+        type: { summary: THEME_SIZES_STRING }
       },
       control: { type: 'select' },
     },
     disabled: {
       table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: {
-          summary: 'false',
-        },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
       control: { type: 'boolean' },
     },
-    loading: {
-      table: {
-        type: {
-          summary: 'boolean',
-        },
-        defaultValue: {
-          summary: 'false',
-        }
-      },
-      control: { type: 'boolean' },
-    }
   }
 };
 
@@ -76,29 +53,25 @@ export default meta;
 type Story = StoryObj<MuiButtonComponent>;
 
 export const Primary: Story = {
-  args: {
-    backgroundColor: 'primary',
-    disabled: false,
-  },
+  args: { color: 'primary' },
 };
 
 export const Secondary: Story = {
-  args: {
-    backgroundColor: 'secondary',
-    disabled: false,
-  },
+  args: { color: 'secondary' },
 };
 
 export const Success: Story = {
-  args: {
-    backgroundColor: 'success',
-    disabled: false,
-  },
+  args: { color: 'success' },
 };
 
 export const Danger: Story = {
-  args: {
-    backgroundColor: "danger",
-    disabled: false
-  }
+  args: { color: "danger" }
+};
+
+export const Warning: Story = {
+  args: { color: "warning" }
+};
+
+export const Info: Story = {
+  args: { color: "info" }
 };

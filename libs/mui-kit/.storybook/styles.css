@@ -1,6 +1,6 @@
 @import './tailwind.css';
 @import '../src/styles/variables.css';
-/*@import '../src/styles/theme-base.css';*/
+@import '../src/styles/theme-base.css';
 
 .dark {
   @apply bg-gray-800;

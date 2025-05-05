@@ -1,28 +1,28 @@
 # mui-kit
 
-A comprehensive UI component library built with Angular and TailwindCSS, providing a set of reusable and customizable components for modern web applications.
+Комплексная библиотека UI-компонентов, созданная с использованием Angular и TailwindCSS, предоставляющая набор многоразовых и настраиваемых компонентов для современных веб-приложений.
 
-## Overview
+## Обзор
 
-mui-kit is a UI component library that leverages the power of TailwindCSS for styling and customization. It provides a set of pre-designed components that follow consistent design patterns and can be easily customized to match your application's branding.
+mui-kit — это библиотека UI-компонентов, использующая возможности TailwindCSS для стилизации и настройки. Она предоставляет набор предварительно разработанных компонентов, которые следуют единым принципам дизайна и могут быть легко настроены в соответствии с фирменным стилем вашего приложения.
 
-## Features
+## Особенности
 
-- Built with Angular and TailwindCSS
-- Customizable color schemes and sizing
-- Responsive design
-- Accessibility-focused components
-- Dark mode support
+- Создана с использованием Angular и TailwindCSS
+- Настраиваемые цветовые схемы и размеры
+- Адаптивный дизайн
+- Компоненты с фокусом на доступность
+- Поддержка темного режима
 
-## Installation
+## Установка
 
 ```bash
 npm install @your-org/mui-kit
 ```
 
-## Usage
+## Использование
 
-Import the mui-kit module in your Angular application:
+Импортируйте модуль mui-kit в ваше Angular-приложение:
 
 ```typescript
 import { MuiKitModule } from '@your-org/mui-kit';
@@ -36,98 +36,98 @@ import { MuiKitModule } from '@your-org/mui-kit';
 export class AppModule { }
 ```
 
-## Customization
+## Настройка
 
-### Color Variables
+### Переменные цветов
 
-mui-kit uses CSS variables for colors that follow this pattern:
+mui-kit использует CSS-переменные для цветов, которые следуют этому шаблону:
 
 ```
 --mui-{type}-{variant}-{degree}
 ```
 
-Where:
+Где:
 - **type**: color, bg-color, border-color
 - **variant**: primary, secondary, success, danger, warning, info
 - **degree**: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
 
-**Note**: The "color" type is the base type from which other color types (bg-color, border-color) are derived.
+**Примечание**: Тип "color" является базовым типом, от которого производятся другие типы цветов (bg-color, border-color).
 
-Example:
+Пример:
 ```css
 :root {
-  /* Primary colors */
+  /* Основные цвета */
   --mui-color-primary-500: #3879b4;
-  
-  /* Background colors */
+
+  /* Цвета фона */
   --mui-bg-color-primary-500: var(--mui-color-primary-500);
-  
-  /* Border colors */
+
+  /* Цвета границ */
   --mui-border-color-primary-500: var(--mui-color-primary-500);
 }
 ```
 
-To customize colors, override these variables in your CSS:
+Для настройки цветов переопределите эти переменные в вашем CSS:
 
 ```css
 :root {
-  --mui-color-primary-500: #ff0000; /* Change primary color to red */
+  --mui-color-primary-500: #ff0000; /* Изменить основной цвет на красный */
 }
 ```
 
-### Size Variables
+### Переменные размеров
 
-mui-kit uses CSS variables for sizes that follow this pattern:
+mui-kit использует CSS-переменные для размеров, которые следуют этому шаблону:
 
 ```
 --mui-{type}-{variant}
 ```
 
-Where:
+Где:
 - **type**: spacing, screen, border-width, radius
-- **variant**: Depends on the type (see below)
+- **variant**: Зависит от типа (см. ниже)
 
-#### Variants by type:
+#### Варианты по типам:
 
 1. **screen**: sm, md, lg, xl, 2xl
-2. **radius**: xs, sm, (default), md, lg, xl, 2xl, 3xl
-3. **border-width**: 0, (default), 2, 4, 8
+2. **radius**: xs, sm, (по умолчанию), md, lg, xl, 2xl, 3xl
+3. **border-width**: 0, (по умолчанию), 2, 4, 8
 4. **spacing**: 
-   - 0.5 to 4 (step 0.5)
-   - 4 to 12 (step 1)
+   - от 0.5 до 4 (шаг 0.5)
+   - от 4 до 12 (шаг 1)
    - 12, 14, 16
-   - 16 to 64 (step 4)
+   - от 16 до 64 (шаг 4)
    - 72, 80, 96
 
-Example:
+Пример:
 ```css
 :root {
-  /* Spacing */
+  /* Отступы */
   --mui-spacing-4: 1rem;
-  
-  /* Border radius */
+
+  /* Радиус границ */
   --mui-border-radius: 0.25rem;
   --mui-border-radius-lg: 0.5rem;
-  
-  /* Border width */
+
+  /* Ширина границ */
   --mui-border-width: 1px;
   --mui-border-width-2: 2px;
 }
 ```
 
-To customize sizes, override these variables in your CSS:
+Для настройки размеров переопределите эти переменные в вашем CSS:
 
 ```css
 :root {
-  --mui-spacing-4: 1.25rem; /* Increase base spacing */
-  --mui-border-radius: 0.5rem; /* Increase default border radius */
+  --mui-spacing-4: 1.25rem; /* Увеличить базовый отступ */
+  --mui-border-radius: 0.5rem; /* Увеличить радиус границы по умолчанию */
 }
 ```
 
-## Integration with TailwindCSS
+## Интеграция с TailwindCSS
 
-mui-kit is built on top of TailwindCSS and extends its functionality with custom variables. You can use TailwindCSS classes alongside mui-kit components for additional customization.
+mui-kit построена на основе TailwindCSS и расширяет его функциональность с помощью пользовательских переменных. Вы можете использовать классы TailwindCSS вместе с компонентами mui-kit для дополнительной настройки.
 
-## License
+## Лицензия
 
 MIT

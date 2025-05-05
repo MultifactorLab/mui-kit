@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeSizes } from '../../types/theme-sizes.type';
 
 @Component({
   selector: 'mui-loading',
@@ -10,5 +9,5 @@ import { ThemeSizes } from '../../types/theme-sizes.type';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MuiLoaderComponent {
-  readonly size = input<ThemeSizes>('md');
+  readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
 }

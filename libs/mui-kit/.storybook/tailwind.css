@@ -554,6 +554,326 @@ video {
   display: none;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.rounded {
+  border-radius: var(--mui-border-radius);
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: var(--mui-border-radius-lg);
+}
+
+.rounded-md {
+  border-radius: var(--mui-border-radius-md);
+}
+
+.rounded-none {
+  border-radius: 0px;
+}
+
+.rounded-sm {
+  border-radius: var(--mui-border-radius-sm);
+}
+
+.rounded-xs {
+  border-radius: var(--mui-border-radius-xs);
+}
+
+.border {
+  border-width: var(--mui-border-width);
+}
+
+.border-0 {
+  border-width: var(--mui-border-width-0);
+}
+
+.border-2 {
+  border-width: var(--mui-border-width-2);
+}
+
+.border-4 {
+  border-width: var(--mui-border-width-4);
+}
+
+.border-8 {
+  border-width: var(--mui-border-width-8);
+}
+
+.border-none {
+  border-style: none;
+}
+
+.border-gray-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(243 244 246 / var(--tw-border-opacity, 1));
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+}
+
+.border-mui-danger-200 {
+  border-color: var(--mui-border-color-danger-200);
+}
+
+.border-mui-info-200 {
+  border-color: var(--mui-border-color-info-200);
+}
+
+.border-mui-primary-200 {
+  border-color: var(--mui-border-color-primary-200);
+}
+
+.border-mui-secondary-200 {
+  border-color: var(--mui-border-color-secondary-200);
+}
+
+.border-mui-success-200 {
+  border-color: var(--mui-border-color-success-200);
+}
+
+.border-mui-warning-200 {
+  border-color: var(--mui-border-color-warning-200);
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+
+.bg-mui-danger-500 {
+  background-color: var(--mui-bg-color-danger-500);
+}
+
+.bg-mui-info-500 {
+  background-color: var(--mui-bg-color-info-500);
+}
+
+.bg-mui-primary-500 {
+  background-color: var(--mui-bg-color-primary-500);
+}
+
+.bg-mui-secondary-500 {
+  background-color: var(--mui-bg-color-secondary-500);
+}
+
+.bg-mui-success-500 {
+  background-color: var(--mui-bg-color-success-500);
+}
+
+.bg-mui-warning-500 {
+  background-color: var(--mui-bg-color-warning-500);
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+
+.px-1\.5 {
+  padding-left: var(--mui-spacing-1\.5);
+  padding-right: var(--mui-spacing-1\.5);
+}
+
+.px-2 {
+  padding-left: var(--mui-spacing-2);
+  padding-right: var(--mui-spacing-2);
+}
+
+.px-4 {
+  padding-left: var(--mui-spacing-4);
+  padding-right: var(--mui-spacing-4);
+}
+
+.px-6 {
+  padding-left: var(--mui-spacing-6);
+  padding-right: var(--mui-spacing-6);
+}
+
+.py-0\.5 {
+  padding-top: var(--mui-spacing-0\.5);
+  padding-bottom: var(--mui-spacing-0\.5);
+}
+
+.py-1 {
+  padding-top: var(--mui-spacing-1);
+  padding-bottom: var(--mui-spacing-1);
+}
+
+.py-2 {
+  padding-top: var(--mui-spacing-2);
+  padding-bottom: var(--mui-spacing-2);
+}
+
+.py-3 {
+  padding-top: var(--mui-spacing-3);
+  padding-bottom: var(--mui-spacing-3);
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.hover\:bg-gray-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-gray-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-gray-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-mui-danger-600:hover {
+  background-color: var(--mui-bg-color-danger-600);
+}
+
+.hover\:bg-mui-info-600:hover {
+  background-color: var(--mui-bg-color-info-600);
+}
+
+.hover\:bg-mui-primary-600:hover {
+  background-color: var(--mui-bg-color-primary-600);
+}
+
+.hover\:bg-mui-secondary-600:hover {
+  background-color: var(--mui-bg-color-secondary-600);
+}
+
+.hover\:bg-mui-success-600:hover {
+  background-color: var(--mui-bg-color-success-600);
+}
+
+.hover\:bg-mui-warning-600:hover {
+  background-color: var(--mui-bg-color-warning-600);
+}
+
+.hover\:bg-opacity-40:hover {
+  --tw-bg-opacity: 0.4;
+}
+
+.active\:bg-gray-300:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-gray-400:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-gray-700:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity, 1));
+}
+
+.active\:bg-mui-danger-700:active {
+  background-color: var(--mui-bg-color-danger-700);
+}
+
+.active\:bg-mui-info-700:active {
+  background-color: var(--mui-bg-color-info-700);
+}
+
+.active\:bg-mui-primary-700:active {
+  background-color: var(--mui-bg-color-primary-700);
+}
+
+.active\:bg-mui-secondary-700:active {
+  background-color: var(--mui-bg-color-secondary-700);
+}
+
+.active\:bg-mui-success-700:active {
+  background-color: var(--mui-bg-color-success-700);
+}
+
+.active\:bg-mui-warning-700:active {
+  background-color: var(--mui-bg-color-warning-700);
 }

@@ -1,13 +1,8 @@
 <button
-  class="mui-button"
   [ngClass]="classNames()"
   [disabled]="disabled()"
   [attr.type]="type()"
   (click)="onClick($event)"
 >
-  @if (loading()) {
-    <mui-loading [size]="size()" />
-  } @else {
-    <ng-content />
-  }
+  <ng-content />
 </button>
