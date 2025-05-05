@@ -1,0 +1,13 @@
+:root {
+  --mui-border-color-warning-50: var(--mui-color-warning-50);
+  --mui-border-color-warning-100: var(--mui-color-warning-100);
+  --mui-border-color-warning-200: var(--mui-color-warning-200);
+  --mui-border-color-warning-300: var(--mui-color-warning-300);
+  --mui-border-color-warning-400: var(--mui-color-warning-400);
+  --mui-border-color-warning-500: var(--mui-color-warning-500);
+  --mui-border-color-warning-600: var(--mui-color-warning-600);
+  --mui-border-color-warning-700: var(--mui-color-warning-700);
+  --mui-border-color-warning-800: var(--mui-color-warning-800);
+  --mui-border-color-warning-900: var(--mui-color-warning-900);
+  --mui-border-color-warning-950: var(--mui-color-warning-950);
+}

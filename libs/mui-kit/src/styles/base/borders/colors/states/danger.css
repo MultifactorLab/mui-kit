@@ -1,0 +1,13 @@
+:root {
+  --mui-border-color-danger-50: var(--mui-color-danger-50);
+  --mui-border-color-danger-100: var(--mui-color-danger-100);
+  --mui-border-color-danger-200: var(--mui-color-danger-200);
+  --mui-border-color-danger-300: var(--mui-color-danger-300);
+  --mui-border-color-danger-400: var(--mui-color-danger-400);
+  --mui-border-color-danger-500: var(--mui-color-danger-500);
+  --mui-border-color-danger-600: var(--mui-color-danger-600);
+  --mui-border-color-danger-700: var(--mui-color-danger-700);
+  --mui-border-color-danger-800: var(--mui-color-danger-800);
+  --mui-border-color-danger-900: var(--mui-color-danger-900);
+  --mui-border-color-danger-950: var(--mui-color-danger-950);
+}

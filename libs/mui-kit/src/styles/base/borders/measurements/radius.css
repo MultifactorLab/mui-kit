@@ -1,0 +1,10 @@
+:root {
+  --mui-border-radius-xs: 0.06rem;
+  --mui-border-radius-sm: 0.125rem;
+  --mui-border-radius: 0.25rem;
+  --mui-border-radius-md: 0.375rem;
+  --mui-border-radius-lg: 0.5rem;
+  --mui-border-radius-xl: 0.75rem;
+  --mui-border-radius-2xl: 1rem;
+  --mui-border-radius-3xl: 1.5rem;
+}

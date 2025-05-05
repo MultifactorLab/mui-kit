@@ -1,5 +1,4 @@
 import { argsToTemplate, Meta, StoryObj } from '@storybook/angular';
-import { THEME_COLORS_ARRAY, THEME_COLORS_STRING } from '../../types/theme-colors.type';
 import { THEME_SIZES_ARRAY, THEME_SIZES_STRING } from '../../types/theme-sizes.type';
 import { MuiLoaderComponent } from './mui-loader.component';
 

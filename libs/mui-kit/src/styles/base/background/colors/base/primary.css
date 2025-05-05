@@ -1,0 +1,13 @@
+:root {
+  --mui-bg-color-primary-50: var(--mui-color-primary-50);
+  --mui-bg-color-primary-100: var(--mui-color-primary-100);
+  --mui-bg-color-primary-200: var(--mui-color-primary-200);
+  --mui-bg-color-primary-300: var(--mui-color-primary-300);
+  --mui-bg-color-primary-400: var(--mui-color-primary-400);
+  --mui-bg-color-primary-500: var(--mui-color-primary-500);
+  --mui-bg-color-primary-600: var(--mui-color-primary-600);
+  --mui-bg-color-primary-700: var(--mui-color-primary-700);
+  --mui-bg-color-primary-800: var(--mui-color-primary-800);
+  --mui-bg-color-primary-900: var(--mui-color-primary-900);
+  --mui-bg-color-primary-950: var(--mui-color-primary-950);
+}

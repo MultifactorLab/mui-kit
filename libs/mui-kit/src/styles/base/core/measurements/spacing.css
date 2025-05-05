@@ -1,0 +1,35 @@
+:root {
+  --mui-spacing-0\.5: 0.125rem;
+  --mui-spacing-1:	0.25rem;
+  --mui-spacing-1\.5: 0.375rem;
+  --mui-spacing-2:	0.5rem;
+  --mui-spacing-2\.5: 0.625rem;
+  --mui-spacing-3: 0.75rem;
+  --mui-spacing-3\.5: 0.875rem;
+  --mui-spacing-4: 1rem;
+  --mui-spacing-5: 1.25rem;
+  --mui-spacing-6: 1.5rem;
+  --mui-spacing-7: 1.75rem;
+  --mui-spacing-8: 2rem;
+  --mui-spacing-9: 2.25rem;
+  --mui-spacing-10: 2.5rem;
+  --mui-spacing-11: 2.75rem;
+  --mui-spacing-12: 3rem;
+  --mui-spacing-14: 3.5rem;
+  --mui-spacing-16: 4rem;
+  --mui-spacing-20: 5rem;
+  --mui-spacing-24: 6rem;
+  --mui-spacing-28: 7rem;
+  --mui-spacing-32: 8rem;
+  --mui-spacing-36: 9rem;
+  --mui-spacing-40: 10rem;
+  --mui-spacing-44: 11rem;
+  --mui-spacing-48: 12rem;
+  --mui-spacing-52: 13rem;
+  --mui-spacing-56: 14rem;
+  --mui-spacing-60: 15rem;
+  --mui-spacing-64: 16rem;
+  --mui-spacing-72: 18rem;
+  --mui-spacing-80: 20rem;
+  --mui-spacing-96: 24rem;
+}

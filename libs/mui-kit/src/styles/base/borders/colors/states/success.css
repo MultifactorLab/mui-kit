@@ -1,0 +1,13 @@
+:root {
+  --mui-border-color-success-50: var(--mui-color-success-50);
+  --mui-border-color-success-100: var(--mui-color-success-100);
+  --mui-border-color-success-200: var(--mui-color-success-200);
+  --mui-border-color-success-300: var(--mui-color-success-300);
+  --mui-border-color-success-400: var(--mui-color-success-400);
+  --mui-border-color-success-500: var(--mui-color-success-500);
+  --mui-border-color-success-600: var(--mui-color-success-600);
+  --mui-border-color-success-700: var(--mui-color-success-700);
+  --mui-border-color-success-800: var(--mui-color-success-800);
+  --mui-border-color-success-900: var(--mui-color-success-900);
+  --mui-border-color-success-950: var(--mui-color-success-950);
+}

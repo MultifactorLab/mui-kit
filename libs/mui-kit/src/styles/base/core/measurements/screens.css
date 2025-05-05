@@ -1,0 +1,7 @@
+:root {
+  --mui-screen-sm: 640px;
+  --mui-screen-md: 768px;
+  --mui-screen-lg: 1024px;
+  --mui-screen-xl: 1280px;
+  --mui-screen-2xl: 1536px;
+}

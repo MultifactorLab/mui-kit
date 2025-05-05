@@ -1,0 +1,13 @@
+:root {
+  --mui-border-color-info-50: var(--mui-color-info-50);
+  --mui-border-color-info-100: var(--mui-color-info-100);
+  --mui-border-color-info-200: var(--mui-color-info-200);
+  --mui-border-color-info-300: var(--mui-color-info-300);
+  --mui-border-color-info-400: var(--mui-color-info-400);
+  --mui-border-color-info-500: var(--mui-color-info-500);
+  --mui-border-color-info-600: var(--mui-color-info-600);
+  --mui-border-color-info-700: var(--mui-color-info-700);
+  --mui-border-color-info-800: var(--mui-color-info-800);
+  --mui-border-color-info-900: var(--mui-color-info-900);
+  --mui-border-color-info-950: var(--mui-color-info-950);
+}

@@ -1,0 +1,13 @@
+:root {
+  --mui-bg-color-info-50: var(--mui-color-info-50);
+  --mui-bg-color-info-100: var(--mui-color-info-100);
+  --mui-bg-color-info-200: var(--mui-color-info-200);
+  --mui-bg-color-info-300: var(--mui-color-info-300);
+  --mui-bg-color-info-400: var(--mui-color-info-400);
+  --mui-bg-color-info-500: var(--mui-color-info-500);
+  --mui-bg-color-info-600: var(--mui-color-info-600);
+  --mui-bg-color-info-700: var(--mui-color-info-700);
+  --mui-bg-color-info-800: var(--mui-color-info-800);
+  --mui-bg-color-info-900: var(--mui-color-info-900);
+  --mui-bg-color-info-950: var(--mui-color-info-950);
+}
