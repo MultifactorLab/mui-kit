@@ -5,7 +5,7 @@ import {
   Component,
   computed,
   input,
-  output,
+  output, ViewEncapsulation,
 } from '@angular/core';
 import { ThemeColors } from '../../types/theme-colors.type';
 
@@ -14,6 +14,7 @@ import { ThemeColors } from '../../types/theme-colors.type';
   templateUrl: './mui-switch.component.html',
   imports: [NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class MuiSwitchComponent {
   readonly changed = output<boolean>();

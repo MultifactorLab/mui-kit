@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, ViewEncapsulation } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ThemeColors } from '../../types/theme-colors.type';
 
@@ -7,6 +7,7 @@ import { ThemeColors } from '../../types/theme-colors.type';
   templateUrl: './mui-badge.component.html',
   imports: [ NgClass ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class MuiBadgeComponent {
   readonly color = input<ThemeColors>('primary');
