@@ -1,10 +1,10 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
-  input,
+  input, numberAttribute,
   output, ViewEncapsulation,
 } from '@angular/core';
 import { ThemeColors } from '../../types/theme-colors.type';
@@ -12,22 +12,32 @@ import { ThemeColors } from '../../types/theme-colors.type';
 @Component({
   selector: 'mui-button',
   templateUrl: './mui-button.component.html',
-  imports: [ NgClass ],
+  imports: [ NgClass, NgTemplateOutlet ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class MuiButtonComponent {
-  readonly clicked = output<MouseEvent>();
+  readonly clicked = output<MouseEvent | KeyboardEvent>();
 
   readonly color = input<ThemeColors>('primary');
   readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
-  readonly variant = input<'square' | 'rounded' | 'pill' | 'text'>('square');
+  readonly variant = input<'square' | 'rounded' | 'pill' | 'text'>('rounded');
   readonly type = input<'button' | 'submit' | 'reset'>('button');
-  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly href = input<string | null>(null);
+  readonly target = input<string>('_blank');
+  readonly role = input<'button' | 'link'>('button');
+  readonly tabIndex = input<number, number | string>(0, { transform: numberAttribute });
+  readonly disabled = input<boolean, boolean | number>(false, { transform: booleanAttribute });
 
   readonly classNames = computed<string[]>(() => this.generateButtonClasses());
 
-  onClick(event: MouseEvent): void {
+  onKeyPress(event: KeyboardEvent): void {
+    if (event.code === 'Space' || event.code === 'Enter') {
+      this.onClick(event);
+    }
+  }
+
+  onClick(event: MouseEvent | KeyboardEvent): void {
     this.clicked.emit(event);
   }
 
@@ -73,14 +83,14 @@ export class MuiButtonComponent {
         info: 'font-semibold text-medium text-mui-info-500 bg-mui-info-500/10 hover:bg-mui-info-500/20 active:bg-mui-info-500/25 rounded-full',
       },
       text: {
-        white: 'font-semibold text-medium text-black hover:bg-white/80 active:bg-white/60',
-        black: 'font-semibold text-medium text-white hover:bg-black/80 active:bg-black/60',
-        primary: 'font-semibold text-medium text-mui-primary-500 hover:bg-mui-primary-500/20 active:bg-mui-primary-500/25',
-        secondary: 'font-semibold text-medium text-mui-secondary-500 hover:bg-mui-secondary-500/20 active:bg-mui-secondary-500/25',
-        success: 'font-semibold text-medium text-mui-success-500 hover:bg-mui-success-500/20 active:bg-mui-success-500/25',
-        danger: 'font-semibold text-medium text-mui-danger-500 hover:bg-mui-danger-500/20 active:bg-mui-danger-500/25',
-        warning: 'font-semibold text-medium text-mui-warning-500 hover:bg-mui-warning-500/20 active:bg-mui-warning-500/25',
-        info: 'font-semibold text-medium text-mui-info-500 hover:bg-mui-info-500/20 active:bg-mui-info-500/25',
+        white: 'font-semibold text-medium text-black hover:bg-white/80 active:bg-white/60 rounded-full',
+        black: 'font-semibold text-medium text-white hover:bg-black/80 active:bg-black/60 rounded-full',
+        primary: 'font-semibold text-medium text-mui-primary-500 hover:bg-mui-primary-500/20 active:bg-mui-primary-500/25 rounded-full',
+        secondary: 'font-semibold text-medium text-mui-secondary-500 hover:bg-mui-secondary-500/20 active:bg-mui-secondary-500/25 rounded-full',
+        success: 'font-semibold text-medium text-mui-success-500 hover:bg-mui-success-500/20 active:bg-mui-success-500/25 rounded-full',
+        danger: 'font-semibold text-medium text-mui-danger-500 hover:bg-mui-danger-500/20 active:bg-mui-danger-500/25 rounded-full',
+        warning: 'font-semibold text-medium text-mui-warning-500 hover:bg-mui-warning-500/20 active:bg-mui-warning-500/25 rounded-full',
+        info: 'font-semibold text-medium text-mui-info-500 hover:bg-mui-info-500/20 active:bg-mui-info-500/25 rounded-full',
       },
     }
 

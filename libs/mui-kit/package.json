@@ -8,7 +8,33 @@
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
     "@nx/angular": "20.8.1",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^4.1.5"
+  },
+  "main": "./fesm2022/diz1-mui-kit.mjs",
+  "module": "./fesm2022/diz1-mui-kit.mjs",
+  "typings": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/diz1-mui-kit.mjs",
+      "esm": "./esm2022/diz1-mui-kit.mjs",
+      "default": "./fesm2022/diz1-mui-kit.mjs"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./styles/styles.css": {
+      "style": "./styles/styles.css",
+      "default": "./styles/styles.css"
+    },
+    "./styles/theme-base.css": {
+      "style": "./styles/theme-base.css",
+      "default": "./styles/theme-base.css"
+    },
+    "./styles/variables.css": {
+      "style": "./styles/variables.css",
+      "default": "./styles/variables.css"
+    }
   },
   "sideEffects": false
 }

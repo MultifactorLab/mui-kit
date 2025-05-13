@@ -20,6 +20,8 @@ export class MuiSwitchComponent {
   readonly changed = output<boolean>();
 
   readonly color = input<ThemeColors>('primary');
+  readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
+  readonly align = input<'start' | 'center' | 'end'>('center');
   readonly checked = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
 
@@ -32,21 +34,28 @@ export class MuiSwitchComponent {
   }
 
   private generateSwitchClasses(): string[] {
-    const base = 'relative inline-flex items-center cursor-pointer';
+    const base = 'inline-flex items-center cursor-pointer select-none';
 
     const states = {
       disabled: this.disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'cursor-pointer'
     };
 
+    const aligns = {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+    };
+
     return [
       base,
+      aligns[this.align()],
       states.disabled
     ];
   }
 
   private generateSliderClasses(): string[] {
-    const base = `w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 rounded-full peer dark:bg-gray-700
-      after:content-[""] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300
+    const base = `relative bg-gray-200 peer-focus:outline-none peer-focus:ring-4 rounded-full peer dark:bg-gray-700
+      after:content-[""] after:absolute after:top-1/2 after:-translate-y-1/2 after:left-[2px] after:bg-white after:border-gray-300
       after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600`;
 
     const colors = {
@@ -60,11 +69,19 @@ export class MuiSwitchComponent {
       info: 'peer-checked:bg-mui-info-500 peer-focus:ring-mui-info-500/30',
     };
 
-    const afterPosition = 'peer-checked:after:translate-x-full rtl:peer-checked:after:translate-x-[-100%]';
+    const sizes = {
+      xs: '',
+      sm: '',
+      md: 'min-w-11 min-h-6',
+      lg: '',
+    };
+
+    const afterPosition = 'peer-checked:after:translate-x-full';
 
     return [
       base,
       colors[this.color()],
+      sizes[this.size()],
       afterPosition
     ];
   }

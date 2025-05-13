@@ -13,6 +13,7 @@ const meta: Meta<MuiButtonComponent> = {
     template: `
       <div class="sb-row">
         <mui-button ${argsToTemplate(args)}>Button</mui-button>
+        <mui-button href="t.me/example" role="link" ${argsToTemplate(args)}>Link</mui-button>
       </div>
     `,
   }),

@@ -1,0 +1,15 @@
+@theme {
+  :root {
+    --mui-bg-color-secondary-50: #f5f6f6;
+    --mui-bg-color-secondary-100: #e6e7e7;
+    --mui-bg-color-secondary-200: #d0d1d1;
+    --mui-bg-color-secondary-300: #afb0b1;
+    --mui-bg-color-secondary-400: #878889;
+    --mui-bg-color-secondary-500: #696a6b;
+    --mui-bg-color-secondary-600: #5c5d5e;
+    --mui-bg-color-secondary-700: #4e4e50;
+    --mui-bg-color-secondary-800: #454545;
+    --mui-bg-color-secondary-900: #3c3d3d;
+    --mui-bg-color-secondary-950: #262626;
+  }
+}

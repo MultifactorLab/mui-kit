@@ -1,10 +1,10 @@
 @import './tailwind.css';
 @import '../src/styles/variables.css';
-/*@import '../src/styles/theme-base.css';*/
 
 .dark {
   h1, h2, h3, th > span {
     color: white;
+    @apply text-white;
   }
 
   .storybook-preview-wrapper, .sbdocs-wrapper, .docs-story {
@@ -33,5 +33,5 @@
 .sb-row {
   display: flex;
   flex-direction: row;
-  row-gap: 1rem;
+  column-gap: 1rem;
 }

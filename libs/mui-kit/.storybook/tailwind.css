@@ -1,4 +1,4 @@
-/*! tailwindcss v4.1.5 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.1.6 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -33,23 +33,14 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --radius: var(--mui-border-radius);
-    --color-mui-primary-200: var(--mui-color-primary-200);
     --color-mui-primary-500: var(--mui-color-primary-500);
-    --color-mui-secondary-200: var(--mui-color-secondary-200);
-    --color-mui-secondary-300: var(--mui-color-secondary-300);
     --color-mui-secondary-500: var(--mui-color-secondary-500);
-    --color-mui-secondary-700: var(--mui-color-secondary-700);
-    --color-mui-success-200: var(--mui-color-success-200);
     --color-mui-success-500: var(--mui-color-success-500);
-    --color-mui-danger-200: var(--mui-color-danger-200);
     --color-mui-danger-500: var(--mui-color-danger-500);
-    --color-mui-warning-200: var(--mui-color-warning-200);
     --color-mui-warning-500: var(--mui-color-warning-500);
-    --color-mui-info-200: var(--mui-color-info-200);
     --color-mui-info-500: var(--mui-color-info-500);
     --background-color-mui-primary-50: var(--mui-bg-color-primary-50);
     --background-color-mui-primary-500: var(--mui-bg-color-primary-500);
-    --background-color-mui-primary-700: var(--mui-bg-color-primary-700);
     --background-color-mui-secondary-500: var(--mui-bg-color-secondary-500);
     --background-color-mui-secondary-700: var(--mui-bg-color-secondary-700);
     --background-color-mui-success-500: var(--mui-bg-color-success-500);
@@ -70,16 +61,6 @@
     --spacing-0_5: var(--mui-spacing-0_5);
     --spacing-1_5: var(--mui-spacing-1_5);
     --spacing-2_5: var(--mui-spacing-2_5);
-    --border-width-0: var(--mui-border-width-0);
-    --border-width-2: var(--mui-border-width-2);
-    --border-width-4: var(--mui-border-width-4);
-    --border-width-8: var(--mui-border-width-8);
-    --border-color-mui-primary-200: var(--mui-border-color-primary-200);
-    --border-color-mui-secondary-200: var(--mui-border-color-secondary-200);
-    --border-color-mui-success-200: var(--mui-border-color-success-200);
-    --border-color-mui-danger-200: var(--mui-border-color-danger-200);
-    --border-color-mui-warning-200: var(--mui-border-color-warning-200);
-    --border-color-mui-info-200: var(--mui-border-color-info-200);
   }
 }
 @layer base {
@@ -273,20 +254,11 @@
     width: 100%;
     height: 100%;
   }
-  .h-6 {
-    height: var(--spacing-6);
-  }
   .h-full {
     height: 100%;
   }
-  .min-h-1 {
-    min-height: var(--spacing-1);
-  }
   .min-h-1\.5 {
     min-height: var(--spacing-1_5);
-  }
-  .min-h-2 {
-    min-height: var(--spacing-2);
   }
   .min-h-2\.5 {
     min-height: var(--spacing-2_5);
@@ -297,14 +269,14 @@
   .min-h-5 {
     min-height: var(--spacing-5);
   }
-  .w-11 {
-    width: var(--spacing-11);
+  .min-h-6 {
+    min-height: var(--spacing-6);
   }
   .w-full {
     width: 100%;
   }
-  .border-collapse {
-    border-collapse: collapse;
+  .min-w-11 {
+    min-width: var(--spacing-11);
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -318,11 +290,14 @@
   .cursor-pointer {
     cursor: pointer;
   }
-  .resize {
-    resize: both;
-  }
   .items-center {
     align-items: center;
+  }
+  .items-end {
+    align-items: flex-end;
+  }
+  .items-start {
+    align-items: flex-start;
   }
   .justify-center {
     justify-content: center;
@@ -357,10 +332,6 @@
   }
   .rounded-xs {
     border-radius: var(--radius-xs);
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
   }
   .bg-black {
     background-color: var(--color-black);
@@ -461,9 +432,6 @@
   .px-6 {
     padding-inline: var(--spacing-6);
   }
-  .py-0 {
-    padding-block: calc(var(--spacing) * 0);
-  }
   .py-0\.5 {
     padding-block: var(--spacing-0_5);
   }
@@ -520,15 +488,8 @@
   .text-white {
     color: var(--color-white);
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .opacity-50 {
     opacity: 50%;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
@@ -717,10 +678,10 @@
       position: absolute;
     }
   }
-  .after\:top-\[2px\] {
+  .after\:top-1\/2 {
     &::after {
       content: var(--tw-content);
-      top: 2px;
+      top: calc(1/2 * 100%);
     }
   }
   .after\:left-\[2px\] {
@@ -739,6 +700,13 @@
     &::after {
       content: var(--tw-content);
       width: var(--spacing-5);
+    }
+  }
+  .after\:-translate-y-1\/2 {
+    &::after {
+      content: var(--tw-content);
+      --tw-translate-y: calc(calc(1/2 * 100%) * -1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
     }
   }
   .after\:rounded-full {
@@ -1083,17 +1051,6 @@
       }
     }
   }
-  .rtl\:peer-checked\:after\:translate-x-\[-100\%\] {
-    &:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
-      &:is(:where(.peer):checked ~ *) {
-        &::after {
-          content: var(--tw-content);
-          --tw-translate-x: -100%;
-          translate: var(--tw-translate-x) var(--tw-translate-y);
-        }
-      }
-    }
-  }
   .dark\:border-gray-600 {
     &:is([data-mode="dark"] *) {
       border-color: var(--color-gray-600);
@@ -1109,6 +1066,299 @@
       color: var(--color-white);
     }
   }
+}
+:root {
+  --mui-color-primary-50: oklch(97.25% 0.01 23.70);
+  --mui-color-primary-100: oklch(94.00% 0.03 25.28);
+  --mui-color-primary-200: oklch(89.23% 0.06 26.37);
+  --mui-color-primary-300: oklch(82.40% 0.10 27.81);
+  --mui-color-primary-400: oklch(73.24% 0.16 28.84);
+  --mui-color-primary-500: oklch(67.13% 0.19 30.24);
+  --mui-color-primary-600: oklch(59.87% 0.21 30.92);
+  --mui-color-primary-700: oklch(52.41% 0.19 30.94);
+  --mui-color-primary-800: oklch(46.01% 0.16 30.80);
+  --mui-color-primary-900: oklch(41.08% 0.13 30.64);
+  --mui-color-primary-950: oklch(26.71% 0.09 30.66);
+}
+:root {
+  --mui-color-secondary-50: oklch(97.84% 0.00 197.14);
+  --mui-color-secondary-100: oklch(94.92% 0.00 271.37);
+  --mui-color-secondary-200: oklch(89.03% 0.01 255.48);
+  --mui-color-secondary-300: oklch(78.85% 0.01 266.68);
+  --mui-color-secondary-400: oklch(66.84% 0.02 262.97);
+  --mui-color-secondary-500: oklch(55.10% 0.02 264.36);
+  --mui-color-secondary-600: oklch(49.21% 0.02 265.82);
+  --mui-color-secondary-700: oklch(42.48% 0.02 270.90);
+  --mui-color-secondary-800: oklch(38.60% 0.01 264.39);
+  --mui-color-secondary-900: oklch(34.96% 0.01 274.50);
+  --mui-color-secondary-950: oklch(27.28% 0.01 268.32);
+}
+:root {
+  --mui-color-success-50: #f0fdf5;
+  --mui-color-success-100: #dcfce8;
+  --mui-color-success-200: #bbf7d1;
+  --mui-color-success-300: #86efad;
+  --mui-color-success-400: #4ade81;
+  --mui-color-success-500: #22c55e;
+  --mui-color-success-600: #16a34a;
+  --mui-color-success-700: #15803c;
+  --mui-color-success-800: #166533;
+  --mui-color-success-900: #14532b;
+  --mui-color-success-950: #052e14;
+}
+:root {
+  --mui-color-danger-50: oklch(96.75% 0.01 17.38);
+  --mui-color-danger-100: oklch(92.74% 0.03 17.75);
+  --mui-color-danger-200: oklch(87.23% 0.06 18.36);
+  --mui-color-danger-300: oklch(78.62% 0.10 19.67);
+  --mui-color-danger-400: oklch(67.49% 0.17 22.65);
+  --mui-color-danger-500: oklch(57.71% 0.22 27.33);
+  --mui-color-danger-600: oklch(49.79% 0.17 25.76);
+  --mui-color-danger-700: oklch(43.52% 0.15 25.79);
+  --mui-color-danger-800: oklch(38.63% 0.12 24.94);
+  --mui-color-danger-900: oklch(34.76% 0.10 23.65);
+  --mui-color-danger-950: oklch(22.87% 0.07 24.14);
+}
+:root {
+  --mui-color-warning-50: #feffea;
+  --mui-color-warning-100: #ffffc4;
+  --mui-color-warning-200: #ffff84;
+  --mui-color-warning-300: #fff844;
+  --mui-color-warning-400: #ffec19;
+  --mui-color-warning-500: #ffcd00;
+  --mui-color-warning-600: #e4a000;
+  --mui-color-warning-700: #c17500;
+  --mui-color-warning-800: #995707;
+  --mui-color-warning-900: #7e4709;
+  --mui-color-warning-950: #482500;
+}
+:root {
+  --mui-color-info-50: #f0faff;
+  --mui-color-info-100: #e0f5fe;
+  --mui-color-info-200: #bae8fd;
+  --mui-color-info-300: #7dd5fc;
+  --mui-color-info-400: #38bcf8;
+  --mui-color-info-500: #0ea5e9;
+  --mui-color-info-600: #028ac7;
+  --mui-color-info-700: #0370a1;
+  --mui-color-info-800: #075e85;
+  --mui-color-info-900: #0c506e;
+  --mui-color-info-950: #083549;
+}
+:root {
+  --mui-screen-sm: 640px;
+  --mui-screen-md: 768px;
+  --mui-screen-lg: 1024px;
+  --mui-screen-xl: 1280px;
+  --mui-screen-2xl: 1536px;
+}
+:root {
+  --mui-spacing-0_5: 0.125rem;
+  --mui-spacing-1: 0.25rem;
+  --mui-spacing-1_5: 0.375rem;
+  --mui-spacing-2: 0.5rem;
+  --mui-spacing-2_5: 0.625rem;
+  --mui-spacing-3: 0.75rem;
+  --mui-spacing-3_5: 0.875rem;
+  --mui-spacing-4: 1rem;
+  --mui-spacing-5: 1.25rem;
+  --mui-spacing-6: 1.5rem;
+  --mui-spacing-7: 1.75rem;
+  --mui-spacing-8: 2rem;
+  --mui-spacing-9: 2.25rem;
+  --mui-spacing-10: 2.5rem;
+  --mui-spacing-11: 2.75rem;
+  --mui-spacing-12: 3rem;
+  --mui-spacing-14: 3.5rem;
+  --mui-spacing-16: 4rem;
+  --mui-spacing-20: 5rem;
+  --mui-spacing-24: 6rem;
+  --mui-spacing-28: 7rem;
+  --mui-spacing-32: 8rem;
+  --mui-spacing-36: 9rem;
+  --mui-spacing-40: 10rem;
+  --mui-spacing-44: 11rem;
+  --mui-spacing-48: 12rem;
+  --mui-spacing-52: 13rem;
+  --mui-spacing-56: 14rem;
+  --mui-spacing-60: 15rem;
+  --mui-spacing-64: 16rem;
+  --mui-spacing-72: 18rem;
+  --mui-spacing-80: 20rem;
+  --mui-spacing-96: 24rem;
+}
+:root {
+  --mui-bg-color-primary-50: var(--mui-color-primary-50);
+  --mui-bg-color-primary-100: var(--mui-color-primary-100);
+  --mui-bg-color-primary-200: var(--mui-color-primary-200);
+  --mui-bg-color-primary-300: var(--mui-color-primary-300);
+  --mui-bg-color-primary-400: var(--mui-color-primary-400);
+  --mui-bg-color-primary-500: var(--mui-color-primary-500);
+  --mui-bg-color-primary-600: var(--mui-color-primary-600);
+  --mui-bg-color-primary-700: var(--mui-color-primary-700);
+  --mui-bg-color-primary-800: var(--mui-color-primary-800);
+  --mui-bg-color-primary-900: var(--mui-color-primary-900);
+  --mui-bg-color-primary-950: var(--mui-color-primary-950);
+}
+:root {
+  --mui-bg-color-secondary-50: var(--mui-color-secondary-50);
+  --mui-bg-color-secondary-100: var(--mui-color-secondary-100);
+  --mui-bg-color-secondary-200: var(--mui-color-secondary-200);
+  --mui-bg-color-secondary-300: var(--mui-color-secondary-300);
+  --mui-bg-color-secondary-400: var(--mui-color-secondary-400);
+  --mui-bg-color-secondary-500: var(--mui-color-secondary-500);
+  --mui-bg-color-secondary-600: var(--mui-color-secondary-600);
+  --mui-bg-color-secondary-700: var(--mui-color-secondary-700);
+  --mui-bg-color-secondary-800: var(--mui-color-secondary-800);
+  --mui-bg-color-secondary-900: var(--mui-color-secondary-900);
+  --mui-bg-color-secondary-950: var(--mui-color-secondary-950);
+}
+:root {
+  --mui-bg-color-success-50: var(--mui-color-success-50);
+  --mui-bg-color-success-100: var(--mui-color-success-100);
+  --mui-bg-color-success-200: var(--mui-color-success-200);
+  --mui-bg-color-success-300: var(--mui-color-success-300);
+  --mui-bg-color-success-400: var(--mui-color-success-400);
+  --mui-bg-color-success-500: var(--mui-color-success-500);
+  --mui-bg-color-success-600: var(--mui-color-success-600);
+  --mui-bg-color-success-700: var(--mui-color-success-700);
+  --mui-bg-color-success-800: var(--mui-color-success-800);
+  --mui-bg-color-success-900: var(--mui-color-success-900);
+  --mui-bg-color-success-950: var(--mui-color-success-950);
+}
+:root {
+  --mui-bg-color-danger-50: var(--mui-color-danger-50);
+  --mui-bg-color-danger-100: var(--mui-color-danger-100);
+  --mui-bg-color-danger-200: var(--mui-color-danger-200);
+  --mui-bg-color-danger-300: var(--mui-color-danger-300);
+  --mui-bg-color-danger-400: var(--mui-color-danger-400);
+  --mui-bg-color-danger-500: var(--mui-color-danger-500);
+  --mui-bg-color-danger-600: var(--mui-color-danger-600);
+  --mui-bg-color-danger-700: var(--mui-color-danger-700);
+  --mui-bg-color-danger-800: var(--mui-color-danger-800);
+  --mui-bg-color-danger-900: var(--mui-color-danger-900);
+  --mui-bg-color-danger-950: var(--mui-color-danger-950);
+}
+:root {
+  --mui-bg-color-warning-50: var(--mui-color-warning-50);
+  --mui-bg-color-warning-100: var(--mui-color-warning-100);
+  --mui-bg-color-warning-200: var(--mui-color-warning-200);
+  --mui-bg-color-warning-300: var(--mui-color-warning-300);
+  --mui-bg-color-warning-400: var(--mui-color-warning-400);
+  --mui-bg-color-warning-500: var(--mui-color-warning-500);
+  --mui-bg-color-warning-600: var(--mui-color-warning-600);
+  --mui-bg-color-warning-700: var(--mui-color-warning-700);
+  --mui-bg-color-warning-800: var(--mui-color-warning-800);
+  --mui-bg-color-warning-900: var(--mui-color-warning-900);
+  --mui-bg-color-warning-950: var(--mui-color-warning-950);
+}
+:root {
+  --mui-bg-color-info-50: var(--mui-color-info-50);
+  --mui-bg-color-info-100: var(--mui-color-info-100);
+  --mui-bg-color-info-200: var(--mui-color-info-200);
+  --mui-bg-color-info-300: var(--mui-color-info-300);
+  --mui-bg-color-info-400: var(--mui-color-info-400);
+  --mui-bg-color-info-500: var(--mui-color-info-500);
+  --mui-bg-color-info-600: var(--mui-color-info-600);
+  --mui-bg-color-info-700: var(--mui-color-info-700);
+  --mui-bg-color-info-800: var(--mui-color-info-800);
+  --mui-bg-color-info-900: var(--mui-color-info-900);
+  --mui-bg-color-info-950: var(--mui-color-info-950);
+}
+:root {
+  --mui-border-color-primary-50: var(--mui-color-primary-50);
+  --mui-border-color-primary-100: var(--mui-color-primary-100);
+  --mui-border-color-primary-200: var(--mui-color-primary-200);
+  --mui-border-color-primary-300: var(--mui-color-primary-300);
+  --mui-border-color-primary-400: var(--mui-color-primary-400);
+  --mui-border-color-primary-500: var(--mui-color-primary-500);
+  --mui-border-color-primary-600: var(--mui-color-primary-600);
+  --mui-border-color-primary-700: var(--mui-color-primary-700);
+  --mui-border-color-primary-800: var(--mui-color-primary-800);
+  --mui-border-color-primary-900: var(--mui-color-primary-900);
+  --mui-border-color-primary-950: var(--mui-color-primary-950);
+}
+:root {
+  --mui-border-color-secondary-50: var(--mui-color-secondary-50);
+  --mui-border-color-secondary-100: var(--mui-color-secondary-100);
+  --mui-border-color-secondary-200: var(--mui-color-secondary-200);
+  --mui-border-color-secondary-300: var(--mui-color-secondary-300);
+  --mui-border-color-secondary-400: var(--mui-color-secondary-400);
+  --mui-border-color-secondary-500: var(--mui-color-secondary-500);
+  --mui-border-color-secondary-600: var(--mui-color-secondary-600);
+  --mui-border-color-secondary-700: var(--mui-color-secondary-700);
+  --mui-border-color-secondary-800: var(--mui-color-secondary-800);
+  --mui-border-color-secondary-900: var(--mui-color-secondary-900);
+  --mui-border-color-secondary-950: var(--mui-color-secondary-950);
+}
+:root {
+  --mui-border-color-success-50: var(--mui-color-success-50);
+  --mui-border-color-success-100: var(--mui-color-success-100);
+  --mui-border-color-success-200: var(--mui-color-success-200);
+  --mui-border-color-success-300: var(--mui-color-success-300);
+  --mui-border-color-success-400: var(--mui-color-success-400);
+  --mui-border-color-success-500: var(--mui-color-success-500);
+  --mui-border-color-success-600: var(--mui-color-success-600);
+  --mui-border-color-success-700: var(--mui-color-success-700);
+  --mui-border-color-success-800: var(--mui-color-success-800);
+  --mui-border-color-success-900: var(--mui-color-success-900);
+  --mui-border-color-success-950: var(--mui-color-success-950);
+}
+:root {
+  --mui-border-color-warning-50: var(--mui-color-warning-50);
+  --mui-border-color-warning-100: var(--mui-color-warning-100);
+  --mui-border-color-warning-200: var(--mui-color-warning-200);
+  --mui-border-color-warning-300: var(--mui-color-warning-300);
+  --mui-border-color-warning-400: var(--mui-color-warning-400);
+  --mui-border-color-warning-500: var(--mui-color-warning-500);
+  --mui-border-color-warning-600: var(--mui-color-warning-600);
+  --mui-border-color-warning-700: var(--mui-color-warning-700);
+  --mui-border-color-warning-800: var(--mui-color-warning-800);
+  --mui-border-color-warning-900: var(--mui-color-warning-900);
+  --mui-border-color-warning-950: var(--mui-color-warning-950);
+}
+:root {
+  --mui-border-color-danger-50: var(--mui-color-danger-50);
+  --mui-border-color-danger-100: var(--mui-color-danger-100);
+  --mui-border-color-danger-200: var(--mui-color-danger-200);
+  --mui-border-color-danger-300: var(--mui-color-danger-300);
+  --mui-border-color-danger-400: var(--mui-color-danger-400);
+  --mui-border-color-danger-500: var(--mui-color-danger-500);
+  --mui-border-color-danger-600: var(--mui-color-danger-600);
+  --mui-border-color-danger-700: var(--mui-color-danger-700);
+  --mui-border-color-danger-800: var(--mui-color-danger-800);
+  --mui-border-color-danger-900: var(--mui-color-danger-900);
+  --mui-border-color-danger-950: var(--mui-color-danger-950);
+}
+:root {
+  --mui-border-color-info-50: var(--mui-color-info-50);
+  --mui-border-color-info-100: var(--mui-color-info-100);
+  --mui-border-color-info-200: var(--mui-color-info-200);
+  --mui-border-color-info-300: var(--mui-color-info-300);
+  --mui-border-color-info-400: var(--mui-color-info-400);
+  --mui-border-color-info-500: var(--mui-color-info-500);
+  --mui-border-color-info-600: var(--mui-color-info-600);
+  --mui-border-color-info-700: var(--mui-color-info-700);
+  --mui-border-color-info-800: var(--mui-color-info-800);
+  --mui-border-color-info-900: var(--mui-color-info-900);
+  --mui-border-color-info-950: var(--mui-color-info-950);
+}
+:root {
+  --mui-border-radius-xs: 0.06rem;
+  --mui-border-radius-sm: 0.125rem;
+  --mui-border-radius: 0.25rem;
+  --mui-border-radius-md: 0.375rem;
+  --mui-border-radius-lg: 0.5rem;
+  --mui-border-radius-xl: 0.75rem;
+  --mui-border-radius-2xl: 1rem;
+  --mui-border-radius-3xl: 1.5rem;
+}
+:root {
+  --mui-border-width-0: 0px;
+  --mui-border-width: 1px;
+  --mui-border-width-2: 2px;
+  --mui-border-width-4: 4px;
+  --mui-border-width-8: 8px;
 }
 @layer base {
   *, ::after, ::before, ::backdrop, ::file-selector-button {
@@ -1140,19 +1390,9 @@
   inherits: false;
   initial-value: 0;
 }
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
-}
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-shadow {
   syntax: "*";
@@ -1239,6 +1479,11 @@
   inherits: false;
   initial-value: 0;
 }
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @keyframes ping {
   75%, 100% {
     transform: scale(2);
@@ -1254,9 +1499,7 @@
       --tw-skew-x: initial;
       --tw-skew-y: initial;
       --tw-space-x-reverse: 0;
-      --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;
@@ -1275,6 +1518,7 @@
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
+      --tw-border-style: solid;
     }
   }
 }

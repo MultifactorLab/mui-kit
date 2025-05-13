@@ -1,8 +1,28 @@
-<button
-  [ngClass]="classNames()"
-  [disabled]="disabled()"
-  [attr.type]="type()"
-  (click)="onClick($event)"
->
+<ng-template #content>
   <ng-content />
-</button>
+</ng-template>
+
+@if (href() !== null) {
+  <a
+    [href]="href()"
+    [target]="target()"
+    [attr.role]="role()"
+    [tabindex]="tabIndex()"
+    (click)="onClick($event)"
+    (keyup)="onKeyPress($event)"
+    [ngClass]="classNames()"
+  >
+    <ng-container *ngTemplateOutlet="content" />
+  </a>
+} @else {
+  <button
+    [disabled]="disabled()"
+    [attr.role]="role()"
+    [attr.type]="type()"
+    (click)="onClick($event)"
+    (keyup)="onKeyPress($event)"
+    [ngClass]="classNames()"
+  >
+    <ng-container *ngTemplateOutlet="content" />
+  </button>
+}

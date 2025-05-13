@@ -10,16 +10,41 @@ const meta: Meta<MuiSwitchComponent> = {
     props: args,
     template: `
       <div class="sb-row">
-        <mui-switch ${argsToTemplate(args)}>Switch Label</mui-switch>
+        <mui-switch ${argsToTemplate(args)}>
+          <span>Switch Label</span>
+          <span>Switch Label</span>
+        </mui-switch>
+        <mui-switch ${argsToTemplate(args)}>
+          <span>Switch Label</span>
+          <span>Switch Label</span>
+        </mui-switch>
       </div>
     `,
   }),
   args: {
+    align: 'center',
+    size: 'md',
     color: 'primary',
     checked: false,
-    disabled: false
+    disabled: false,
   },
   argTypes: {
+    align: {
+      options: ['start', 'center', 'end'],
+      table: {
+        defaultValue: { summary: 'center' },
+        type: { summary: 'start|center|end' },
+      },
+      control: { type: 'select' },
+    },
+    size: {
+      options: ['xs', 'sm', 'md', 'lg'],
+      table: {
+        defaultValue: { summary: 'md' },
+        type: { summary: 'xs|sm|md|lg' },
+      },
+      control: { type: 'select' },
+    },
     color: {
       options: THEME_COLORS_ARRAY,
       table: {

@@ -14,6 +14,16 @@
       "glob": "theme-base.css",
       "input": "src/styles",
       "output": "styles"
+    },
+    {
+      "glob": "variables.css",
+      "input": "src/styles",
+      "output": "styles"
+    },
+    {
+      "glob": "base/**/*",
+      "input": "src/styles",
+      "output": "styles"
     }
   ]
 }
