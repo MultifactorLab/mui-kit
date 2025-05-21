@@ -1,6 +1,6 @@
 {
   "name": "@diz1/mui-kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
