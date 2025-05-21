@@ -25,8 +25,6 @@ const meta: Meta<MuiSwitchComponent> = {
     align: 'center',
     size: 'md',
     color: 'primary',
-    checked: false,
-    disabled: false,
   },
   argTypes: {
     align: {
@@ -52,20 +50,6 @@ const meta: Meta<MuiSwitchComponent> = {
         type: { summary: THEME_COLORS_STRING }
       },
       control: { type: 'select' },
-    },
-    checked: {
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-      control: { type: 'boolean' },
-    },
-    disabled: {
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-      control: { type: 'boolean' },
     },
   }
 };

@@ -1,12 +1,13 @@
 import { NgClass } from '@angular/common';
 import {
-  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   computed,
+  forwardRef,
   input,
-  output, ViewEncapsulation,
+  output, signal, ViewEncapsulation,
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeColors } from '../../types/theme-colors.type';
 
 @Component({
@@ -15,22 +16,53 @@ import { ThemeColors } from '../../types/theme-colors.type';
   imports: [NgClass],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MuiSwitchComponent),
+      multi: true
+    }
+  ]
 })
-export class MuiSwitchComponent {
+export class MuiSwitchComponent implements ControlValueAccessor {
   readonly changed = output<boolean>();
 
   readonly color = input<ThemeColors>('primary');
   readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
   readonly align = input<'start' | 'center' | 'end'>('center');
-  readonly checked = input(false, { transform: booleanAttribute });
-  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly value = input<string>('');
+
+  readonly checked = signal(false);
+  readonly disabled = signal(false);
 
   readonly classNames = computed<string[]>(() => this.generateSwitchClasses());
   readonly sliderClassNames = computed<string[]>(() => this.generateSliderClasses());
 
+  private onChangeFn: (value: boolean) => void = () => {};
+  private onTouchedFn: () => void = () => {};
+
+  writeValue(value: boolean): void {
+    this.checked.set(value);
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouchedFn = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled.set(isDisabled);
+  }
+
   onChange(event: Event): void {
     const target = event.target as HTMLInputElement;
-    this.changed.emit(target.checked);
+    const value = target.checked;
+
+    this.onChangeFn(value);
+    this.onTouchedFn();
   }
 
   private generateSwitchClasses(): string[] {
