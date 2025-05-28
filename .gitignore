@@ -2,7 +2,7 @@
 
 .github
 .vscode
-.pnpm-lock
+pnpm-lock.yaml
 
 # compiled output
 dist

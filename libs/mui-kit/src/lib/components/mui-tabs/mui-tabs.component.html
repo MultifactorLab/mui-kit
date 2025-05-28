@@ -1,13 +1,14 @@
 <div [ngClass]="containerClasses()">
   <div class="flex gap-2 border-b border-gray-300">
-    <button
-      *ngFor="let label of tabHeaders(); let i = index"
-      class="px-4 py-2"
-      [ngClass]="{ 'border-b-2 border-blue-500 font-bold': selectedIndex() === i }"
-      (click)="selectTab(i)"
-    >
-      {{ label }}
-    </button>
+    @for(label of tabHeaders(); track label; let idx = $index) {
+        <button
+        class="px-4 py-2"
+        [ngClass]="{ 'border-b-2 border-blue-500 font-bold': selectedIndex() === idx }"
+        (click)="selectTab(idx)"
+        >
+        {{ label }}
+        </button>
+    }
   </div>
   @if(tabs.get(selectedIndex())) {
    <ng-container *ngTemplateOutlet="tabs.get(selectedIndex())!.templateRef"></ng-container>
