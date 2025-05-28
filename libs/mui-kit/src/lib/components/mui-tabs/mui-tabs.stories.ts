@@ -1,71 +1,54 @@
-import { Meta, StoryObj } from "@storybook/angular";
-import { MuiTabsComponent } from "./mui-tabs.component"
-import { THEME_COLORS_ARRAY, THEME_COLORS_STRING } from "../../constants/theme-colors.constants";
+import { Meta, StoryObj } from '@storybook/angular';
+import { MuiTabsComponent } from './mui-tabs.component';
+import { MuiTabDirective } from './mui-tab.directive';
+import { moduleMetadata } from '@storybook/angular';
+
 const meta: Meta<MuiTabsComponent> = {
-    title: "MUI/Tabs",
-    component: MuiTabsComponent,
-    render: (args) => ({
-        props: args,
-        template: `
-        <mui-tabs>
-            <mui-tab>
-              test1
-            </mui-tab>
-            <mui-tab>
-              test2
-            </mui-tab>
-        </mui-tabs>`
+  title: 'MUI/Tabs',
+  component: MuiTabsComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [MuiTabDirective]
     }),
-    args: {
-        color: 'primary',
-        size: 'md',
-    },
-    argTypes: {
-        color: {
-            options: THEME_COLORS_ARRAY,
-            table: {
-                defaultValue: { summary: 'primary' },
-                type: { summary: THEME_COLORS_STRING }
-            },
-            control: { type: 'select' },
-        },
-        size: {
-            options: ['xs', 'sm', 'md', 'lg'],
-            table: {
-              defaultValue: { summary: 'md' },
-              type: { summary: 'xs|sm|md|lg' },
-            },
-            control: { type: 'select' },
-        },
-    }
-}
+  ],
+  tags: ['autodocs'],
+  args: {
+    size: 'md'
+  }
+};
 
 export default meta;
-
-
 type Story = StoryObj<MuiTabsComponent>;
 
-export const Primary: Story = {
-  args: { color: 'primary' },
+export const Default: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <mui-tabs [size]="size">
+        <div *muiTab="'Overview'">
+          <p>This is the content of the first tab.</p>
+        </div>
+        <mui-tab *muiTab="'Details'">
+          <p>More details in the second tab.</p>
+        </mui-tab>
+        <mui-tab *muiTab="'Settings'">
+          <p>Settings content in the third tab.</p>
+        </mui-tab>
+      </mui-tabs>
+    `
+  })
 };
 
-export const Secondary: Story = {
-  args: { color: 'secondary' },
+export const LargeSize: Story = {
+  args: {
+    size: 'lg'
+  },
+  render: Default.render
 };
 
-export const Success: Story = {
-  args: { color: 'success' },
+export const SmallSize: Story = {
+  args: {
+    size: 'sm'
+  },
+  render: Default.render
 };
-
-export const Danger: Story = {
-  args: { color: "danger" }
-};
-
-export const Warning: Story = {
-  args: { color: "warning" }
-};
-
-export const Info: Story = {
-  args: { color: "info" }
-};
- 
