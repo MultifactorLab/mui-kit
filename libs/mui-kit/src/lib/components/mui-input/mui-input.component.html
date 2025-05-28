@@ -1,18 +1,24 @@
 <div class="relative min-h-13.5">
   <input
-    (input)="onChange($event)"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
     [id]="inputId()"
     [type]="type()"
+    [value]="value()"
     [placeholder]="placeholder()"
-    class="peer min-h-13.5 w-full pt-4 px-3 rounded-lg bg-mui-secondary-500 text-white focus:outline-none placeholder-transparent"
+    [disabled]="isDisabled()"
+    class="
+      peer appearance-none min-h-13.5 w-full pt-4 px-3 rounded-lg bg-mui-secondary-500 text-white outline-none
+      focus:outline-none placeholder-transparent focus:ring-4 focus:ring-mui-secondary-500/30
+    "
   />
 
   <label
     [for]="inputId()"
     class="
-      absolute left-3 top-1 text-mui-secondary-100 text-sm origin-top-left transition-all cursor-text pointer-events-none
+      absolute left-3 top-1 text-mui-secondary-100 text-xs origin-top-left transition-all cursor-text pointer-events-none
       peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-placeholder-shown:pointer-events-auto
-      peer-focus:top-1 peer-focus:text-sm peer-focus:pointer-events-none
+      peer-focus:top-1 peer-focus:text-xs peer-focus:pointer-events-none
     "
   >
     {{ placeholder() }}
