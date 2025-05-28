@@ -8,8 +8,12 @@ const meta: Meta<MuiTabsComponent> = {
         props: args,
         template: `
         <mui-tabs>
-            <mui-button>Tab1</mui-button>
-            <mui-button>Tab2</mui-button>
+            <mui-tab>
+              test1
+            </mui-tab>
+            <mui-tab>
+              test2
+            </mui-tab>
         </mui-tabs>`
     }),
     args: {
