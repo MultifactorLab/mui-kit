@@ -17,23 +17,30 @@ mui-kit — это библиотека UI-компонентов, исполь�
 ## Установка
 
 ```bash
-npm install @your-org/mui-kit
+pnpm install @mflab/mui-kit
 ```
 
 ## Использование
 
-Импортируйте модуль mui-kit в ваше Angular-приложение:
+Импортируйте компоненты mui-kit в ваше Angular-приложение:
 
 ```typescript
-import { MuiKitModule } from '@your-org/mui-kit';
+import { MuiButtonComponent } from '@mflab/mui-kit';
 
-@NgModule({
-  imports: [
-    MuiKitModule
-  ],
+@Component({
   // ...
+  imports: [
+    // ...
+    MuiButtonComponent,
+    // ...
+  ]
+  template: `
+    <!-- other template -->
+    <mui-button>Button component</mui-button>
+    <!-- other template -->
+  `,
 })
-export class AppModule { }
+export class AppComponent { /* your code */}
 ```
 
 ## Настройка
@@ -127,7 +134,3 @@ mui-kit использует CSS-переменные для размеров, �
 ## Интеграция с TailwindCSS
 
 mui-kit построена на основе TailwindCSS и расширяет его функциональность с помощью пользовательских переменных. Вы можете использовать классы TailwindCSS вместе с компонентами mui-kit для дополнительной настройки.
-
-## Лицензия
-
-MIT
