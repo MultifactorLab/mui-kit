@@ -1,9 +1,10 @@
 {
-  "name": "@diz1/mui-kit",
+  "name": "@mflab/mui-kit",
   "version": "0.0.1",
+  "author": "MltifactorLab frontend team",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diz1/mui-kit.git"
+    "url": "git+https://github.com/MultifactorLab/mui-kit.git"
   },
   "peerDependencies": {
     "@angular/common": "^19.2.0",
@@ -11,15 +12,15 @@
     "@nx/angular": "20.8.1",
     "tailwindcss": "^4.1.5"
   },
-  "main": "./fesm2022/diz1-mui-kit.mjs",
-  "module": "./fesm2022/diz1-mui-kit.mjs",
+  "main": "./fesm2022/mflab-mui-kit.mjs",
+  "module": "./fesm2022/mflab-mui-kit.mjs",
   "typings": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/diz1-mui-kit.mjs",
-      "esm": "./esm2022/diz1-mui-kit.mjs",
-      "default": "./fesm2022/diz1-mui-kit.mjs"
+      "esm2022": "./esm2022/mflab-mui-kit.mjs",
+      "esm": "./esm2022/mflab-mui-kit.mjs",
+      "default": "./fesm2022/mflab-mui-kit.mjs"
     },
     "./package.json": {
       "default": "./package.json"

@@ -38,7 +38,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ~19.2.0
-        version: 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.5)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
+        version: 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.7)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
       '@angular-devkit/core':
         specifier: ~19.2.0
         version: 19.2.10(chokidar@4.0.3)
@@ -59,7 +59,7 @@ importers:
         version: 9.26.0
       '@nx/angular':
         specifier: 20.8.1
-        version: 20.8.1(1d47060bb6750b2cba0ead8464ba42b2)
+        version: 20.8.1(34eefc00b200051552fca13a92d2297c)
       '@nx/eslint':
         specifier: 20.8.1
         version: 20.8.1(@babel/traverse@7.27.1)(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.13))(@swc/types@0.1.21)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@zkochan/js-yaml@0.0.7)(eslint@9.26.0(jiti@1.21.7))(nx@20.8.1(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.13))(@swc/types@0.1.21)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.13)))(verdaccio@6.1.2(encoding@0.1.13)(typanion@3.14.0))
@@ -89,7 +89,7 @@ importers:
         version: 8.6.12(storybook@8.6.12(prettier@2.8.8))
       '@storybook/angular':
         specifier: 8.6.12
-        version: 8.6.12(32cc4d51879086d60343eac75a7e6b5d)
+        version: 8.6.12(352d3e2668eaa34dee94615c82de158d)
       '@storybook/core-server':
         specifier: 8.6.12
         version: 8.6.12(storybook@8.6.12(prettier@2.8.8))
@@ -122,7 +122,7 @@ importers:
         version: 2.4.0
       ng-packagr:
         specifier: ~19.2.0
-        version: 19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3)
+        version: 19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3)
       nx:
         specifier: 20.8.1
         version: 20.8.1(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.13))(@swc/types@0.1.21)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.13))
@@ -139,11 +139,11 @@ importers:
         specifier: 8.6.12
         version: 8.6.12(prettier@2.8.8)
       tailwindcss:
-        specifier: ^4.1.5
-        version: 4.1.5
+        specifier: ^4.1.7
+        version: 4.1.7
       tailwindcss-animation-delay:
         specifier: ^2.0.2
-        version: 2.0.2(tailwindcss@4.1.5)
+        version: 2.0.2(tailwindcss@4.1.7)
       ts-node:
         specifier: 10.9.1
         version: 10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(typescript@5.7.3)
@@ -6878,8 +6878,8 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=4.0.0'
 
-  tailwindcss@4.1.5:
-    resolution: {integrity: sha512-nYtSPfWGDiWgCkwQG/m+aX83XCwf62sBgg3bIlNiiOcggnS1x3uVRDAuyelBFL+vJdOPPCGElxv9DjHJjRHiVA==}
+  tailwindcss@4.1.7:
+    resolution: {integrity: sha512-kr1o/ErIdNhTz8uzAYL7TpaUuzKIE6QPQ4qmSdxnoX/lo+5wmUHQA6h3L5yIqEImSRnAAURDirLu/BgiXGPAhg==}
 
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
@@ -7564,13 +7564,13 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.5)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)':
+  '@angular-devkit/build-angular@19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.7)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.10(chokidar@4.0.3)
       '@angular-devkit/build-webpack': 0.1902.10(chokidar@4.0.3)(webpack-dev-server@5.2.0(webpack@5.98.0(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(webpack@5.98.0(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1))
       '@angular-devkit/core': 19.2.10(chokidar@4.0.3)
-      '@angular/build': 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@types/node@22.15.3)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3))(postcss@8.5.2)(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.5)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.1)
+      '@angular/build': 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@types/node@22.15.3)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3))(postcss@8.5.2)(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.7)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.1)
       '@angular/compiler-cli': 19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3)
       '@babel/core': 7.26.10
       '@babel/generator': 7.26.10
@@ -7625,8 +7625,8 @@ snapshots:
       webpack-subresource-integrity: 5.1.0(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(webpack@5.98.0(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1))
     optionalDependencies:
       esbuild: 0.25.1
-      ng-packagr: 19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3)
-      tailwindcss: 4.1.5
+      ng-packagr: 19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3)
+      tailwindcss: 4.1.7
     transitivePeerDependencies:
       - '@angular/compiler'
       - '@rspack/core'
@@ -7740,7 +7740,7 @@ snapshots:
       eslint: 9.26.0(jiti@1.21.7)
       typescript: 5.7.3
 
-  '@angular/build@19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@types/node@22.15.3)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3))(postcss@8.5.2)(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.5)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.1)':
+  '@angular/build@19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@types/node@22.15.3)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3))(postcss@8.5.2)(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.7)(terser@5.39.0)(typescript@5.7.3)(yaml@2.7.1)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.10(chokidar@4.0.3)
@@ -7774,9 +7774,9 @@ snapshots:
     optionalDependencies:
       less: 4.2.2
       lmdb: 3.2.6
-      ng-packagr: 19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3)
+      ng-packagr: 19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3)
       postcss: 8.5.2
-      tailwindcss: 4.1.5
+      tailwindcss: 4.1.7
     transitivePeerDependencies:
       - '@types/node'
       - chokidar
@@ -10189,9 +10189,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nx/angular@20.8.1(1d47060bb6750b2cba0ead8464ba42b2)':
+  '@nx/angular@20.8.1(34eefc00b200051552fca13a92d2297c)':
     dependencies:
-      '@angular-devkit/build-angular': 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.5)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
+      '@angular-devkit/build-angular': 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.7)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
       '@angular-devkit/core': 19.2.10(chokidar@4.0.3)
       '@angular-devkit/schematics': 19.2.10(chokidar@4.0.3)
       '@nx/devkit': 20.8.1(nx@20.8.1(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.13))(@swc/types@0.1.21)(typescript@5.7.3))(@swc/core@1.5.29(@swc/helpers@0.5.13)))
@@ -10962,10 +10962,10 @@ snapshots:
       memoizerific: 1.11.3
       storybook: 8.6.12(prettier@2.8.8)
 
-  '@storybook/angular@8.6.12(32cc4d51879086d60343eac75a7e6b5d)':
+  '@storybook/angular@8.6.12(352d3e2668eaa34dee94615c82de158d)':
     dependencies:
       '@angular-devkit/architect': 0.1902.10(chokidar@4.0.3)
-      '@angular-devkit/build-angular': 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.5)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
+      '@angular-devkit/build-angular': 19.2.10(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(@angular/compiler@19.2.9)(@rspack/core@1.3.8(@swc/helpers@0.5.13))(@swc/core@1.5.29(@swc/helpers@0.5.13))(@types/node@22.15.3)(chokidar@4.0.3)(html-webpack-plugin@5.6.3(@rspack/core@1.3.8(@swc/helpers@0.5.13))(webpack@5.99.7(@swc/core@1.5.29(@swc/helpers@0.5.13))(esbuild@0.25.1)))(jiti@1.21.7)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3))(sass-embedded@1.87.0)(stylus@0.64.0)(tailwindcss@4.1.7)(typescript@5.7.3)(vite@6.2.7(@types/node@22.15.3)(jiti@1.21.7)(less@4.2.2)(sass-embedded@1.87.0)(sass@1.85.0)(stylus@0.64.0)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1)
       '@angular-devkit/core': 19.2.10(chokidar@4.0.3)
       '@angular/common': 19.2.9(@angular/core@19.2.9(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
       '@angular/compiler': 19.2.9
@@ -14387,7 +14387,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.5)(tslib@2.8.1)(typescript@5.7.3):
+  ng-packagr@19.2.2(@angular/compiler-cli@19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3))(tailwindcss@4.1.7)(tslib@2.8.1)(typescript@5.7.3):
     dependencies:
       '@angular/compiler-cli': 19.2.9(@angular/compiler@19.2.9)(typescript@5.7.3)
       '@rollup/plugin-json': 6.1.0(rollup@4.34.8)
@@ -14414,7 +14414,7 @@ snapshots:
       typescript: 5.7.3
     optionalDependencies:
       rollup: 4.34.8
-      tailwindcss: 4.1.5
+      tailwindcss: 4.1.7
 
   no-case@3.0.4:
     dependencies:
@@ -15995,11 +15995,11 @@ snapshots:
 
   sync-message-port@1.1.3: {}
 
-  tailwindcss-animation-delay@2.0.2(tailwindcss@4.1.5):
+  tailwindcss-animation-delay@2.0.2(tailwindcss@4.1.7):
     dependencies:
-      tailwindcss: 4.1.5
+      tailwindcss: 4.1.7
 
-  tailwindcss@4.1.5: {}
+  tailwindcss@4.1.7: {}
 
   tapable@2.2.1: {}
 

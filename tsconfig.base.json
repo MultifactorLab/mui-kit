@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@diz1/mui-kit": ["libs/mui-kit/src/index.ts"]
+      "@mflab/mui-kit": ["libs/mui-kit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
