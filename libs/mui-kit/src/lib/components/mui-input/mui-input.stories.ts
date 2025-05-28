@@ -14,6 +14,8 @@ const meta: Meta<MuiInputComponent> = {
     `,
   }),
   args: {
+    placeholder: 'Placeholder',
+    id: 'inputId'
   },
   argTypes: {}
 };
@@ -22,4 +24,9 @@ export default meta;
 
 type Story = StoryObj<MuiInputComponent>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    placeholder: 'Primary',
+    id: 'primary',
+  },
+};

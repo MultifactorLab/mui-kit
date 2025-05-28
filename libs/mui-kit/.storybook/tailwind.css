@@ -34,6 +34,9 @@
     --default-mono-font-family: var(--font-mono);
     --radius: var(--mui-border-radius);
     --color-mui-primary-500: var(--mui-color-primary-500);
+    --color-mui-secondary-100: var(--mui-color-secondary-100);
+    --color-mui-secondary-200: var(--mui-color-secondary-200);
+    --color-mui-secondary-300: var(--mui-color-secondary-300);
     --color-mui-secondary-500: var(--mui-color-secondary-500);
     --color-mui-success-500: var(--mui-color-success-500);
     --color-mui-danger-500: var(--mui-color-danger-500);
@@ -223,8 +226,17 @@
     white-space: nowrap;
     border-width: 0;
   }
+  .absolute {
+    position: absolute;
+  }
   .relative {
     position: relative;
+  }
+  .top-1 {
+    top: var(--spacing-1);
+  }
+  .left-3 {
+    left: var(--spacing-3);
   }
   .mx-0 {
     margin-inline: calc(var(--spacing) * 0);
@@ -278,6 +290,12 @@
   .min-h-6 {
     min-height: var(--spacing-6);
   }
+  .min-h-13 {
+    min-height: calc(var(--spacing) * 13);
+  }
+  .min-h-13\.5 {
+    min-height: calc(var(--spacing) * 13.5);
+  }
   .w-full {
     width: 100%;
   }
@@ -286,6 +304,9 @@
   }
   .border-collapse {
     border-collapse: collapse;
+  }
+  .origin-top-left {
+    transform-origin: top left;
   }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
@@ -298,6 +319,9 @@
   }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .cursor-text {
+    cursor: text;
   }
   .resize {
     resize: both;
@@ -442,6 +466,9 @@
   .px-2 {
     padding-inline: var(--spacing-2);
   }
+  .px-3 {
+    padding-inline: var(--spacing-3);
+  }
   .px-4 {
     padding-inline: var(--spacing-4);
   }
@@ -462,6 +489,9 @@
   }
   .py-3 {
     padding-block: var(--spacing-3);
+  }
+  .pt-4 {
+    padding-top: var(--spacing-4);
   }
   .text-base {
     font-size: var(--text-base);
@@ -495,6 +525,9 @@
   .text-mui-primary-500 {
     color: var(--color-mui-primary-500);
   }
+  .text-mui-secondary-100 {
+    color: var(--color-mui-secondary-100);
+  }
   .text-mui-secondary-500 {
     color: var(--color-mui-secondary-500);
   }
@@ -510,12 +543,22 @@
   .underline {
     text-decoration-line: underline;
   }
+  .placeholder-transparent {
+    &::placeholder {
+      color: transparent;
+    }
+  }
   .opacity-50 {
     opacity: 50%;
   }
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
@@ -564,6 +607,38 @@
   .peer-checked\:bg-white {
     &:is(:where(.peer):checked ~ *) {
       background-color: var(--color-white);
+    }
+  }
+  .peer-placeholder-shown\:pointer-events-auto {
+    &:is(:where(.peer):placeholder-shown ~ *) {
+      pointer-events: auto;
+    }
+  }
+  .peer-placeholder-shown\:top-4 {
+    &:is(:where(.peer):placeholder-shown ~ *) {
+      top: var(--spacing-4);
+    }
+  }
+  .peer-placeholder-shown\:text-base {
+    &:is(:where(.peer):placeholder-shown ~ *) {
+      font-size: var(--text-base);
+      line-height: var(--tw-leading, var(--text-base--line-height));
+    }
+  }
+  .peer-focus\:pointer-events-none {
+    &:is(:where(.peer):focus ~ *) {
+      pointer-events: none;
+    }
+  }
+  .peer-focus\:top-1 {
+    &:is(:where(.peer):focus ~ *) {
+      top: var(--spacing-1);
+    }
+  }
+  .peer-focus\:text-sm {
+    &:is(:where(.peer):focus ~ *) {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
   .peer-focus\:ring-4 {
@@ -938,6 +1013,12 @@
           background-color: color-mix(in oklab, var(--color-white) 80%, transparent);
         }
       }
+    }
+  }
+  .focus\:outline-none {
+    &:focus {
+      --tw-outline-style: none;
+      outline-style: none;
     }
   }
   .active\:bg-black\/60 {
