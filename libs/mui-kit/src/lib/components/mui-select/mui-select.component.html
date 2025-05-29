@@ -1,1 +1,43 @@
-<p>mui-select works!</p>
+<div
+  #overlayOrigin="cdkOverlayOrigin"
+  cdkOverlayOrigin
+  class="
+    flex flex-col justify-start pt-4 px-3 h-13.5 w-full bg-mui-secondary-500 rounded-lg relative
+    select-none cursor-pointer outline-none focus:outline-none focus:ring-4 focus:ring-mui-secondary-500/30
+  "
+  [tabindex]="tabIndex()"
+  (click)="toggleDropdown()"
+>
+  <div
+    class="absolute left-3 text-mui-secondary-100 origin-top-left transition-all"
+    [ngClass]="labelClasses()"
+  >
+    {{ label() }}
+  </div>
+
+  <div class="w-full flex items-center justify-between">
+    <div class="w-full text-white">{{ value() }}</div>
+
+    <div class="transition-transform" [ngClass]="{ 'rotate-180': isOpen() }">
+      <svg class="h-5 w-5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 10l5 5 5-5H7z" />
+      </svg>
+    </div>
+  </div>
+
+<!--    [cdkConnectedOverlayBackdropClass]="['bg-transparent']"-->
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="overlayOrigin"
+    [cdkConnectedOverlayOpen]="isOpen()"
+    [cdkConnectedOverlayWidth]="overlayOrigin.elementRef.nativeElement.offsetWidth"
+    cdkConnectedOverlayHasBackdrop
+    cdkConnectedOverlayPanelClass="z-[10500]!"
+    (backdropClick)="closeDropdown()"
+    (detach)="closeDropdown()"
+  >
+    <div class="bg-mui-secondary-500 text-mui-secondary-100 rounded-lg px-3 py-1 w-full mt-2 max-h-36 overflow-y-auto">
+      <ng-content>No options</ng-content>
+    </div>
+  </ng-template>
+</div>

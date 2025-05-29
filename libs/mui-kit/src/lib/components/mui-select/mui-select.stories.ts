@@ -1,22 +1,44 @@
-import { argsToTemplate, Meta, StoryObj } from '@storybook/angular';
+import { MuiSelectOptionComponent } from './option/mui-select-option.component';
+import { argsToTemplate, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { MuiSelectComponent } from './mui-select.component';
+
 
 const meta: Meta<MuiSelectComponent> = {
   title: 'Mui/Select',
   component: MuiSelectComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [MuiSelectOptionComponent],
+    })
+  ],
   tags: ['autodocs'],
   render: (args) => ({
     props: args,
     template: `
-      <div class="sb-row">
-        <mui-mui-select ${argsToTemplate(args)} />
+      <div>
+        <mui-select ${argsToTemplate(args)} >
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+          <mui-select-option></mui-select-option>
+        </mui-select>
       </div>
     `,
   }),
   args: {
-    // Default args will be added as the component evolves
+    label: 'Select label',
+    value: 'Selected value',
   },
   argTypes: {
+    value: {
+      control: 'text'
+    }
     // ArgTypes will be added as the component evolves
   }
 };
