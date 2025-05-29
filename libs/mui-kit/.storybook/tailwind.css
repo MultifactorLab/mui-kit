@@ -42,7 +42,12 @@
     --color-mui-info-500: var(--mui-color-info-500);
     --background-color-mui-primary-50: var(--mui-bg-color-primary-50);
     --background-color-mui-primary-500: var(--mui-bg-color-primary-500);
+    --background-color-mui-secondary-100: var(--mui-bg-color-secondary-100);
+    --background-color-mui-secondary-200: var(--mui-bg-color-secondary-200);
+    --background-color-mui-secondary-300: var(--mui-bg-color-secondary-300);
+    --background-color-mui-secondary-400: var(--mui-bg-color-secondary-400);
     --background-color-mui-secondary-500: var(--mui-bg-color-secondary-500);
+    --background-color-mui-secondary-600: var(--mui-bg-color-secondary-600);
     --background-color-mui-secondary-700: var(--mui-bg-color-secondary-700);
     --background-color-mui-success-500: var(--mui-bg-color-success-500);
     --background-color-mui-success-700: var(--mui-bg-color-success-700);
@@ -60,6 +65,9 @@
     --spacing-6: var(--mui-spacing-6);
     --spacing-11: var(--mui-spacing-11);
     --spacing-36: var(--mui-spacing-36);
+    --spacing-40: var(--mui-spacing-40);
+    --spacing-44: var(--mui-spacing-44);
+    --spacing-48: var(--mui-spacing-48);
     --spacing-0_5: var(--mui-spacing-0_5);
     --spacing-1_5: var(--mui-spacing-1_5);
     --spacing-2_5: var(--mui-spacing-2_5);
@@ -283,8 +291,8 @@
   .h-full {
     height: 100%;
   }
-  .max-h-36 {
-    max-height: var(--spacing-36);
+  .max-h-44 {
+    max-height: var(--spacing-44);
   }
   .min-h-1\.5 {
     min-height: var(--spacing-1_5);
@@ -324,6 +332,9 @@
   }
   .animate-none {
     animation: none;
+  }
+  .cursor-auto {
+    cursor: auto;
   }
   .cursor-not-allowed {
     cursor: not-allowed;
@@ -440,6 +451,9 @@
       background-color: color-mix(in oklab, var(--background-color-mui-primary-500) 20%, transparent);
     }
   }
+  .bg-mui-secondary-400 {
+    background-color: var(--background-color-mui-secondary-400);
+  }
   .bg-mui-secondary-500 {
     background-color: var(--background-color-mui-secondary-500);
   }
@@ -448,6 +462,15 @@
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--background-color-mui-secondary-500) 10%, transparent);
     }
+  }
+  .bg-mui-secondary-500\/60 {
+    background-color: var(--background-color-mui-secondary-500);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--background-color-mui-secondary-500) 60%, transparent);
+    }
+  }
+  .bg-mui-secondary-600 {
+    background-color: var(--background-color-mui-secondary-600);
   }
   .bg-mui-success-500 {
     background-color: var(--background-color-mui-success-500);
@@ -569,6 +592,9 @@
   }
   .opacity-50 {
     opacity: 50%;
+  }
+  .opacity-60 {
+    opacity: 60%;
   }
   .transition-all {
     transition-property: all;
@@ -966,6 +992,13 @@
         @supports (color: color-mix(in lab, red, red)) {
           background-color: color-mix(in oklab, var(--background-color-mui-primary-500) 80%, transparent);
         }
+      }
+    }
+  }
+  .hover\:bg-mui-secondary-400 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--background-color-mui-secondary-400);
       }
     }
   }

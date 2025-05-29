@@ -16,7 +16,7 @@
   </div>
 
   <div class="w-full flex items-center justify-between">
-    <div class="w-full text-white">{{ value() }}</div>
+    <div class="w-full text-white">{{ selected() }}</div>
 
     <div class="transition-transform" [ngClass]="{ 'rotate-180': isOpen() }">
       <svg class="h-5 w-5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,6 @@
     </div>
   </div>
 
-<!--    [cdkConnectedOverlayBackdropClass]="['bg-transparent']"-->
   <ng-template
     cdkConnectedOverlay
     [cdkConnectedOverlayOrigin]="overlayOrigin"
@@ -36,7 +35,8 @@
     (backdropClick)="closeDropdown()"
     (detach)="closeDropdown()"
   >
-    <div class="bg-mui-secondary-500 text-mui-secondary-100 rounded-lg px-3 py-1 w-full mt-2 max-h-36 overflow-y-auto">
+<!--    [cdkConnectedOverlayBackdropClass]="['bg-transparent']"-->
+    <div class="bg-mui-secondary-500 text-mui-secondary-100 rounded-lg w-full mt-2 max-h-44 overflow-y-auto">
       <ng-content>No options</ng-content>
     </div>
   </ng-template>
