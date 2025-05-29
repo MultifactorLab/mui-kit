@@ -1,3 +1,4 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { NgClass } from '@angular/common';
@@ -11,15 +12,22 @@ import {
   signal,
   viewChild,
   ViewEncapsulation,
-  effect, untracked, output, booleanAttribute, inject, DestroyRef, OnDestroy,
+  effect,
+  untracked,
+  output,
+  booleanAttribute,
+  inject,
+  DestroyRef,
+  OnDestroy,
+  HostAttributeToken,
 } from '@angular/core';
 import { outputToObservable, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { merge, Subscription, tap } from 'rxjs';
+import { merge, Subscription } from 'rxjs';
 import { MuiSelectOptionComponent } from './components/mui-select-option/mui-select-option.component';
 import { SelectValue } from './types/mui-select.type';
 
 @Component({
-  selector: 'mui-select',
+  selector: 'mui-select, mui-select[multiple]',
   imports: [
     NgClass,
     CdkOverlayOrigin,
@@ -32,48 +40,70 @@ import { SelectValue } from './types/mui-select.type';
 })
 export class MuiSelectComponent<T = unknown> implements OnDestroy {
   private readonly destroyRef$ = inject(DestroyRef);
+  private readonly multiple = booleanAttribute(inject(new HostAttributeToken('multiple'), { optional: true }));
 
   readonly label = input('');
   readonly value = input<SelectValue<T>, SelectValue<T>>(null,  {
     transform: (value: SelectValue<T>) => {
       if (!value) return null;
 
+      // if (Array.isArray(value)) {
+      //   this.selectionModel.select(...value);
+      // } else {
+      // }
       this.selectionModel.select(value);
-      this.highlightSelectedOptions(value);
 
       return value;
-    }
+    },
   });
   readonly tabIndex = input<number>(0);
-  readonly closeOnSelectionChange = input(false, { transform: booleanAttribute })
+  readonly closeOnSelectionChange = input(false, { transform: booleanAttribute });
+  readonly displayWith = input<((value: T) => string | number) | null>(null);
+  readonly compareWith = input((v1: SelectValue<T>, v2: SelectValue<T>) => v1 === v2, {
+    transform: (fn: (v1: SelectValue<T>, v2: SelectValue<T>) => boolean) => {
+      this.selectionModel.compareWith = fn;
+      this.highlightSelectedOptions();
+
+      return fn;
+    }
+  });
 
   selectionChange = output<SelectValue<T>>();
 
-  readonly overlayOrigin = viewChild.required('overlayOrigin', { read: ElementRef })
+  readonly overlayOrigin = viewChild.required('overlayOrigin', { read: ElementRef });
   readonly options = contentChildren<MuiSelectOptionComponent<T>>(MuiSelectOptionComponent, { descendants: true });
 
-  private readonly selectionModel = new SelectionModel<T>();
+  private readonly optionsMap = new Map<SelectValue<T>, MuiSelectOptionComponent<T>>();
+  private readonly selectionModel = new SelectionModel<T>(coerceBooleanProperty(this.multiple));
 
   protected isOpen = signal(false);
 
-  readonly labelClasses = computed<string[]>(() => this.selected() ? ['top-1', 'text-xs'] : ['top-4', 'text-base']);
+  readonly labelClasses = computed<string[]>(() => this.displayedValue() ? ['top-1', 'text-xs'] : ['top-4', 'text-base']);
+  readonly displayedValue = computed(() => {
+    const displayWithFn = this.displayWith();
+    const selectedValue = this.selected();
+
+    if (displayWithFn && selectedValue) {
+      return displayWithFn(selectedValue);
+    }
+
+    return selectedValue;
+  });
   readonly selected = signal<SelectValue<T>>(null);
   readonly selectionModelChange = toSignal(this.selectionModel.changed);
+
   readonly selectionModelChangeEffect = effect(() => {
     const values = this.selectionModelChange();
 
-    this.selected.set(values?.added[0] ?? null);
+    this.updateSelected();
 
-    console.log('values', values);
-
-    values?.removed.forEach(value => this.findOptionsByValue(value)?.deselect());
-    // values?.added.forEach(value => this.findOptionsByValue(value)?.highlightAsSelected());
+    untracked(() => {
+      values?.removed.forEach(value => this.optionsMap.get(value)?.deselect());
+      values?.added.forEach(value => this.optionsMap.get(value)?.highlightAsSelected());
+    })
   });
-
   readonly optionsChangesEffect = effect(() => {
     const options = this.options();
-
-    untracked(() => this.highlightSelectedOptions(this.value()));
 
     untracked(() => {
       if (this.optionsSelectedSubscription) {
@@ -81,18 +111,22 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
         this.optionsSelectedSubscription = null;
       }
 
+
+      queueMicrotask(() => {
+        this.refreshOptionsMap(options);
+        this.highlightSelectedOptions();
+      });
+
       this.optionsSelectedSubscription = merge(...options.map(o => outputToObservable(o.selected)))
-        .pipe(
-          tap((selectedOption) => this.handleSelection(selectedOption)),
-          takeUntilDestroyed(this.destroyRef$),
-        )
-        .subscribe()
+        .pipe(takeUntilDestroyed(this.destroyRef$))
+        .subscribe((selectedOption) => this.handleSelection(selectedOption));
     });
   });
 
   private optionsSelectedSubscription: Subscription | null = null;
 
   ngOnDestroy(): void {
+    this.optionsSelectedSubscription?.unsubscribe();
     this.optionsSelectedSubscription = null;
   }
 
@@ -109,24 +143,44 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
     this.overlayOrigin().nativeElement.focus();
   }
 
-  private highlightSelectedOptions(value: SelectValue<T>): void {
-    this.findOptionsByValue(value)?.highlightAsSelected();
+  updateSelected(): void {
+    this.selected.set(this.selectionModel.selected[0] ?? null);
   }
 
-  private findOptionsByValue(value: SelectValue<T>): MuiSelectOptionComponent<T> | undefined {
-    return this.options().find(o => o.value() === value);
+  private refreshOptionsMap(options: readonly MuiSelectOptionComponent<T>[]): void {
+    this.optionsMap.clear();
+    options.forEach(o => this.optionsMap.set(o.value(), o));
   }
 
   private handleSelection(option: MuiSelectOptionComponent<T>) {
     const selectedValue = option.value() ?? null;
 
     if (selectedValue) {
-      this.selectionModel.toggle(selectedValue)
-      this.selectionChange.emit(this.selected());
+      this.selectionModel.toggle(selectedValue);
+      this.selectionChange.emit(this.selectionModel.selected[0] ?? null);
     }
 
     if (this.closeOnSelectionChange()) {
       this.closeDropdown();
     }
+  }
+
+  private highlightSelectedOptions(): void {
+    const valuesWithUpdatedReferences = this.selectionModel.selected.map(v => {
+      const correspondingOption = this.findOptionsByValue(v);
+
+      return correspondingOption?.value() ?? v;
+    });
+
+    this.selectionModel.clear();
+    this.selectionModel.select(...valuesWithUpdatedReferences);
+  }
+
+  private findOptionsByValue(value: SelectValue<T>): MuiSelectOptionComponent<T> | undefined {
+    if (this.optionsMap.has(value)) {
+      return this.optionsMap.get(value);
+    }
+
+    return this.options().find(o => this.compareWith()(o.value(), value));
   }
 }
