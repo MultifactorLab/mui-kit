@@ -16,6 +16,7 @@ import {
 import { outputToObservable, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { merge, Subscription, tap } from 'rxjs';
 import { MuiSelectOptionComponent } from './components/mui-select-option/mui-select-option.component';
+import { SelectValue } from './types/mui-select.type';
 
 @Component({
   selector: 'mui-select',
@@ -29,12 +30,12 @@ import { MuiSelectOptionComponent } from './components/mui-select-option/mui-sel
   encapsulation: ViewEncapsulation.None,
   host: { class: 'w-full' }
 })
-export class MuiSelectComponent implements OnDestroy {
+export class MuiSelectComponent<T = unknown> implements OnDestroy {
   private readonly destroyRef$ = inject(DestroyRef);
 
   readonly label = input('');
-  readonly value = input<string | null, string | null>(null, {
-    transform: (value: string | null) => {
+  readonly value = input<SelectValue<T>, SelectValue<T>>(null,  {
+    transform: (value: SelectValue<T>) => {
       if (!value) return null;
 
       this.selectionModel.select(value);
@@ -46,17 +47,17 @@ export class MuiSelectComponent implements OnDestroy {
   readonly tabIndex = input<number>(0);
   readonly closeOnSelectionChange = input(false, { transform: booleanAttribute })
 
-  selectionChange = output<string | null>();
+  selectionChange = output<SelectValue<T>>();
 
   readonly overlayOrigin = viewChild.required('overlayOrigin', { read: ElementRef })
-  readonly options = contentChildren(MuiSelectOptionComponent, { descendants: true });
+  readonly options = contentChildren<MuiSelectOptionComponent<T>>(MuiSelectOptionComponent, { descendants: true });
 
-  private readonly selectionModel = new SelectionModel<string>();
+  private readonly selectionModel = new SelectionModel<T>();
 
   protected isOpen = signal(false);
 
   readonly labelClasses = computed<string[]>(() => this.selected() ? ['top-1', 'text-xs'] : ['top-4', 'text-base']);
-  readonly selected = signal<string | null>(null);
+  readonly selected = signal<SelectValue<T>>(null);
   readonly selectionModelChange = toSignal(this.selectionModel.changed);
   readonly selectionModelChangeEffect = effect(() => {
     const values = this.selectionModelChange();
@@ -108,15 +109,15 @@ export class MuiSelectComponent implements OnDestroy {
     this.overlayOrigin().nativeElement.focus();
   }
 
-  private highlightSelectedOptions(value: string | null): void {
+  private highlightSelectedOptions(value: SelectValue<T>): void {
     this.findOptionsByValue(value)?.highlightAsSelected();
   }
 
-  private findOptionsByValue(value: string | null): MuiSelectOptionComponent | undefined {
+  private findOptionsByValue(value: SelectValue<T>): MuiSelectOptionComponent<T> | undefined {
     return this.options().find(o => o.value() === value);
   }
 
-  private handleSelection(option: MuiSelectOptionComponent) {
+  private handleSelection(option: MuiSelectOptionComponent<T>) {
     const selectedValue = option.value() ?? null;
 
     if (selectedValue) {
