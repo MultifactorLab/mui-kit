@@ -20,7 +20,7 @@ import { ThemeColors } from '../../types/theme-colors.type';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MuiSwitchComponent),
-      multi: true
+      multi: true,
     }
   ]
 })
@@ -38,7 +38,9 @@ export class MuiSwitchComponent implements ControlValueAccessor {
   readonly classNames = computed<string[]>(() => this.generateSwitchClasses());
   readonly sliderClassNames = computed<string[]>(() => this.generateSliderClasses());
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onChangeFn: (value: boolean) => void = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onTouchedFn: () => void = () => {};
 
   writeValue(value: boolean): void {
@@ -63,6 +65,7 @@ export class MuiSwitchComponent implements ControlValueAccessor {
 
     this.onChangeFn(value);
     this.onTouchedFn();
+    this.changed.emit(value);
   }
 
   private generateSwitchClasses(): string[] {
@@ -101,6 +104,7 @@ export class MuiSwitchComponent implements ControlValueAccessor {
       info: 'peer-checked:bg-mui-info-500 peer-focus:ring-mui-info-500/30',
     };
 
+    // TODO: Implement sizes
     const sizes = {
       xs: '',
       sm: '',
