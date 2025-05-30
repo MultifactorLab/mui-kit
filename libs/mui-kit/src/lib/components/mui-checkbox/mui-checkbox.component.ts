@@ -1,10 +1,10 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   forwardRef,
-  input,
+  input, model,
   output, signal, ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -13,7 +13,7 @@ import { ThemeColors } from '../../types/theme-colors.type';
 @Component({
   selector: 'mui-checkbox',
   templateUrl: './mui-checkbox.component.html',
-  imports: [NgClass],
+  imports: [ NgClass ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [
@@ -28,17 +28,18 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
   readonly changed = output<boolean>();
 
   readonly color = input<ThemeColors>('primary');
-  readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
+  readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('lg');
   readonly align = input<'start' | 'center' | 'end'>('center');
   readonly labelPosition = input<'left' | 'right'>('right');
-  readonly value = input<string>('');
-  readonly label = input<string>('');
+  readonly label = input('');
 
-  readonly checked = signal(false);
-  readonly disabled = signal(false);
+  readonly checked = model(false);
+  readonly disabled = model(false);
 
   readonly classNames = computed<string[]>(() => this.generateCheckboxClasses());
   readonly checkboxClassNames = computed<string[]>(() => this.generateCheckboxInputClasses());
+  readonly svgClassNames = computed<string[]>(() => this.generateSvgClasses());
+  readonly labelContainerClassNames = computed<string[]>(() => this.generateLabelContainerClassNames());
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onChangeFn: (value: boolean) => void = () => {};
@@ -65,6 +66,7 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
     const target = event.target as HTMLInputElement;
     const value = target.checked;
 
+    this.checked.set(value);
     this.onChangeFn(value);
     this.onTouchedFn();
     this.changed.emit(value);
@@ -97,24 +99,24 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
   }
 
   private generateCheckboxInputClasses(): string[] {
-    const base = 'text-blue-600 bg-gray-100 border-gray-300 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600';
+    const base = 'relative border bg-white rounded-md peer-focus:ring-2';
 
     const colors = {
-      white: 'text-white focus:ring-white/30',
-      black: 'text-black focus:ring-black/30',
-      primary: 'text-mui-primary-500 focus:ring-mui-primary-500/30',
-      secondary: 'text-mui-secondary-500 focus:ring-mui-secondary-500/30',
-      success: 'text-mui-success-500 focus:ring-mui-success-500/30',
-      danger: 'text-mui-danger-500 focus:ring-mui-danger-500/30',
-      warning: 'text-mui-warning-500 focus:ring-mui-warning-500/30',
-      info: 'text-mui-info-500 focus:ring-mui-info-500/30',
+      white: 'border-mui-white-500 peer-focus:ring-white/30',
+      black: 'border-mui-black-500 peer-focus:ring-black/30',
+      primary: 'border-mui-primary-500 peer-focus:ring-mui-primary-500/30',
+      secondary: 'border-mui-secondary-500 peer-focus:ring-mui-secondary-500/30',
+      success: 'border-mui-success-500 peer-focus:ring-mui-success-500/30',
+      danger: 'border-mui-danger-500 peer-focus:ring-mui-danger-500/30',
+      warning: 'border-mui-warning-500 peer-focus:ring-mui-warning-500/30',
+      info: 'border-mui-info-500 peer-focus:ring-mui-info-500/30',
     };
 
     const sizes = {
-      xs: 'size-3 rounded-xs',
+      xs: 'size-3 rounded-sm',
       sm: 'size-3.5 rounded-sm',
-      md: 'size-4 rounded-md',
-      lg: 'size-5 rounded-lg',
+      md: 'size-4 rounded-sm',
+      lg: 'size-5 rounded-md',
     };
 
     return [
@@ -122,5 +124,50 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
       colors[this.color()],
       sizes[this.size()]
     ];
+  }
+
+  private generateSvgClasses(): string[] {
+    const base = 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity';
+
+    const colors = {
+      white: 'fill-white',
+      black: 'fill-black',
+      primary: 'fill-mui-primary-500',
+      secondary: 'fill-mui-secondary-500',
+      success: 'fill-mui-success-500',
+      danger: 'fill-mui-danger-500',
+      warning: 'fill-mui-warning-500',
+      info: 'fill-mui-info-500',
+    };
+
+    const sizes = {
+      xs: 'size-2',
+      sm: 'size-2.5',
+      md: 'size-3',
+      lg: 'size-4',
+    };
+
+    return [
+      base,
+      colors[this.color()],
+      sizes[this.size()],
+      this.checked() ? 'opacity-100' : 'opacity-0',
+    ];
+  }
+
+  private generateLabelContainerClassNames(): string[] {
+    const base = 'flex gap-x-2 text-black dark:text-white';
+
+    const sizes = {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+    };
+
+    return [
+      base,
+      sizes[this.size()],
+    ]
   }
 }

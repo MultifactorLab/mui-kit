@@ -1,14 +1,21 @@
 <label [ngClass]="classNames()">
-  <input
-    type="checkbox"
-    class="rounded-lg"
-    [ngClass]="checkboxClassNames()"
-    [checked]="checked()"
-    [disabled]="disabled()"
-    (change)="onChange($event)"
-  >
+  <div class="relative inline-block">
+    <input
+      type="checkbox"
+      class="peer cursor-pointer z-10 opacity-0 absolute inset-0 size-full"
+      [checked]="checked()"
+      [disabled]="disabled()"
+      (change)="onChange($event)"
+    >
 
-  <div class="flex gap-x-2 text-black dark:text-white">
+    <div [ngClass]="checkboxClassNames()"></div>
+
+    <svg [ngClass]="svgClassNames()" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M16.207 5.793a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414L8 12.086l6.793-6.793a1 1 0 011.414 0z" stroke="currentColor" stroke-width="0.3" clip-rule="evenodd" />
+    </svg>
+  </div>
+
+  <div [ngClass]="labelContainerClassNames()">
     @if (label()) {
       {{ label() }}
     }
