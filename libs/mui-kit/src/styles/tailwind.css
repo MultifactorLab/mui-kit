@@ -2,7 +2,7 @@
 @import './variables.css';
 @import './theme-base.css';
 @plugin 'tailwindcss-animation-delay';
-@custom-variant dark (&:is([data-mode="dark"] *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
