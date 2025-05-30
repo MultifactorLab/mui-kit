@@ -7,10 +7,8 @@ import {
   Component,
   computed,
   contentChildren,
-  ElementRef,
   input,
   signal,
-  viewChild,
   ViewEncapsulation,
   effect,
   untracked,
@@ -43,25 +41,7 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   protected readonly multiple = booleanAttribute(inject(new HostAttributeToken('multiple'), { optional: true }));
 
   readonly label = input('');
-  readonly initialValue = input<SelectValue<T>, SelectValue<T>>(null,  {
-    transform: (value: SelectValue<T>) => {
-      this.selectionModel.clear();
-
-      if (this.optionsMap.size > 0) {
-        this.optionsMap.forEach(option => option.deselect());
-      }
-
-      if (!value) return null;
-
-      if (Array.isArray(value)) {
-        this.selectionModel.select(...value);
-      } else {
-        this.selectionModel.select(value);
-      }
-
-      return value;
-    },
-  });
+  readonly initialValue = input<SelectValue<T>>(null);
   readonly tabIndex = input<number>(0);
   readonly closeOnSelectionChange = input(false, { transform: booleanAttribute });
   readonly withCheckboxes = input(false, { transform: booleanAttribute });
@@ -72,7 +52,7 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
       this.highlightSelectedOptions();
 
       return fn;
-    }
+    },
   });
 
   selectionChange = output<SelectValue<T>>();
@@ -114,14 +94,13 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
       values?.added.forEach(value => this.optionsMap.get(value)?.highlightAsSelected());
     })
   });
-  readonly optionsChangesEffect = effect(() => {
+  readonly optionsAndInitialValueChangesEffect = effect(() => {
     const options = this.options();
+    const initialValue = this.initialValue();
 
     this.assertIsNoOptions(options);
 
     untracked(() => {
-      options.forEach(option => option.withCheckbox.set(this.withCheckboxes()));
-
       if (this.optionsSelectedSubscription) {
         this.optionsSelectedSubscription.unsubscribe();
         this.optionsSelectedSubscription = null;
@@ -129,6 +108,7 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
 
       queueMicrotask(() => {
         this.refreshOptionsMap(options);
+        this.refreshInitialValue(initialValue);
         this.highlightSelectedOptions();
       });
 
@@ -229,5 +209,21 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
     }
 
     return this.options().find(o => this.compareWith()(o.value(), value));
+  }
+
+  private refreshInitialValue(initialValue: SelectValue<T>) {
+    this.selectionModel.clear();
+
+    if (this.optionsMap.size > 0) {
+      this.optionsMap.forEach(option => option.deselect());
+    }
+
+    if (!initialValue || !this.optionsMap.get(initialValue)) return;
+
+    if (Array.isArray(initialValue)) {
+      this.selectionModel.select(...initialValue);
+    } else {
+      this.selectionModel.select(initialValue);
+    }
   }
 }

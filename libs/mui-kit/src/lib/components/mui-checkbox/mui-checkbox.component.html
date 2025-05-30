@@ -15,11 +15,9 @@
     </svg>
   </div>
 
-  <div [ngClass]="labelContainerClassNames()">
-    @if (label()) {
-      {{ label() }}
-    }
+  @if (label()) {
+    {{ label() }}
+  }
 
-    <ng-content />
-  </div>
+  <ng-content />
 </label>

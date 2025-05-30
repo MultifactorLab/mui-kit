@@ -8,6 +8,8 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
+import { ThemeColors } from '../../../../types/theme-colors.type';
+import { MuiCheckboxComponent } from '../../../mui-checkbox/mui-checkbox.component';
 
 @Component({
   selector: 'mui-select-option',
@@ -18,11 +20,16 @@ import {
     '[class]': 'hostClassNames()',
     '(click)': 'select($event)',
   },
+  imports: [
+    MuiCheckboxComponent,
+  ],
 })
 export class MuiSelectOptionComponent<T> {
   readonly value = input<T | null>(null);
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly withCheckbox = model(false);
+  readonly withCheckbox = input(false, { transform: booleanAttribute });
+  readonly checkboxSize = input<'xs' | 'sm' | 'md' | 'lg'>('lg');
+  readonly checkboxColor = input<ThemeColors>('primary');
 
   selected = output<MuiSelectOptionComponent<T>>()
 

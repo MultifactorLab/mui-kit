@@ -22,7 +22,8 @@ import { ThemeColors } from '../../types/theme-colors.type';
       useExisting: forwardRef(() => MuiCheckboxComponent),
       multi: true,
     }
-  ]
+  ],
+  host: { 'class': 'inline-flex items-center justify-center' }
 })
 export class MuiCheckboxComponent implements ControlValueAccessor {
   readonly changed = output<boolean>();
@@ -39,7 +40,6 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
   readonly classNames = computed<string[]>(() => this.generateCheckboxClasses());
   readonly checkboxClassNames = computed<string[]>(() => this.generateCheckboxInputClasses());
   readonly svgClassNames = computed<string[]>(() => this.generateSvgClasses());
-  readonly labelContainerClassNames = computed<string[]>(() => this.generateLabelContainerClassNames());
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onChangeFn: (value: boolean) => void = () => {};
@@ -73,7 +73,7 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
   }
 
   private generateCheckboxClasses(): string[] {
-    const base = 'inline-flex gap-x-2 cursor-pointer select-none';
+    const base = 'inline-flex gap-x-2 cursor-pointer select-none text-black dark:text-white';
 
     const states = {
       disabled: this.disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'cursor-pointer'
@@ -90,8 +90,16 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
       right: 'flex-row',
     };
 
+    const sizes = {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+    };
+
     return [
       base,
+      sizes[this.size()],
       aligns[this.align()],
       labelPositions[this.labelPosition()],
       states.disabled
@@ -153,21 +161,5 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
       sizes[this.size()],
       this.checked() ? 'opacity-100' : 'opacity-0',
     ];
-  }
-
-  private generateLabelContainerClassNames(): string[] {
-    const base = 'flex gap-x-2 text-black dark:text-white';
-
-    const sizes = {
-      xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-    };
-
-    return [
-      base,
-      sizes[this.size()],
-    ]
   }
 }

@@ -1,10 +1,13 @@
-<div class="flex justify-between gap-x-1">
+<div class="flex justify-between items-center gap-x-1">
   <div class="overflow-hidden text-nowrap text-ellipsis">
     <ng-content />
   </div>
 
-  <!-- TODO: Placeholder for checkbox -->
-  <div>
-    <input type="checkbox" [checked]="isSelected()">
-  </div>
+  @if (withCheckbox()) {
+    <mui-checkbox
+      [checked]="isSelected()"
+      [size]="checkboxSize()"
+      [color]="checkboxColor()"
+    />
+  }
 </div>
