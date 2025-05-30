@@ -1,0 +1,18 @@
+<label [ngClass]="classNames()">
+  <input
+    type="checkbox"
+    class="rounded-lg"
+    [ngClass]="checkboxClassNames()"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    (change)="onChange($event)"
+  >
+
+  <div class="flex gap-x-2 text-black dark:text-white">
+    @if (label()) {
+      {{ label() }}
+    }
+
+    <ng-content />
+  </div>
+</label>
