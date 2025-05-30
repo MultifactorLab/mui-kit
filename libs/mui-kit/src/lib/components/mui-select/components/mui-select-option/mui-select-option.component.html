@@ -1,3 +1,10 @@
-<div>
-  <ng-content />
+<div class="flex justify-between gap-x-1">
+  <div class="overflow-hidden text-nowrap text-ellipsis">
+    <ng-content />
+  </div>
+
+  <!-- TODO: Placeholder for checkbox -->
+  <div>
+    <input type="checkbox" [checked]="isSelected()">
+  </div>
 </div>

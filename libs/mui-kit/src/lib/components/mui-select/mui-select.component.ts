@@ -64,6 +64,7 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   });
   readonly tabIndex = input<number>(0);
   readonly closeOnSelectionChange = input(false, { transform: booleanAttribute });
+  readonly withCheckboxes = input(false, { transform: booleanAttribute });
   readonly displayWith = input<DisplayWithFn<T> | null>(null);
   readonly compareWith = input<CompareWithFn<T>, CompareWithFn<T>>((v1: T | null, v2: T | null) => v1 === v2, {
     transform: (fn) => {
@@ -119,6 +120,8 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
     this.assertIsNoOptions(options);
 
     untracked(() => {
+      options.forEach(option => option.withCheckbox.set(this.withCheckboxes()));
+
       if (this.optionsSelectedSubscription) {
         this.optionsSelectedSubscription.unsubscribe();
         this.optionsSelectedSubscription = null;
@@ -138,6 +141,11 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   ngOnDestroy(): void {
     this.optionsSelectedSubscription?.unsubscribe();
     this.optionsSelectedSubscription = null;
+  }
+
+  onKeyUp(event: KeyboardEvent) {
+    console.log(event.key);
+    console.log(event.keyCode);
   }
 
   toggleDropdown(): void {

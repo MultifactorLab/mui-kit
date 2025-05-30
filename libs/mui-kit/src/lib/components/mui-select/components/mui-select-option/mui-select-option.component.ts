@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  input,
+  input, model,
   output,
   signal,
   ViewEncapsulation,
@@ -22,6 +22,7 @@ import {
 export class MuiSelectOptionComponent<T> {
   readonly value = input<T | null>(null);
   readonly disabled = input(false, { transform: booleanAttribute });
+  readonly withCheckbox = model(false);
 
   selected = output<MuiSelectOptionComponent<T>>()
 
