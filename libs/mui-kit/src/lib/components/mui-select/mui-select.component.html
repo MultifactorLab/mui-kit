@@ -2,8 +2,8 @@
   #overlayOrigin="cdkOverlayOrigin"
   cdkOverlayOrigin
   class="
-    flex flex-col justify-start pt-4 px-3 h-13.5 w-full bg-mui-secondary-500 rounded-lg relative
-    select-none cursor-pointer outline-none focus:outline-none focus:ring-4 focus:ring-mui-secondary-500/30
+    flex flex-col justify-start pt-4 px-3 h-13.5 w-full bg-mui-secondary-500 rounded-lg relative select-none
+    cursor-pointer outline-none focus:outline-none focus:ring-4 focus:ring-mui-secondary-500/30
   "
   [tabindex]="tabIndex()"
   (click)="toggleDropdown()"
@@ -16,7 +16,16 @@
   </div>
 
   <div class="w-full flex items-center justify-between">
-    <div class="w-full text-white">{{ displayedValue() }}</div>
+    <div class="w-full min-h-6 text-white text-nowrap overflow-hidden text-ellipsis">{{ displayedValue() }}</div>
+
+    @if (multiple) {
+      <button
+        (click)="clearSelection($event)"
+        class="text-sm px-1 bg-gray-700 hover:bg-gray-700/60 rounded-lg text-white cursor-pointer"
+      >
+        clear
+      </button>
+    }
 
     <div class="transition-transform" [ngClass]="{ 'rotate-180': isOpen() }">
       <svg class="h-5 w-5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -36,8 +45,8 @@
     (detach)="closeDropdown()"
   >
 <!--    [cdkConnectedOverlayBackdropClass]="['bg-transparent']"-->
-    <div class="bg-mui-secondary-500 text-mui-secondary-100 rounded-lg w-full mt-2 max-h-44 overflow-y-auto">
-      <ng-content>No options</ng-content>
+    <div class="bg-mui-secondary-500 text-mui-secondary-100 rounded-lg w-full mt-2 max-h-44 overflow-y-auto select-none">
+      <ng-content select="mui-select-option">No options</ng-content>
     </div>
   </ng-template>
 </div>

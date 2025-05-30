@@ -24,7 +24,7 @@ import {
 import { outputToObservable, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { merge, Subscription } from 'rxjs';
 import { MuiSelectOptionComponent } from './components/mui-select-option/mui-select-option.component';
-import { SelectValue } from './types/mui-select.type';
+import { CompareWithFn, DisplayWithFn, SelectValue } from './types/mui-select.type';
 
 @Component({
   selector: 'mui-select, mui-select[multiple]',
@@ -36,31 +36,37 @@ import { SelectValue } from './types/mui-select.type';
   templateUrl: './mui-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  host: { class: 'w-full' }
+  host: { '[class]': 'hostClasses()' }
 })
 export class MuiSelectComponent<T = unknown> implements OnDestroy {
   private readonly destroyRef$ = inject(DestroyRef);
-  private readonly multiple = booleanAttribute(inject(new HostAttributeToken('multiple'), { optional: true }));
+  protected readonly multiple = booleanAttribute(inject(new HostAttributeToken('multiple'), { optional: true }));
 
   readonly label = input('');
-  readonly value = input<SelectValue<T>, SelectValue<T>>(null,  {
+  readonly initialValue = input<SelectValue<T>, SelectValue<T>>(null,  {
     transform: (value: SelectValue<T>) => {
+      this.selectionModel.clear();
+
+      if (this.optionsMap.size > 0) {
+        this.optionsMap.forEach(option => option.deselect());
+      }
+
       if (!value) return null;
 
-      // if (Array.isArray(value)) {
-      //   this.selectionModel.select(...value);
-      // } else {
-      // }
-      this.selectionModel.select(value);
+      if (Array.isArray(value)) {
+        this.selectionModel.select(...value);
+      } else {
+        this.selectionModel.select(value);
+      }
 
       return value;
     },
   });
   readonly tabIndex = input<number>(0);
   readonly closeOnSelectionChange = input(false, { transform: booleanAttribute });
-  readonly displayWith = input<((value: T) => string | number) | null>(null);
-  readonly compareWith = input((v1: SelectValue<T>, v2: SelectValue<T>) => v1 === v2, {
-    transform: (fn: (v1: SelectValue<T>, v2: SelectValue<T>) => boolean) => {
+  readonly displayWith = input<DisplayWithFn<T> | null>(null);
+  readonly compareWith = input<CompareWithFn<T>, CompareWithFn<T>>((v1: T | null, v2: T | null) => v1 === v2, {
+    transform: (fn) => {
       this.selectionModel.compareWith = fn;
       this.highlightSelectedOptions();
 
@@ -70,20 +76,25 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
 
   selectionChange = output<SelectValue<T>>();
 
-  readonly overlayOrigin = viewChild.required('overlayOrigin', { read: ElementRef });
-  readonly options = contentChildren<MuiSelectOptionComponent<T>>(MuiSelectOptionComponent, { descendants: true });
-
+  private optionsSelectedSubscription: Subscription | null = null;
   private readonly optionsMap = new Map<SelectValue<T>, MuiSelectOptionComponent<T>>();
   private readonly selectionModel = new SelectionModel<T>(coerceBooleanProperty(this.multiple));
+
+  readonly options = contentChildren<MuiSelectOptionComponent<T>>(MuiSelectOptionComponent, { descendants: true });
 
   protected isOpen = signal(false);
 
   readonly labelClasses = computed<string[]>(() => this.displayedValue() ? ['top-1', 'text-xs'] : ['top-4', 'text-base']);
+  readonly hostClasses = computed(() => (`w-full ${this.isOpen() ? 'relative z-[10501]' : ''}`));
   readonly displayedValue = computed(() => {
     const displayWithFn = this.displayWith();
     const selectedValue = this.selected();
 
     if (displayWithFn && selectedValue) {
+      if (Array.isArray(selectedValue)) {
+        return selectedValue.map(displayWithFn).join(', ');
+      }
+
       return displayWithFn(selectedValue);
     }
 
@@ -105,12 +116,13 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   readonly optionsChangesEffect = effect(() => {
     const options = this.options();
 
+    this.assertIsNoOptions(options);
+
     untracked(() => {
       if (this.optionsSelectedSubscription) {
         this.optionsSelectedSubscription.unsubscribe();
         this.optionsSelectedSubscription = null;
       }
-
 
       queueMicrotask(() => {
         this.refreshOptionsMap(options);
@@ -122,8 +134,6 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
         .subscribe((selectedOption) => this.handleSelection(selectedOption));
     });
   });
-
-  private optionsSelectedSubscription: Subscription | null = null;
 
   ngOnDestroy(): void {
     this.optionsSelectedSubscription?.unsubscribe();
@@ -140,11 +150,35 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
 
   closeDropdown(): void {
     this.isOpen.set(false);
-    this.overlayOrigin().nativeElement.focus();
   }
 
   updateSelected(): void {
-    this.selected.set(this.selectionModel.selected[0] ?? null);
+    if (this.selectionModel.isEmpty()) {
+      this.selected.set(null);
+
+      return;
+    }
+
+    if (this.selectionModel.isMultipleSelection()) {
+      this.selected.set(this.selectionModel.selected);
+
+      return;
+    }
+
+    this.selected.set(this.selectionModel.selected[0]);
+  }
+
+  clearSelection(e: MouseEvent) {
+    e.stopPropagation();
+
+    this.selectionModel.clear();
+    this.selectionChange.emit(null);
+  }
+
+  private assertIsNoOptions(options: readonly MuiSelectOptionComponent<T>[]): asserts options {
+    if (options.length === 0) {
+      throw new Error('No options provided to mui-select');
+    }
   }
 
   private refreshOptionsMap(options: readonly MuiSelectOptionComponent<T>[]): void {
@@ -157,7 +191,12 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
 
     if (selectedValue) {
       this.selectionModel.toggle(selectedValue);
-      this.selectionChange.emit(this.selectionModel.selected[0] ?? null);
+
+      if (this.selectionModel.isMultipleSelection()) {
+        this.selectionChange.emit(this.selectionModel.selected);
+      } else {
+        this.selectionChange.emit(this.selectionModel.selected[0] ?? null);
+      }
     }
 
     if (this.closeOnSelectionChange()) {
@@ -176,7 +215,7 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
     this.selectionModel.select(...valuesWithUpdatedReferences);
   }
 
-  private findOptionsByValue(value: SelectValue<T>): MuiSelectOptionComponent<T> | undefined {
+  private findOptionsByValue(value: T | null): MuiSelectOptionComponent<T> | undefined {
     if (this.optionsMap.has(value)) {
       return this.optionsMap.get(value);
     }

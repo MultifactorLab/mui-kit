@@ -15,14 +15,14 @@ const meta: Meta<MuiSelectComponent> = {
     props: args,
     template: `
       <div class="sb-row">
-        <mui-select label="First select" value="niels">
+        <mui-select label="First select" initialValue="niels">
           <mui-select-option value="albert">Albert Einstein</mui-select-option>
           <mui-select-option value="niels">Niels Bohr</mui-select-option>
           <mui-select-option value="marie">Marie Curie</mui-select-option>
           <mui-select-option disabled value="isaac">Isaac Newton</mui-select-option>
         </mui-select>
 
-        <mui-select label="Second select" value="albert" closeOnSelectionChange>
+        <mui-select label="Second select" initialValue="albert" closeOnSelectionChange>
           <mui-select-option value="albert">Albert Einstein</mui-select-option>
           <mui-select-option disabled value="niels">Niels Bohr</mui-select-option>
           <mui-select-option value="marie">Marie Curie</mui-select-option>
@@ -33,10 +33,10 @@ const meta: Meta<MuiSelectComponent> = {
   }),
   args: {
     label: 'Select label',
-    value: 'niels',
+    initialValue: 'niels',
   },
   argTypes: {
-    value: {
+    initialValue: {
       control: 'text'
     }
     // ArgTypes will be added as the component evolves

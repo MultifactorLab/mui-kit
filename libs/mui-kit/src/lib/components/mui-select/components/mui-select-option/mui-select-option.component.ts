@@ -8,7 +8,6 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
-import { SelectValue } from '../../types/mui-select.type';
 
 @Component({
   selector: 'mui-select-option',
@@ -21,7 +20,7 @@ import { SelectValue } from '../../types/mui-select.type';
   },
 })
 export class MuiSelectOptionComponent<T> {
-  readonly value = input<SelectValue<T>>(null);
+  readonly value = input<T | null>(null);
   readonly disabled = input(false, { transform: booleanAttribute });
 
   selected = output<MuiSelectOptionComponent<T>>()

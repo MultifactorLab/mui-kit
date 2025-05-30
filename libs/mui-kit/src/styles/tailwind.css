@@ -21,3 +21,23 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 }
+
+::-webkit-scrollbar {
+  @apply w-3.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 rounded-t-full rounded-b-full border-4 border-transparent bg-clip-padding w-2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-200/70;
+}
+
+::-webkit-scrollbar-thumb:active {
+  @apply bg-gray-200/50;
+}
