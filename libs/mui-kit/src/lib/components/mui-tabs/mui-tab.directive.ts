@@ -8,3 +8,4 @@ export class MuiTabDirective {
 
   constructor(public readonly templateRef: TemplateRef<unknown>) {}
 }
+
