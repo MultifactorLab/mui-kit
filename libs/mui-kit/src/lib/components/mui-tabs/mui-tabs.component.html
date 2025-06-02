@@ -1,9 +1,9 @@
 <div [ngClass]="containerClasses()">
-    <div class="flex gap-2 border-b border-gray-300 justify-between">
+    <div class="flex gap-2 border-b border-mui-secondary-300 justify-between align-center">
         <div class="flex gap-2 ">
             @for(label of tabHeaders(); track label; let idx = $index) {
-                <button class="px-4 py-2"
-                    [ngClass]="{ 'border-b-2 border-blue-500 font-bold': selectedIndex() === idx }"
+                <button class="px-4 py-2 cursor-pointer"
+                    [ngClass]="{ 'border-b-2 border-mui-info-500 font-bold': selectedIndex() === idx }"
                     (click)="selectTab(idx)">
                     {{ label }}
                 </button>
