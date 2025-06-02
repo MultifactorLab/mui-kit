@@ -95,10 +95,10 @@ export class MuiButtonComponent {
     }
 
     const sizes = {
-      xs: 'px-1.5 py-0.5 text-xs',
-      sm: 'px-2 py-1 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
+      xs: 'px-1.5 py-0.5 text-xs h-20px',
+      sm: 'px-2 py-1 text-sm h-24px',
+      md: 'px-4 py-2 text-base h-32px',
+      lg: 'px-6 py-3 text-lg h-40px',
     }
 
     const states = { disabled: this.disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'cursor-pointer' }

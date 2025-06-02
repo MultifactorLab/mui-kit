@@ -2,13 +2,14 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { MuiTabsComponent } from './mui-tabs.component';
 import { MuiTabDirective } from './mui-tab.directive';
 import { moduleMetadata } from '@storybook/angular';
+import { MuiTabControlPanelDirective } from './mui-tab-control-panel.directive';
 
 const meta: Meta<MuiTabsComponent> = {
   title: 'MUI/Tabs',
   component: MuiTabsComponent,
   decorators: [
     moduleMetadata({
-      imports: [MuiTabDirective]
+      imports: [MuiTabDirective, MuiTabControlPanelDirective]
     }),
   ],
   tags: ['autodocs'],
@@ -28,12 +29,15 @@ export const Default: Story = {
         <div *muiTab="'Overview'">
           <p>This is the content of the first tab.</p>
         </div>
-        <mui-tab *muiTab="'Details'">
+        <div *muiTab="'Details'">
           <p>More details in the second tab.</p>
-        </mui-tab>
-        <mui-tab *muiTab="'Settings'">
+        </div>
+        <div *muiTab="'Settings'">
           <p>Settings content in the third tab.</p>
-        </mui-tab>
+        </div>
+        <div *muiTabControlPanel>
+          test
+        </div>
       </mui-tabs>
     `
   })
