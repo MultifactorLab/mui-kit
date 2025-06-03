@@ -4,6 +4,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
+  inject,
   input,
   output,
   signal,
@@ -26,6 +28,8 @@ import { MuiCheckboxComponent } from '../../../mui-checkbox/mui-checkbox.compone
   },
 })
 export class MuiSelectOptionComponent<T> implements Highlightable {
+  private readonly hostElement = inject(ElementRef<HTMLElement>);
+
   readonly value = input<T | null>(null);
   readonly isDisabled = input<boolean, boolean>(false, {
     transform: (isDisabled) => {
@@ -41,14 +45,14 @@ export class MuiSelectOptionComponent<T> implements Highlightable {
   disabled = false;
 
   protected isSelected = signal(false);
-  protected isActive = signal(false);
+  isActive = signal(false);
   protected hostClassNames = computed<string>(() => {
-    const baseClasses = 'block px-3 py-2 text-white';
+    const baseClasses = 'block px-3 py-2 text-white rounded-lg';
     const disabledClasses = this.isDisabled()
       ? 'bg-mui-secondary-600 opacity-50 cursor-auto pointer-events-none select-none'
       : 'hover:bg-mui-secondary-400 cursor-pointer';
     const selectedClasses = this.isSelected() ? 'bg-mui-secondary-400' : '';
-    const activeClasses = this.isActive() ? 'border border-dashed' : '';
+    const activeClasses = this.isActive() ? 'inset-ring-2 inset-ring-mui-secondary-200' : '';
 
     return `${baseClasses} ${disabledClasses} ${selectedClasses} ${activeClasses}`;
   })
@@ -58,6 +62,10 @@ export class MuiSelectOptionComponent<T> implements Highlightable {
 
     this.setAsSelected();
     this.selected.emit(this);
+  }
+
+  scrollIntoView(options?: ScrollIntoViewOptions) {
+    this.hostElement.nativeElement.scrollIntoView(options);
   }
 
   setAsSelected() {

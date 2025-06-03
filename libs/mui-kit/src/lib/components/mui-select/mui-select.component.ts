@@ -67,14 +67,15 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
   selectionChange = output<SelectValue<T>>();
 
   private optionsSelectedSubscription: Subscription | null = null;
+  private listKeyManagerSubscription: Subscription | null = null;
   private readonly optionsMap = new Map<SelectValue<T>, MuiSelectOptionComponent<T>>();
   private readonly selectionModel = new SelectionModel<T>(booleanAttribute(this.multiple));
-  private listKeyManager!: ActiveDescendantKeyManager<MuiSelectOptionComponent<T>>;
 
   readonly options = contentChildren<MuiSelectOptionComponent<T>>(MuiSelectOptionComponent, { descendants: true });
   readonly overlayContainer = viewChild.required('overlayOrigin', { read: ElementRef });
 
   protected isOpen = signal(false);
+  readonly activeOption = computed(() => this.options().find(o => o.isActive()))
   readonly labelClasses = computed<string[]>(() => this.displayedValue() ? ['top-1', 'text-xs'] : ['top-4', 'text-base']);
   readonly hostClasses = computed(() => (`w-full ${this.isOpen() ? 'relative z-[10501]' : ''}`));
   readonly displayedValue = computed(() => {
@@ -91,8 +92,25 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
 
     return selectedValue;
   });
+  readonly listKeyManager = computed(() => new ActiveDescendantKeyManager(this.options()).withWrap());
   readonly selected = signal<SelectValue<T>>(null);
   readonly selectionModelChange = toSignal(this.selectionModel.changed);
+  readonly listKeyManagerChangeEffect = effect(() => {
+    const listKeyManager = this.listKeyManager();
+
+    if (this.listKeyManagerSubscription) {
+      this.listKeyManagerSubscription.unsubscribe();
+      this.listKeyManagerSubscription = null;
+    }
+
+    untracked(() => {
+      this.listKeyManagerSubscription = listKeyManager.change
+        .pipe(takeUntilDestroyed(this.destroyRef$))
+        .subscribe(itemIndex => {
+          this.options()[itemIndex]?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        })
+    })
+  })
   readonly disabledChangeEffect = effect(() => {
     const disabled = this.disabled();
 
@@ -116,8 +134,6 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
     const initialValue = this.initialValue();
 
     this.assertIsNoOptions(options);
-
-    this.listKeyManager = new ActiveDescendantKeyManager(options);
 
     untracked(() => {
       if (this.optionsSelectedSubscription) {
@@ -167,7 +183,10 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
 
   ngOnDestroy(): void {
     this.optionsSelectedSubscription?.unsubscribe();
+    this.listKeyManagerSubscription?.unsubscribe();
+
     this.optionsSelectedSubscription = null;
+    this.listKeyManagerSubscription = null;
   }
 
   protected onKeyDown(e: KeyboardEvent) {
@@ -175,12 +194,21 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
 
     if (e.key === 'ArrowDown' && !this.isOpen()) {
       this.openDropdown();
+      this.listKeyManager().setFirstItemActive();
 
       return;
     }
 
+    const listKeyManager = this.listKeyManager();
+
     if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && this.isOpen()) {
-      this.listKeyManager.onKeydown(e);
+      listKeyManager.onKeydown(e);
+
+      return;
+    }
+
+    if (e.key === 'Enter' && this.isOpen() && listKeyManager.activeItem) {
+      this.handleSelection(listKeyManager.activeItem)
     }
   }
 
@@ -206,6 +234,7 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
 
   closeDropdown(): void {
     this.isOpen.set(false);
+    this.listKeyManager().setActiveItem(-1);
   }
 
   clearSelection(e?: MouseEvent) {
