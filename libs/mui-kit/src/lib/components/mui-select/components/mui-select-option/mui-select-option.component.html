@@ -1,0 +1,13 @@
+<div class="flex justify-between items-center gap-x-1">
+  <div class="overflow-hidden text-nowrap text-ellipsis">
+    <ng-content />
+  </div>
+
+  @if (checkbox(); as checkbox) {
+    <mui-checkbox
+      [checked]="isSelected()"
+      [size]="checkbox.size"
+      [color]="checkbox.color"
+    />
+  }
+</div>
