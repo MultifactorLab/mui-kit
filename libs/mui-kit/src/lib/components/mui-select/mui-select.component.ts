@@ -1,3 +1,4 @@
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { NgClass } from '@angular/common';
@@ -16,7 +17,7 @@ import {
   inject,
   DestroyRef,
   OnDestroy,
-  HostAttributeToken, forwardRef, model,
+  HostAttributeToken, forwardRef, model, viewChild, ElementRef,
 } from '@angular/core';
 import { outputToObservable, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -68,8 +69,10 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
   private optionsSelectedSubscription: Subscription | null = null;
   private readonly optionsMap = new Map<SelectValue<T>, MuiSelectOptionComponent<T>>();
   private readonly selectionModel = new SelectionModel<T>(booleanAttribute(this.multiple));
+  private listKeyManager!: ActiveDescendantKeyManager<MuiSelectOptionComponent<T>>;
 
   readonly options = contentChildren<MuiSelectOptionComponent<T>>(MuiSelectOptionComponent, { descendants: true });
+  readonly overlayContainer = viewChild.required('overlayOrigin', { read: ElementRef });
 
   protected isOpen = signal(false);
   readonly labelClasses = computed<string[]>(() => this.displayedValue() ? ['top-1', 'text-xs'] : ['top-4', 'text-base']);
@@ -113,6 +116,8 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
     const initialValue = this.initialValue();
 
     this.assertIsNoOptions(options);
+
+    this.listKeyManager = new ActiveDescendantKeyManager(options);
 
     untracked(() => {
       if (this.optionsSelectedSubscription) {
@@ -165,8 +170,22 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
     this.optionsSelectedSubscription = null;
   }
 
-  protected onKeyUp(event?: KeyboardEvent) {
+  protected onKeyDown(e: KeyboardEvent) {
     if (this.disabled()) return;
+
+    if (e.key === 'ArrowDown' && !this.isOpen()) {
+      this.openDropdown();
+
+      return;
+    }
+
+    if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && this.isOpen()) {
+      this.listKeyManager.onKeydown(e);
+    }
+  }
+
+  protected resetFocus() {
+    this.overlayContainer().nativeElement.focus();
   }
 
   markAsTouched() {

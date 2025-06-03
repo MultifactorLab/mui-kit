@@ -1,3 +1,4 @@
+import { Highlightable } from '@angular/cdk/a11y';
 import {
   booleanAttribute,
   ChangeDetectionStrategy,
@@ -24,25 +25,36 @@ import { MuiCheckboxComponent } from '../../../mui-checkbox/mui-checkbox.compone
     '(click)': 'select($event)',
   },
 })
-export class MuiSelectOptionComponent<T> {
+export class MuiSelectOptionComponent<T> implements Highlightable {
   readonly value = input<T | null>(null);
-  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly isDisabled = input<boolean, boolean>(false, {
+    transform: (isDisabled) => {
+      this.disabled = isDisabled;
+
+      return booleanAttribute(isDisabled);
+    }
+  });
   readonly checkbox = input<null | { size: 'xs' | 'sm' | 'md' | 'lg'; color: ThemeColors }>(null);
 
-  selected = output<MuiSelectOptionComponent<T>>()
+  selected = output<MuiSelectOptionComponent<T>>();
+
+  disabled = false;
 
   protected isSelected = signal(false);
+  protected isActive = signal(false);
   protected hostClassNames = computed<string>(() => {
     const baseClasses = 'block px-3 py-2 text-white';
-    const disabledClasses = 'bg-mui-secondary-600 opacity-50 cursor-auto pointer-events-none select-none';
-    const enabledClasses = 'hover:bg-mui-secondary-400 cursor-pointer';
-    const selectedClasses = 'bg-mui-secondary-400';
+    const disabledClasses = this.isDisabled()
+      ? 'bg-mui-secondary-600 opacity-50 cursor-auto pointer-events-none select-none'
+      : 'hover:bg-mui-secondary-400 cursor-pointer';
+    const selectedClasses = this.isSelected() ? 'bg-mui-secondary-400' : '';
+    const activeClasses = this.isActive() ? 'border border-dashed' : '';
 
-    return `${baseClasses} ${this.disabled() ? disabledClasses : enabledClasses} ${this.isSelected() ? selectedClasses : ''}`;
+    return `${baseClasses} ${disabledClasses} ${selectedClasses} ${activeClasses}`;
   })
 
   protected select(e: PointerEvent) {
-    if (this.disabled()) return;
+    if (this.isDisabled()) return;
 
     this.setAsSelected();
     this.selected.emit(this);
@@ -54,5 +66,13 @@ export class MuiSelectOptionComponent<T> {
 
   deselect() {
     this.isSelected.set(false);
+  }
+
+  setActiveStyles(): void {
+    this.isActive.set(true);
+  }
+
+  setInactiveStyles(): void {
+    this.isActive.set(false);
   }
 }

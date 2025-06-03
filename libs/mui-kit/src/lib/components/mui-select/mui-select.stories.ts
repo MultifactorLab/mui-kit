@@ -19,12 +19,12 @@ const meta: Meta<MuiSelectComponent> = {
           <mui-select-option value="albert">Albert Einstein</mui-select-option>
           <mui-select-option value="niels">Niels Bohr</mui-select-option>
           <mui-select-option value="marie">Marie Curie</mui-select-option>
-          <mui-select-option disabled value="isaac">Isaac Newton</mui-select-option>
+          <mui-select-option isDisabled value="isaac">Isaac Newton</mui-select-option>
         </mui-select>
 
         <mui-select label="Second select" initialValue="albert" closeOnSelectionChange>
           <mui-select-option value="albert">Albert Einstein</mui-select-option>
-          <mui-select-option disabled value="niels">Niels Bohr</mui-select-option>
+          <mui-select-option isDisabled value="niels">Niels Bohr</mui-select-option>
           <mui-select-option value="marie">Marie Curie</mui-select-option>
           <mui-select-option value="isaac">Isaac Newton</mui-select-option>
         </mui-select>
