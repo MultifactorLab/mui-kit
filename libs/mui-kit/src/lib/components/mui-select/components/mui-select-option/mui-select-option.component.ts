@@ -16,20 +16,18 @@ import { MuiCheckboxComponent } from '../../../mui-checkbox/mui-checkbox.compone
   templateUrl: 'mui-select-option.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  imports: [
+    MuiCheckboxComponent,
+  ],
   host: {
     '[class]': 'hostClassNames()',
     '(click)': 'select($event)',
   },
-  imports: [
-    MuiCheckboxComponent,
-  ],
 })
 export class MuiSelectOptionComponent<T> {
   readonly value = input<T | null>(null);
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly withCheckbox = input(false, { transform: booleanAttribute });
-  readonly checkboxSize = input<'xs' | 'sm' | 'md' | 'lg'>('lg');
-  readonly checkboxColor = input<ThemeColors>('primary');
+  readonly checkbox = input<null | { size: 'xs' | 'sm' | 'md' | 'lg'; color: ThemeColors }>(null);
 
   selected = output<MuiSelectOptionComponent<T>>()
 
@@ -46,11 +44,11 @@ export class MuiSelectOptionComponent<T> {
   protected select(e: PointerEvent) {
     if (this.disabled()) return;
 
-    this.highlightAsSelected();
+    this.setAsSelected();
     this.selected.emit(this);
   }
 
-  highlightAsSelected() {
+  setAsSelected() {
     this.isSelected.set(true);
   }
 

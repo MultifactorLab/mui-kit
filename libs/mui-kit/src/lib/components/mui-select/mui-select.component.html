@@ -9,6 +9,7 @@
   [tabindex]="disabled() ? -1 : tabIndex()"
   (click)="toggleDropdown()"
   (keyup)="onKeyUp($event)"
+  (blur)="markAsTouched()"
 >
   <div
     class="absolute left-3 text-mui-secondary-100 origin-top-left transition-all"

@@ -1,4 +1,3 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { NgClass } from '@angular/common';
@@ -17,9 +16,10 @@ import {
   inject,
   DestroyRef,
   OnDestroy,
-  HostAttributeToken,
+  HostAttributeToken, forwardRef, model,
 } from '@angular/core';
 import { outputToObservable, takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { merge, Subscription } from 'rxjs';
 import { MuiSelectOptionComponent } from './components/mui-select-option/mui-select-option.component';
 import { CompareWithFn, DisplayWithFn, SelectValue } from './types/mui-select.type';
@@ -31,12 +31,19 @@ import { CompareWithFn, DisplayWithFn, SelectValue } from './types/mui-select.ty
     CdkOverlayOrigin,
     CdkConnectedOverlay,
   ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MuiSelectComponent),
+      multi: true,
+    }
+  ],
   templateUrl: './mui-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: { '[class]': 'hostClasses()' }
 })
-export class MuiSelectComponent<T = unknown> implements OnDestroy {
+export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, OnDestroy {
   private readonly destroyRef$ = inject(DestroyRef);
   protected readonly multiple = booleanAttribute(inject(new HostAttributeToken('multiple'), { optional: true }));
 
@@ -54,18 +61,17 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
       return fn;
     },
   });
-  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly disabled = model(false);
 
   selectionChange = output<SelectValue<T>>();
 
   private optionsSelectedSubscription: Subscription | null = null;
   private readonly optionsMap = new Map<SelectValue<T>, MuiSelectOptionComponent<T>>();
-  private readonly selectionModel = new SelectionModel<T>(coerceBooleanProperty(this.multiple));
+  private readonly selectionModel = new SelectionModel<T>(booleanAttribute(this.multiple));
 
   readonly options = contentChildren<MuiSelectOptionComponent<T>>(MuiSelectOptionComponent, { descendants: true });
 
   protected isOpen = signal(false);
-
   readonly labelClasses = computed<string[]>(() => this.displayedValue() ? ['top-1', 'text-xs'] : ['top-4', 'text-base']);
   readonly hostClasses = computed(() => (`w-full ${this.isOpen() ? 'relative z-[10501]' : ''}`));
   readonly displayedValue = computed(() => {
@@ -84,6 +90,13 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   });
   readonly selected = signal<SelectValue<T>>(null);
   readonly selectionModelChange = toSignal(this.selectionModel.changed);
+  readonly disabledChangeEffect = effect(() => {
+    const disabled = this.disabled();
+
+    if (disabled) {
+      this.closeDropdown();
+    }
+  })
 
   readonly selectionModelChangeEffect = effect(() => {
     const values = this.selectionModelChange();
@@ -92,7 +105,7 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
 
     untracked(() => {
       values?.removed.forEach(value => this.optionsMap.get(value)?.deselect());
-      values?.added.forEach(value => this.optionsMap.get(value)?.highlightAsSelected());
+      values?.added.forEach(value => this.optionsMap.get(value)?.setAsSelected());
     })
   });
   readonly optionsAndInitialValueChangesEffect = effect(() => {
@@ -109,8 +122,12 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
 
       queueMicrotask(() => {
         this.refreshOptionsMap(options);
-        this.refreshInitialValue(initialValue);
-        this.highlightSelectedOptions();
+
+        if (initialValue) {
+          this.onChange(initialValue);
+          this.refreshInitialValue(initialValue);
+          this.highlightSelectedOptions();
+        }
       });
 
       this.optionsSelectedSubscription = merge(...options.map(o => outputToObservable(o.selected)))
@@ -119,16 +136,43 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
     });
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  protected onChange: (value: SelectValue<T>) => void = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  protected onTouched: () => void = () => {};
+
+  writeValue(initialValue: SelectValue<T>): void {
+    queueMicrotask(() => {
+      this.refreshInitialValue(initialValue);
+      this.highlightSelectedOptions();
+    });
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabled.set(isDisabled);
+  }
+
   ngOnDestroy(): void {
     this.optionsSelectedSubscription?.unsubscribe();
     this.optionsSelectedSubscription = null;
   }
 
-  onKeyUp(event: KeyboardEvent) {
+  protected onKeyUp(event?: KeyboardEvent) {
+    if (this.disabled()) return;
+  }
+
+  markAsTouched() {
     if (this.disabled()) return;
 
-    console.log(event.key);
-    console.log(event.keyCode);
+    this.onTouched();
   }
 
   toggleDropdown(): void {
@@ -145,7 +189,17 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
     this.isOpen.set(false);
   }
 
-  updateSelected(): void {
+  clearSelection(e?: MouseEvent) {
+    e?.stopPropagation();
+
+    if (this.disabled()) return;
+
+    this.selectionModel.clear();
+    this.selectionChange.emit(null);
+    this.onChange(null);
+  }
+
+  private updateSelected(): void {
     if (this.selectionModel.isEmpty()) {
       this.selected.set(null);
 
@@ -159,15 +213,6 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
     }
 
     this.selected.set(this.selectionModel.selected[0]);
-  }
-
-  clearSelection(e: MouseEvent) {
-    e.stopPropagation();
-
-    if (this.disabled()) return;
-
-    this.selectionModel.clear();
-    this.selectionChange.emit(null);
   }
 
   private assertIsNoOptions(options: readonly MuiSelectOptionComponent<T>[]): asserts options {
@@ -191,8 +236,10 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
 
       if (this.selectionModel.isMultipleSelection()) {
         this.selectionChange.emit(this.selectionModel.selected);
+        this.onChange(this.selectionModel.selected);
       } else {
         this.selectionChange.emit(this.selectionModel.selected[0] ?? null);
+        this.onChange(this.selectionModel.selected[0]);
       }
     }
 
@@ -227,12 +274,16 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
       this.optionsMap.forEach(option => option.deselect());
     }
 
-    if (!initialValue || !this.optionsMap.get(initialValue)) return;
+    if (!initialValue) return;
 
     if (Array.isArray(initialValue)) {
       this.selectionModel.select(...initialValue);
-    } else {
-      this.selectionModel.select(initialValue);
+
+      return;
     }
+
+    if (!this.optionsMap.has(initialValue)) return;
+
+    this.selectionModel.select(initialValue);
   }
 }

@@ -3,11 +3,11 @@
     <ng-content />
   </div>
 
-  @if (withCheckbox()) {
+  @if (checkbox(); as checkbox) {
     <mui-checkbox
       [checked]="isSelected()"
-      [size]="checkboxSize()"
-      [color]="checkboxColor()"
+      [size]="checkbox.size"
+      [color]="checkbox.color"
     />
   }
 </div>
