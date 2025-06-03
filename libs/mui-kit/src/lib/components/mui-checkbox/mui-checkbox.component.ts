@@ -1,28 +1,30 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   forwardRef,
   input, model,
-  output, signal, ViewEncapsulation,
+  output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeColors } from '../../types/theme-colors.type';
 
 @Component({
   selector: 'mui-checkbox',
-  templateUrl: './mui-checkbox.component.html',
-  imports: [ NgClass ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MuiCheckboxComponent),
       multi: true,
     }
-  ]
+  ],
+  imports: [ NgClass ],
+  templateUrl: './mui-checkbox.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  host: { 'class': 'inline-flex items-center justify-center' }
 })
 export class MuiCheckboxComponent implements ControlValueAccessor {
   readonly changed = output<boolean>();
@@ -39,12 +41,9 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
   readonly classNames = computed<string[]>(() => this.generateCheckboxClasses());
   readonly checkboxClassNames = computed<string[]>(() => this.generateCheckboxInputClasses());
   readonly svgClassNames = computed<string[]>(() => this.generateSvgClasses());
-  readonly labelContainerClassNames = computed<string[]>(() => this.generateLabelContainerClassNames());
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onChangeFn: (value: boolean) => void = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onTouchedFn: () => void = () => {};
+  private onChangeFn: (value: boolean) => void = () => { return };
+  private onTouchedFn: () => void = () => { return };
 
   writeValue(value: boolean): void {
     this.checked.set(value);
@@ -73,7 +72,7 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
   }
 
   private generateCheckboxClasses(): string[] {
-    const base = 'inline-flex gap-x-2 cursor-pointer select-none';
+    const base = 'inline-flex gap-x-2 cursor-pointer select-none text-black dark:text-white';
 
     const states = {
       disabled: this.disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'cursor-pointer'
@@ -90,8 +89,16 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
       right: 'flex-row',
     };
 
+    const sizes = {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+    };
+
     return [
       base,
+      sizes[this.size()],
       aligns[this.align()],
       labelPositions[this.labelPosition()],
       states.disabled
@@ -153,21 +160,5 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
       sizes[this.size()],
       this.checked() ? 'opacity-100' : 'opacity-0',
     ];
-  }
-
-  private generateLabelContainerClassNames(): string[] {
-    const base = 'flex gap-x-2 text-black dark:text-white';
-
-    const sizes = {
-      xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-    };
-
-    return [
-      base,
-      sizes[this.size()],
-    ]
   }
 }

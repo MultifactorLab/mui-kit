@@ -4,8 +4,8 @@ import { ThemeColors } from '../../types/theme-colors.type';
 
 @Component({
   selector: 'mui-badge',
-  templateUrl: './mui-badge.component.html',
   imports: [ NgClass ],
+  templateUrl: './mui-badge.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
