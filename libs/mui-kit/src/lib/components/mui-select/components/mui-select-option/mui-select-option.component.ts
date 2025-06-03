@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  input, model,
+  input,
   output,
   signal,
   ViewEncapsulation,

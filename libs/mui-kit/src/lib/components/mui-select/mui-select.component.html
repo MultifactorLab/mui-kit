@@ -5,7 +5,8 @@
     flex flex-col justify-start pt-4 px-3 h-13.5 w-full bg-mui-secondary-500 rounded-lg relative select-none
     cursor-pointer outline-none focus:outline-none focus:ring-4 focus:ring-mui-secondary-500/30
   "
-  [tabindex]="tabIndex()"
+  [ngClass]="{ 'opacity-50 cursor-auto pointer-events-none' : disabled() }"
+  [tabindex]="disabled() ? -1 : tabIndex()"
   (click)="toggleDropdown()"
   (keyup)="onKeyUp($event)"
 >
@@ -26,6 +27,7 @@
           flex items-center justify-center text-sm p-1 rounded-full text-white cursor-pointer bg-mui-secondary-600
           hover:bg-mui-secondary-600/60 outline-none focus:outline-none focus:ring-4 focus:ring-mui-secondary-600/30
         "
+        [tabindex]="disabled() ? -1 : 0"
       >
         <svg class="size-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path

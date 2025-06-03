@@ -54,6 +54,7 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
       return fn;
     },
   });
+  readonly disabled = input(false, { transform: booleanAttribute });
 
   selectionChange = output<SelectValue<T>>();
 
@@ -124,11 +125,15 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   }
 
   onKeyUp(event: KeyboardEvent) {
+    if (this.disabled()) return;
+
     console.log(event.key);
     console.log(event.keyCode);
   }
 
   toggleDropdown(): void {
+    if (this.disabled()) return;
+
     this.isOpen.set(!this.isOpen());
   }
 
@@ -159,6 +164,8 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   clearSelection(e: MouseEvent) {
     e.stopPropagation();
 
+    if (this.disabled()) return;
+
     this.selectionModel.clear();
     this.selectionChange.emit(null);
   }
@@ -175,6 +182,8 @@ export class MuiSelectComponent<T = unknown> implements OnDestroy {
   }
 
   private handleSelection(option: MuiSelectOptionComponent<T>) {
+    if (this.disabled()) return;
+
     const selectedValue = option.value() ?? null;
 
     if (selectedValue) {
