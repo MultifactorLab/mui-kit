@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed, forwardRef,
-  input,
+  input, model,
   output,
   signal,
   ViewEncapsulation,
@@ -27,12 +27,12 @@ export class MuiInputComponent implements ControlValueAccessor{
   readonly placeholder = input.required<string>();
   readonly type = input<MuiInputTypes>('text');
   readonly id = input('');
+  protected disabled = model<boolean>(false);
 
-  readonly inputChange = output<string | number>();
+  readonly inputChange = output<string>();
 
   protected inputId = computed<string>(() => (this.getInputId()));
-  protected isDisabled = signal<boolean>(false);
-  protected value = signal<string | number | null>(null);
+  protected value = signal<string>('');
 
   onInput(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -66,6 +66,6 @@ export class MuiInputComponent implements ControlValueAccessor{
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.isDisabled.set(isDisabled);
+    this.disabled.set(isDisabled);
   }
 }
