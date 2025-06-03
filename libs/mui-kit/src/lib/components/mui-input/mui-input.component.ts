@@ -50,16 +50,14 @@ export class MuiInputComponent implements ControlValueAccessor{
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange: (val: string | number | null) => void = () => {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onTouched: () => void = () => {}
+  onChange: (val: string) => void = () => { return };
+  onTouched: () => void = () => { return }
 
-  writeValue(value: string | number | null): void {
+  writeValue(value: string): void {
     this.value.set(value);
   }
 
-  registerOnChange(fn: (val: string | number | null) => void): void {
+  registerOnChange(fn: (val: string) => void): void {
     this.onChange = fn
   }
 

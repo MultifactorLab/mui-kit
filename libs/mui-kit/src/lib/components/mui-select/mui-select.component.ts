@@ -27,17 +27,17 @@ import { CompareWithFn, DisplayWithFn, SelectValue } from './types/mui-select.ty
 
 @Component({
   selector: 'mui-select, mui-select[multiple]',
-  imports: [
-    NgClass,
-    CdkOverlayOrigin,
-    CdkConnectedOverlay,
-  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MuiSelectComponent),
       multi: true,
     }
+  ],
+  imports: [
+    NgClass,
+    CdkOverlayOrigin,
+    CdkConnectedOverlay,
   ],
   templateUrl: './mui-select.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -157,10 +157,8 @@ export class MuiSelectComponent<T = unknown> implements ControlValueAccessor, On
     });
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected onChange: (value: SelectValue<T>) => void = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected onTouched: () => void = () => {};
+  protected onChange: (value: SelectValue<T>) => void = () => { return };
+  protected onTouched: () => void = () => { return };
 
   writeValue(initialValue: SelectValue<T>): void {
     queueMicrotask(() => {

@@ -1,21 +1,18 @@
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   forwardRef,
   input, model,
-  output, signal, ViewEncapsulation,
+  output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeColors } from '../../types/theme-colors.type';
 
 @Component({
   selector: 'mui-checkbox',
-  templateUrl: './mui-checkbox.component.html',
-  imports: [ NgClass ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -23,6 +20,10 @@ import { ThemeColors } from '../../types/theme-colors.type';
       multi: true,
     }
   ],
+  imports: [ NgClass ],
+  templateUrl: './mui-checkbox.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   host: { 'class': 'inline-flex items-center justify-center' }
 })
 export class MuiCheckboxComponent implements ControlValueAccessor {
@@ -41,10 +42,8 @@ export class MuiCheckboxComponent implements ControlValueAccessor {
   readonly checkboxClassNames = computed<string[]>(() => this.generateCheckboxInputClasses());
   readonly svgClassNames = computed<string[]>(() => this.generateSvgClasses());
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onChangeFn: (value: boolean) => void = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onTouchedFn: () => void = () => {};
+  private onChangeFn: (value: boolean) => void = () => { return };
+  private onTouchedFn: () => void = () => { return };
 
   writeValue(value: boolean): void {
     this.checked.set(value);

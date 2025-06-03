@@ -5,24 +5,26 @@ import {
   computed,
   forwardRef,
   input,
-  output, signal, ViewEncapsulation,
+  output,
+  signal,
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ThemeColors } from '../../types/theme-colors.type';
 
 @Component({
   selector: 'mui-switch',
-  templateUrl: './mui-switch.component.html',
-  imports: [NgClass],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MuiSwitchComponent),
       multi: true,
     }
-  ]
+  ],
+  imports: [ NgClass ],
+  templateUrl: './mui-switch.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class MuiSwitchComponent implements ControlValueAccessor {
   readonly changed = output<boolean>();
@@ -38,10 +40,8 @@ export class MuiSwitchComponent implements ControlValueAccessor {
   readonly classNames = computed<string[]>(() => this.generateSwitchClasses());
   readonly sliderClassNames = computed<string[]>(() => this.generateSliderClasses());
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onChangeFn: (value: boolean) => void = () => {};
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private onTouchedFn: () => void = () => {};
+  private onChangeFn: (value: boolean) => void = () => { return };
+  private onTouchedFn: () => void = () => { return };
 
   writeValue(value: boolean): void {
     this.checked.set(value);

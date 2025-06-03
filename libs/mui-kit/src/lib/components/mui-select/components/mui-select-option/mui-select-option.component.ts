@@ -16,12 +16,10 @@ import { MuiCheckboxComponent } from '../../../mui-checkbox/mui-checkbox.compone
 
 @Component({
   selector: 'mui-select-option',
+  imports: [ MuiCheckboxComponent ],
   templateUrl: 'mui-select-option.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  imports: [
-    MuiCheckboxComponent,
-  ],
   host: {
     '[class]': 'hostClassNames()',
     '(click)': 'select($event)',
