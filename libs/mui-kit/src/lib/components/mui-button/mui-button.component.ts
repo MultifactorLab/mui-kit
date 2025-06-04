@@ -42,7 +42,7 @@ export class MuiButtonComponent {
   }
 
   private generateButtonClasses(): string[] {
-    const base = `inline-flex items-center justify-center gap-x-1 transition-colors select-none w-full h-full`;
+    const base = `inline-flex items-center justify-center gap-x-1 transition-colors select-none w-full`;
 
     const rounded = {
       xs: 'rounded-xs',
@@ -95,10 +95,10 @@ export class MuiButtonComponent {
     }
 
     const sizes = {
-      xs: 'px-1.5 py-0.5 text-xs',
-      sm: 'px-2 py-1 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
+      xs: 'px-1.5 py-0.5 text-xs min-h-5',
+      sm: 'px-2 py-1 text-sm min-h-6',
+      md: 'px-4 py-2 text-base min-h-8',
+      lg: 'px-6 py-3 text-lg min-h-10',
     }
 
     const states = { disabled: this.disabled() ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'cursor-pointer' }

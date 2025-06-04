@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, ContentChildren, QueryList, computed, input, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChildren, QueryList, computed, input, signal, ViewEncapsulation, ContentChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MuiTabDirective } from './mui-tab.directive';
+import { MuiTabControlPanelDirective } from './mui-tab-control-panel.directive';
 
 @Component({
   selector: 'mui-tabs',
@@ -17,8 +18,10 @@ export class MuiTabsComponent {
   @ContentChildren(MuiTabDirective) tabs!: QueryList<MuiTabDirective>;
 
   readonly tabHeaders = computed(() => this.tabs.toArray().map(tab => tab.label));
+  @ContentChild(MuiTabControlPanelDirective) controlPanelRef?: MuiTabControlPanelDirective;
 
   selectTab(index: number): void {
+    console.log(this.controlPanelRef);
     this.selectedIndex.set(index);
   }
 
