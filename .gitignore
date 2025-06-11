@@ -1,5 +1,5 @@
 # See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
+libs/mui-kit/.storybook/tailwind.css
 .github
 .vscode
 pnpm-lock.yaml
