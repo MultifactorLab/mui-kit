@@ -11,8 +11,8 @@ import { ThemeColors } from '../../types/theme-colors.type';
 
 @Component({
   selector: 'mui-button',
-  templateUrl: './mui-button.component.html',
   imports: [ NgClass, NgTemplateOutlet ],
+  templateUrl: './mui-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

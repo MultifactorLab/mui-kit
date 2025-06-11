@@ -48,6 +48,9 @@
     "tailwind": {
       "command": "npx @tailwindcss/cli -i libs/mui-kit/src/styles/tailwind.css -o libs/mui-kit/.storybook/tailwind.css --watch"
     },
+    "tailwind-mui-storybook": {
+      "command": "npx @tailwindcss/cli -i libs/mui-kit/src/styles/tailwind.css -o apps/mui_storybook/src/tailwind.css --watch"
+    },
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {

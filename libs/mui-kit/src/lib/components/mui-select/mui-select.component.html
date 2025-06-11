@@ -1,0 +1,63 @@
+<div
+  #overlayOrigin="cdkOverlayOrigin"
+  cdkOverlayOrigin
+  class="
+    flex flex-col justify-start pt-4 px-3 h-13.5 w-full bg-mui-secondary-500 rounded-lg relative select-none
+    cursor-pointer outline-none focus:outline-none focus:ring-4 focus:ring-mui-secondary-500/30
+  "
+  [ngClass]="{ 'opacity-50 cursor-auto pointer-events-none' : disabled() }"
+  [tabindex]="disabled() ? -1 : tabIndex()"
+  (click)="toggleDropdown()"
+  (keydown)="onKeyDown($event)"
+  (keyup.escape)="resetFocus()"
+  (blur)="markAsTouched()"
+>
+  <div
+    class="absolute left-3 text-mui-secondary-100 origin-top-left transition-all"
+    [ngClass]="labelClasses()"
+  >
+    {{ label() }}
+  </div>
+
+  <div class="w-full flex items-center justify-between gap-x-2">
+    <div class="w-full min-h-6 text-white text-nowrap overflow-hidden text-ellipsis">{{ displayedValue() }}</div>
+
+    @if (displayedValue()) {
+      <button
+        (click)="clearSelection($event)"
+        class="
+          flex items-center justify-center text-sm p-1 rounded-full text-white cursor-pointer bg-mui-secondary-600
+          hover:bg-mui-secondary-600/60 outline-none focus:outline-none focus:ring-4 focus:ring-mui-secondary-600/30
+        "
+        [tabindex]="disabled() ? -1 : 0"
+      >
+        <svg class="size-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    }
+
+    <div class="transition-transform" [ngClass]="{ 'rotate-180': isOpen() }">
+      <svg class="size-5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 10l5 5 5-5H7z" />
+      </svg>
+    </div>
+  </div>
+
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOpen]="isOpen()"
+    [cdkConnectedOverlayOrigin]="overlayOrigin"
+    [cdkConnectedOverlayWidth]="overlayOrigin.elementRef.nativeElement.offsetWidth"
+    cdkConnectedOverlayHasBackdrop
+    [cdkConnectedOverlayBackdropClass]="['bg-transparent']"
+    cdkConnectedOverlayPanelClass="z-[10500]!"
+    (backdropClick)="closeDropdown()"
+    (detach)="closeDropdown()"
+  >
+    <div class="bg-mui-secondary-500 text-mui-secondary-100 rounded-lg w-full my-2 max-h-44 overflow-y-auto select-none space-y-1 p-1">
+      <ng-content select="mui-select-option">No options</ng-content>
+    </div>
+  </ng-template>
+</div>
